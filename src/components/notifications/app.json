@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_notifications_apps",
+  "info": {
+    "displayName": "app",
+    "icon": "globe-europe"
+  },
+  "options": {},
+  "attributes": {
+    "dataRequests": {
+      "type": "boolean",
+      "default": true
+    },
+    "inquiry": {
+      "type": "boolean",
+      "default": false
+    },
+    "newProjects": {
+      "type": "boolean",
+      "default": true
+    },
+    "fundingExpiry": {
+      "type": "boolean",
+      "default": true
+    },
+    "newChecklists": {
+      "type": "boolean",
+      "default": true
+    },
+    "networkRequest": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

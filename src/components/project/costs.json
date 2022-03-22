@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_project_costs",
+  "info": {
+    "displayName": "costs",
+    "icon": "euro-sign"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "float"
+    }
+  }
+}

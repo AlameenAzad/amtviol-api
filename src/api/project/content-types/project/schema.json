@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "info": {
+      "displayName": "info",
+      "type": "component",
+      "repeatable": false,
+      "component": "project.info",
+      "required": true
+    },
+    "editors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "projectEditor"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "catAndTags": {
+      "displayName": "cat&tag",
+      "type": "component",
+      "repeatable": false,
+      "component": "project.cat-and-tag"
+    },
+    "details": {
+      "displayName": "details",
+      "type": "component",
+      "repeatable": false,
+      "component": "project.details",
+      "required": true
+    },
+    "estimatedCosts": {
+      "displayName": "costs",
+      "type": "component",
+      "repeatable": true,
+      "component": "project.costs"
+    },
+    "plannedStart": {
+      "type": "date"
+    },
+    "plannedEnd": {
+      "type": "date"
+    },
+    "links": {
+      "displayName": "links",
+      "type": "component",
+      "repeatable": true,
+      "component": "project.links"
+    },
+    "uploads": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "fundingGuideline": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::funding.funding"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_project_details",
+  "info": {
+    "displayName": "details",
+    "icon": "file-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "goals": {
+      "type": "string",
+      "required": true
+    },
+    "valuesAndBenefits": {
+      "type": "string",
+      "required": true
+    },
+    "partner": {
+      "type": "string"
+    },
+    "investive": {
+      "type": "boolean",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Idea",
+        "Development",
+        "Pre-Planning",
+        "Detailed-Planning"
+      ]
+    }
+  }
+}

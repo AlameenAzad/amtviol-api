@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_notifications_emails",
+  "info": {
+    "displayName": "email",
+    "icon": "envelope"
+  },
+  "options": {},
+  "attributes": {
+    "dataRequests": {
+      "type": "boolean",
+      "default": true
+    },
+    "inquiry": {
+      "type": "boolean",
+      "default": true
+    },
+    "newProjects": {
+      "type": "boolean",
+      "default": false
+    },
+    "fundingExpiry": {
+      "type": "boolean",
+      "default": true
+    },
+    "newChecklists": {
+      "type": "boolean",
+      "default": true
+    },
+    "networkRequests": {
+      "type": "boolean",
+      "default": true
+    },
+    "secureEmails": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    }
+  }
+}

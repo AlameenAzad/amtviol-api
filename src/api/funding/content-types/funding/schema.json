@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fundings",
+  "info": {
+    "singularName": "funding",
+    "pluralName": "fundings",
+    "displayName": "funding"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
