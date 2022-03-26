@@ -35,10 +35,6 @@
                                           "username": {
                                             "type": "string"
                                           },
-                                          "email": {
-                                            "type": "string",
-                                            "format": "email"
-                                          },
                                           "provider": {
                                             "type": "string"
                                           },
@@ -476,6 +472,10 @@
                                                 }
                                               }
                                             }
+                                          },
+                                          "email": {
+                                            "type": "string",
+                                            "format": "email"
                                           },
                                           "projectEditor": {
                                             "type": "object",
@@ -2203,10 +2203,6 @@
                                         "username": {
                                           "type": "string"
                                         },
-                                        "email": {
-                                          "type": "string",
-                                          "format": "email"
-                                        },
                                         "provider": {
                                           "type": "string"
                                         },
@@ -2644,6 +2640,10 @@
                                               }
                                             }
                                           }
+                                        },
+                                        "email": {
+                                          "type": "string",
+                                          "format": "email"
                                         },
                                         "projectEditor": {
                                           "type": "object",
@@ -4339,10 +4339,6 @@
                                         "username": {
                                           "type": "string"
                                         },
-                                        "email": {
-                                          "type": "string",
-                                          "format": "email"
-                                        },
                                         "provider": {
                                           "type": "string"
                                         },
@@ -4780,6 +4776,10 @@
                                               }
                                             }
                                           }
+                                        },
+                                        "email": {
+                                          "type": "string",
+                                          "format": "email"
                                         },
                                         "projectEditor": {
                                           "type": "object",
@@ -6416,10 +6416,6 @@
                                         "username": {
                                           "type": "string"
                                         },
-                                        "email": {
-                                          "type": "string",
-                                          "format": "email"
-                                        },
                                         "provider": {
                                           "type": "string"
                                         },
@@ -6857,6 +6853,10 @@
                                               }
                                             }
                                           }
+                                        },
+                                        "email": {
+                                          "type": "string",
+                                          "format": "email"
                                         },
                                         "projectEditor": {
                                           "type": "object",
