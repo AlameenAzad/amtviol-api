@@ -8,13 +8,14 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "info": {
       "displayName": "info",
@@ -33,12 +34,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
-    },
-    "catAndTags": {
-      "displayName": "cat&tag",
-      "type": "component",
-      "repeatable": false,
-      "component": "project.cat-and-tag"
     },
     "details": {
       "displayName": "details",
@@ -80,6 +75,34 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::funding.funding"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "projects"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "projects"
+    },
+    "municipality": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::municipality.municipality"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "readers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "projectReader"
     }
   }
 }

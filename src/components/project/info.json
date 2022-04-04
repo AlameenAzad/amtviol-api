@@ -2,18 +2,14 @@
   "collectionName": "components_project_infos",
   "info": {
     "displayName": "info",
-    "icon": "money-check"
+    "icon": "money-check",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "contactName": {
       "type": "string",
       "required": true
-    },
-    "municipality": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::municipality.municipality"
     },
     "phone": {
       "type": "string"

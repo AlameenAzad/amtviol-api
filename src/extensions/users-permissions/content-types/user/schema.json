@@ -22,7 +22,8 @@
     },
     "provider": {
       "type": "string",
-      "configurable": false
+      "configurable": false,
+      "private": true
     },
     "password": {
       "type": "password",
@@ -48,7 +49,8 @@
     "blocked": {
       "type": "boolean",
       "default": false,
-      "configurable": false
+      "configurable": false,
+      "private": true
     },
     "role": {
       "type": "relation",
@@ -74,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::watchlist.watchlist",
       "mappedBy": "user"
+    },
+    "projectReader": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "readers"
     }
   }
 }

@@ -6,7 +6,7 @@ module.exports = ({ env }) => ({
       port: env.int("DATABASE_PORT", 3306),
       database: env("DATABASE_NAME", "amtviol"),
       user: env("DATABASE_USERNAME", "root"),
-      password: env("DATABASE_PASSWORD", "inux@auis"),
+      password: env("DATABASE_PASSWORD", ""),
       ssl: env.bool("DATABASE_SSL", false),
     },
   },
