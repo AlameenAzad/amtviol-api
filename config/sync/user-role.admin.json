@@ -1,0 +1,97 @@
+{
+  "name": "Admin",
+  "description": "Admin user with access to all features ",
+  "type": "admin",
+  "permissions": [
+    {
+      "action": "api::category.category.create"
+    },
+    {
+      "action": "api::category.category.delete"
+    },
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::category.category.findOne"
+    },
+    {
+      "action": "api::category.category.update"
+    },
+    {
+      "action": "api::municipality.municipality.create"
+    },
+    {
+      "action": "api::municipality.municipality.delete"
+    },
+    {
+      "action": "api::municipality.municipality.find"
+    },
+    {
+      "action": "api::municipality.municipality.findOne"
+    },
+    {
+      "action": "api::municipality.municipality.update"
+    },
+    {
+      "action": "api::project.project.create"
+    },
+    {
+      "action": "api::project.project.find"
+    },
+    {
+      "action": "api::project.project.findOne"
+    },
+    {
+      "action": "api::project.project.update"
+    },
+    {
+      "action": "api::tag.tag.create"
+    },
+    {
+      "action": "api::tag.tag.delete"
+    },
+    {
+      "action": "api::tag.tag.find"
+    },
+    {
+      "action": "api::tag.tag.findOne"
+    },
+    {
+      "action": "api::tag.tag.update"
+    },
+    {
+      "action": "api::user-detail.user-detail.create"
+    },
+    {
+      "action": "api::user-detail.user-detail.delete"
+    },
+    {
+      "action": "api::user-detail.user-detail.find"
+    },
+    {
+      "action": "api::user-detail.user-detail.findOne"
+    },
+    {
+      "action": "api::user-detail.user-detail.update"
+    },
+    {
+      "action": "api::watchlist.watchlist.create"
+    },
+    {
+      "action": "api::watchlist.watchlist.delete"
+    },
+    {
+      "action": "api::watchlist.watchlist.find"
+    },
+    {
+      "action": "api::watchlist.watchlist.findOne"
+    },
+    {
+      "action": "plugin::upload.content-api.destroy"
+    },
+    {
+      "action": "plugin::upload.content-api.upload"
+    }
+  ]
+}

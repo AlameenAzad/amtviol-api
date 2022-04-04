@@ -1,0 +1,64 @@
+{
+  "name": "user",
+  "description": "Default role given to authenticated user.",
+  "type": "authenticated",
+  "permissions": [
+    {
+      "action": "api::category.category.find"
+    },
+    {
+      "action": "api::category.category.findOne"
+    },
+    {
+      "action": "api::municipality.municipality.find"
+    },
+    {
+      "action": "api::project.project.find"
+    },
+    {
+      "action": "api::project.project.findOne"
+    },
+    {
+      "action": "api::tag.tag.find"
+    },
+    {
+      "action": "api::user-detail.user-detail.create"
+    },
+    {
+      "action": "api::user-detail.user-detail.find"
+    },
+    {
+      "action": "api::user-detail.user-detail.update"
+    },
+    {
+      "action": "api::watchlist.watchlist.create"
+    },
+    {
+      "action": "api::watchlist.watchlist.delete"
+    },
+    {
+      "action": "api::watchlist.watchlist.find"
+    },
+    {
+      "action": "api::watchlist.watchlist.findOne"
+    },
+    {
+      "action": "plugin::upload.content-api.destroy"
+    },
+    {
+      "action": "plugin::upload.content-api.upload"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.user.find"
+    },
+    {
+      "action": "plugin::users-permissions.user.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
+}

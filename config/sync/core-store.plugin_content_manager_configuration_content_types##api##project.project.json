@@ -1,0 +1,358 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::project.project",
+  "value": {
+    "uid": "api::project.project",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "title",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "info": {
+        "edit": {
+          "label": "info",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "info",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "editors": {
+        "edit": {
+          "label": "editors",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "editors",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "owner": {
+        "edit": {
+          "label": "owner",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "owner",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "details": {
+        "edit": {
+          "label": "details",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "estimatedCosts": {
+        "edit": {
+          "label": "estimatedCosts",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "estimatedCosts",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "plannedStart": {
+        "edit": {
+          "label": "plannedStart",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "plannedStart",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "plannedEnd": {
+        "edit": {
+          "label": "plannedEnd",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "plannedEnd",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "links": {
+        "edit": {
+          "label": "links",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "links",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "uploads": {
+        "edit": {
+          "label": "uploads",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "uploads",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingGuideline": {
+        "edit": {
+          "label": "fundingGuideline",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingGuideline",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "categories": {
+        "edit": {
+          "label": "categories",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "categories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "tags",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "municipality": {
+        "edit": {
+          "label": "municipality",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "municipality",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "published": {
+        "edit": {
+          "label": "published",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "published",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "readers": {
+        "edit": {
+          "label": "readers",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "readers",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "title",
+        "info",
+        "editors",
+        "owner"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "info",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "estimatedCosts",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "plannedStart",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "plannedEnd",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "links",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "uploads",
+            "size": 6
+          },
+          {
+            "name": "published",
+            "size": 4
+          }
+        ]
+      ],
+      "editRelations": [
+        "editors",
+        "owner",
+        "categories",
+        "tags",
+        "municipality",
+        "readers"
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
