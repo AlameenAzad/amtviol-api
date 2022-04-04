@@ -38,7 +38,20 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       "api::project.project",
       ctx.request.url.substr(14, 1),
       {
-        populate: "*",
+        populate: {
+          owner: { fields: ["username"] },
+          editors: { fields: ["username"] },
+          readers: { fields: ["username"] },
+          categories: { fields: ["title"] },
+          tags: { fields: ["title"] },
+          info: "*",
+          details: "*",
+          estimatedCosts: "*",
+          links: "*",
+          uploads: "*",
+          fundingGuideline: "*",
+          municipality: "*",
+        },
         filters: {
           $or: [
             {
