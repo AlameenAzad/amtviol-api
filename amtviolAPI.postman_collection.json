@@ -1,10 +1,89 @@
 {
 	"info": {
-		"_postman_id": "49921c0e-f554-4de5-b43a-fb455dda7b29",
+		"_postman_id": "641b0924-80a6-4b64-879f-e4584e50e01f",
 		"name": "amtviolAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject3\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Specific project details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/projects/5",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"projects",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "user center",
 			"item": [
@@ -33,7 +112,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"user009\",\r\n    \"email\": \"alameen.azad2@kruschecompany.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"user00885\",\r\n    \"email\": \"alameen.azad235@kruschecompany.com\",\r\n    \"password\": \"123456\",\r\n    \"administration\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,11 +151,14 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"identifier\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"raw": "{\r\n    \"identifier\": \"admin@test.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -105,7 +187,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user-details",
+							"raw": "localhost:1337/api/user-details?populate=*",
 							"host": [
 								"localhost"
 							],
@@ -117,8 +199,7 @@
 							"query": [
 								{
 									"key": "populate",
-									"value": "*",
-									"disabled": true
+									"value": "*"
 								}
 							]
 						}
@@ -132,7 +213,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"fullName\": \"bilend57\",\r\n        \"administration\": 1,\r\n        \"phone\": \"666666\",\r\n        \"location\": \"Nali\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"fullName\": \"bilend57\",\r\n        \"phone\": \"666666\",\r\n        \"location\": \"Nali\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,6 +233,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -164,7 +253,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/tags",
+							"raw": "localhost:1337/api/tags?populate=*",
 							"host": [
 								"localhost"
 							],
@@ -172,6 +261,12 @@
 							"path": [
 								"api",
 								"tags"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
 							]
 						}
 					},
@@ -200,6 +295,64 @@
 							"path": [
 								"api",
 								"tags"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/categories?populate=*",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"asdlkajsdlk\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"categories"
 							]
 						}
 					},
@@ -258,6 +411,88 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "watchlist",
+			"item": [
+				{
+					"name": "watchlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/watchlists?populate=*",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"watchlists"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ref",
+							"value": "api::project.project",
+							"description": "name of the api",
+							"type": "text"
+						},
+						{
+							"key": "refId",
+							"value": "3",
+							"description": "after you create an entry you get it's id then you put it here",
+							"type": "text"
+						},
+						{
+							"key": "field",
+							"value": "uploads",
+							"description": "the field name of the images in the API [ in this case in API projects, the image field is named uploads ]",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"description": "the files you want to uplaod",
+							"type": "file",
+							"src": [
+								"/C:/Users/User/Downloads/67A6598B-36C4-4912-82E0-5B3CA52C2A32.mp4",
+								"/C:/Users/User/Downloads/MicrosoftTeams-image (4).png",
+								"/C:/Users/User/Downloads/MicrosoftTeams-image (3).png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:1337/api/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"upload"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
