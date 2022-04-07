@@ -158,7 +158,8 @@
           "tags",
           "municipality",
           "published",
-          "readers"
+          "readers",
+          "visibility"
         ]
       },
       "conditions": []
@@ -201,7 +202,8 @@
           "tags",
           "municipality",
           "published",
-          "readers"
+          "readers",
+          "visibility"
         ]
       },
       "conditions": []
@@ -238,7 +240,53 @@
           "tags",
           "municipality",
           "published",
-          "readers"
+          "readers",
+          "visibility"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::request.request",
+      "properties": {
+        "fields": [
+          "user",
+          "project",
+          "funding",
+          "approved"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::request.request",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::request.request",
+      "properties": {
+        "fields": [
+          "user",
+          "project",
+          "funding",
+          "approved"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::request.request",
+      "properties": {
+        "fields": [
+          "user",
+          "project",
+          "funding",
+          "approved"
         ]
       },
       "conditions": []

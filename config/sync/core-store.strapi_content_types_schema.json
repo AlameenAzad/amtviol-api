@@ -1250,7 +1250,7 @@
           "type": "relation",
           "relation": "manyToMany",
           "target": "api::project.project",
-          "inversedBy": "readers"
+          "mappedBy": "readers"
         },
         "createdAt": {
           "type": "datetime"
@@ -1376,7 +1376,7 @@
             "type": "relation",
             "relation": "manyToMany",
             "target": "api::project.project",
-            "inversedBy": "readers"
+            "mappedBy": "readers"
           }
         },
         "kind": "collectionType"
@@ -1758,6 +1758,14 @@
           "target": "plugin::users-permissions.user",
           "inversedBy": "projectReader"
         },
+        "visibility": {
+          "type": "enumeration",
+          "enum": [
+            "only for me",
+            "all users",
+            "listed only"
+          ]
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1889,6 +1897,14 @@
             "relation": "manyToMany",
             "target": "plugin::users-permissions.user",
             "inversedBy": "projectReader"
+          },
+          "visibility": {
+            "type": "enumeration",
+            "enum": [
+              "only for me",
+              "all users",
+              "listed only"
+            ]
           }
         },
         "kind": "collectionType"
@@ -1899,6 +1915,110 @@
       "uid": "api::project.project",
       "apiName": "project",
       "globalId": "Project",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::request.request": {
+      "kind": "collectionType",
+      "collectionName": "requests",
+      "info": {
+        "singularName": "request",
+        "pluralName": "requests",
+        "displayName": "request",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "user": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "project": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::project.project"
+        },
+        "funding": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::funding.funding"
+        },
+        "approved": {
+          "type": "boolean",
+          "default": false
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "requests",
+        "info": {
+          "singularName": "request",
+          "pluralName": "requests",
+          "displayName": "request",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          },
+          "project": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::project.project"
+          },
+          "funding": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::funding.funding"
+          },
+          "approved": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "request",
+      "connection": "default",
+      "uid": "api::request.request",
+      "apiName": "request",
+      "globalId": "Request",
       "actions": {},
       "lifecycles": {}
     },

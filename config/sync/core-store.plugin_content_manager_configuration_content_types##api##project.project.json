@@ -251,6 +251,20 @@
           "sortable": false
         }
       },
+      "visibility": {
+        "edit": {
+          "label": "visibility",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "visibility",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -339,6 +353,12 @@
           {
             "name": "published",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "visibility",
+            "size": 6
           }
         ]
       ],

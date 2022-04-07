@@ -19,6 +19,21 @@
       "action": "api::project.project.findOne"
     },
     {
+      "action": "api::request.request.create"
+    },
+    {
+      "action": "api::request.request.delete"
+    },
+    {
+      "action": "api::request.request.find"
+    },
+    {
+      "action": "api::request.request.findOne"
+    },
+    {
+      "action": "api::request.request.update"
+    },
+    {
       "action": "api::tag.tag.find"
     },
     {
