@@ -1734,6 +1734,14 @@
                                                               }
                                                             }
                                                           },
+                                                          "visibility": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                              "only for me",
+                                                              "all users",
+                                                              "listed only"
+                                                            ]
+                                                          },
                                                           "createdAt": {
                                                             "type": "string",
                                                             "format": "date-time"
@@ -2510,6 +2518,14 @@
                                     }
                                   }
                                 }
+                              },
+                              "visibility": {
+                                "type": "string",
+                                "enum": [
+                                  "only for me",
+                                  "all users",
+                                  "listed only"
+                                ]
                               },
                               "createdAt": {
                                 "type": "string",
@@ -4550,6 +4566,14 @@
                                                             }
                                                           }
                                                         },
+                                                        "visibility": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "only for me",
+                                                            "all users",
+                                                            "listed only"
+                                                          ]
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -5326,6 +5350,14 @@
                                   }
                                 }
                               }
+                            },
+                            "visibility": {
+                              "type": "string",
+                              "enum": [
+                                "only for me",
+                                "all users",
+                                "listed only"
+                              ]
                             },
                             "createdAt": {
                               "type": "string",
@@ -7340,6 +7372,14 @@
                                                             }
                                                           }
                                                         },
+                                                        "visibility": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "only for me",
+                                                            "all users",
+                                                            "listed only"
+                                                          ]
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -8116,6 +8156,14 @@
                                   }
                                 }
                               }
+                            },
+                            "visibility": {
+                              "type": "string",
+                              "enum": [
+                                "only for me",
+                                "all users",
+                                "listed only"
+                              ]
                             },
                             "createdAt": {
                               "type": "string",
@@ -10065,6 +10113,14 @@
                                                             }
                                                           }
                                                         },
+                                                        "visibility": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "only for me",
+                                                            "all users",
+                                                            "listed only"
+                                                          ]
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -10842,6 +10898,14 @@
                                 }
                               }
                             },
+                            "visibility": {
+                              "type": "string",
+                              "enum": [
+                                "only for me",
+                                "all users",
+                                "listed only"
+                              ]
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -11264,6 +11328,14 @@
                           ],
                           "example": "string or id"
                         }
+                      },
+                      "visibility": {
+                        "type": "string",
+                        "enum": [
+                          "only for me",
+                          "all users",
+                          "listed only"
+                        ]
                       },
                       "createdAt": {
                         "type": "string",

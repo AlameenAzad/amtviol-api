@@ -81,7 +81,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "readers"
+      "mappedBy": "readers"
     }
   }
 }

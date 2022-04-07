@@ -103,6 +103,14 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "projectReader"
+    },
+    "visibility": {
+      "type": "enumeration",
+      "enum": [
+        "only for me",
+        "all users",
+        "listed only"
+      ]
     }
   }
 }
