@@ -8,7 +8,6 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::request.request", ({ strapi }) => ({
   async update(ctx) {
-    // some logic here
     const projectOwner = await strapi.entityService.findOne(
       "api::request.request",
       ctx.request.url.substr(14, 1),
@@ -23,20 +22,13 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
         },
       }
     );
-    //TODO: the follwoing code is not working
-    // Allow to update only if the user is the owner of the project
-    // check the roles permission in settings we may have given to more than one roles
-    console.log(ctx.state.user.id);
-    return projectOwner;
-    // if (projectOwner.project.owner.id == ctx.state.user.id) {
-    //   const response = await super.update(ctx);
-    //   // some more logic
-
-    //   return response;
-    // } else
-    //   return ctx.unauthorized(
-    //     `You are not authorized to accept this invitation.`
-    //   );
+    if (projectOwner.project.owner.id == ctx.state.user.id) {
+      const response = await super.update(ctx);
+      return response;
+    } else
+      return ctx.unauthorized(
+        `You are not authorized to edit this invitation.`
+      );
   },
   async find(ctx) {
     const entries = await strapi.entityService.findMany(
