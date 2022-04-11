@@ -2124,7 +2124,7 @@
       "attributes": {
         "fullName": {
           "type": "string",
-          "required": true
+          "required": false
         },
         "user": {
           "type": "relation",
@@ -2201,7 +2201,7 @@
         "attributes": {
           "fullName": {
             "type": "string",
-            "required": true
+            "required": false
           },
           "user": {
             "type": "relation",
