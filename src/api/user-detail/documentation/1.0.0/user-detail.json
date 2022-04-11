@@ -5295,6 +5295,132 @@
                     "properties": {
                       "fullName": {
                         "type": "string"
+                      },
+                      "user": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "example": "string or id"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "notifications": {
+                        "type": "object",
+                        "properties": {
+                          "app": {
+                            "type": "object",
+                            "properties": {
+                              "dataRequests": {
+                                "type": "boolean"
+                              },
+                              "inquiry": {
+                                "type": "boolean"
+                              },
+                              "newProjects": {
+                                "type": "boolean"
+                              },
+                              "fundingExpiry": {
+                                "type": "boolean"
+                              },
+                              "newChecklists": {
+                                "type": "boolean"
+                              },
+                              "networkRequest": {
+                                "type": "boolean"
+                              }
+                            }
+                          },
+                          "email": {
+                            "type": "object",
+                            "properties": {
+                              "dataRequests": {
+                                "type": "boolean"
+                              },
+                              "inquiry": {
+                                "type": "boolean"
+                              },
+                              "newProjects": {
+                                "type": "boolean"
+                              },
+                              "fundingExpiry": {
+                                "type": "boolean"
+                              },
+                              "newChecklists": {
+                                "type": "boolean"
+                              },
+                              "networkRequests": {
+                                "type": "boolean"
+                              },
+                              "secureEmails": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "contactPrivacy": {
+                        "type": "boolean"
+                      },
+                      "profile": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "example": "string or id"
+                      },
+                      "municipality": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "example": "string or id"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "example": "string or id"
+                      },
+                      "updatedBy": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "example": "string or id"
                       }
                     }
                   }

@@ -14,7 +14,7 @@
   "attributes": {
     "fullName": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "user": {
       "type": "relation",
