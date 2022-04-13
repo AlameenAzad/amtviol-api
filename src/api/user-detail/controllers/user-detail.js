@@ -37,14 +37,14 @@ module.exports = createCoreController(
       //     `You can't create an entry for this user. User already has an entry.`
       //   );
       // } else {
-      let entity;
+
       // ctx.request.body.data.user = ctx.state.user;
       //init default notifications settings
       ctx.request.body.data.notifications = {
         email: {},
         app: {},
       };
-      // entity = await super.create(ctx);
+      let entity = await super.create(ctx);
       return entity;
       // }
     },
