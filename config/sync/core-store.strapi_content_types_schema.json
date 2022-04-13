@@ -1560,7 +1560,8 @@
       "info": {
         "singularName": "municipality",
         "pluralName": "municipalities",
-        "displayName": "municipality"
+        "displayName": "municipality",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -1578,11 +1579,18 @@
           "unique": true
         },
         "profile": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
           "allowedTypes": [
             "images"
-          ],
-          "type": "media",
-          "multiple": false
+          ]
+        },
+        "projects": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::project.project",
+          "mappedBy": "municipality"
         },
         "createdAt": {
           "type": "datetime"
@@ -1616,7 +1624,8 @@
         "info": {
           "singularName": "municipality",
           "pluralName": "municipalities",
-          "displayName": "municipality"
+          "displayName": "municipality",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
@@ -1634,11 +1643,18 @@
             "unique": true
           },
           "profile": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
             "allowedTypes": [
               "images"
-            ],
-            "type": "media",
-            "multiple": false
+            ]
+          },
+          "projects": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::project.project",
+            "mappedBy": "municipality"
           }
         },
         "kind": "collectionType"
@@ -1742,11 +1758,6 @@
           "target": "api::tag.tag",
           "inversedBy": "projects"
         },
-        "municipality": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::municipality.municipality"
-        },
         "published": {
           "type": "boolean",
           "default": false,
@@ -1765,6 +1776,12 @@
             "all users",
             "listed only"
           ]
+        },
+        "municipality": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::municipality.municipality",
+          "inversedBy": "projects"
         },
         "createdAt": {
           "type": "datetime"
@@ -1882,11 +1899,6 @@
             "target": "api::tag.tag",
             "inversedBy": "projects"
           },
-          "municipality": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::municipality.municipality"
-          },
           "published": {
             "type": "boolean",
             "default": false,
@@ -1905,6 +1917,12 @@
               "all users",
               "listed only"
             ]
+          },
+          "municipality": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::municipality.municipality",
+            "inversedBy": "projects"
           }
         },
         "kind": "collectionType"

@@ -13,6 +13,9 @@
       "action": "api::tag.tag.find"
     },
     {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
       "action": "plugin::users-permissions.auth.emailConfirmation"
     },
     {
