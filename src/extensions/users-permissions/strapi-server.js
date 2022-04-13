@@ -30,8 +30,8 @@ module.exports = (plugin, env) => {
     const users = await strapi.entityService.findMany(
       "plugin::users-permissions.user",
       {
-        ...ctx.params,
-        populate: "*",
+        fields: ["username", "email"],
+        populate: { role: { fields: ["type"] } },
       }
     );
 
