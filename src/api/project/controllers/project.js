@@ -23,6 +23,31 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
             {
               readers: { id: ctx.state.user.id },
             },
+            {
+              visibility: "listed only",
+            },
+            {
+              visibility: "all users",
+            },
+          ],
+          $and: [
+            {
+              $or: [
+                {
+                  published: true,
+                },
+                {
+                  $and: [
+                    {
+                      published: false,
+                    },
+                    {
+                      owner: { id: ctx.state.user.id },
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
         populate: {
@@ -31,15 +56,16 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         },
       }
     );
-    var projects = entries.filter((project) => {
-      if (
-        project.visibility == "only for me" &&
-        project.owner.id == ctx.state.user.id
-      )
-        return project;
-      else if (project.visibility != "only for me") return project;
-    });
-    return projects;
+    // Used to be for prioritizing visibility over roles
+    // var projects = entries.filter((project) => {
+    //   if (
+    //     project.visibility == "only for me" &&
+    //     project.owner.id == ctx.state.user.id
+    //   )
+    //     return project;
+    //   else if (project.visibility != "only for me") return project;
+    // });
+    return entries;
   },
   async findOne(ctx) {
     var entry = await strapi.entityService.findMany("api::project.project", {
@@ -58,6 +84,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         municipality: "*",
       },
       filters: {
+        // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
         $or: [
           {
             owner: { id: ctx.state.user.id },
@@ -72,19 +99,70 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
             visibility: "all users",
           },
         ],
+        $and: [
+          {
+            $or: [
+              {
+                published: true,
+              },
+              {
+                $and: [
+                  {
+                    published: false,
+                  },
+                  {
+                    owner: { id: ctx.state.user.id },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
         id: ctx.request.url.substr(14, 1),
       },
     });
-    entry.length == 0
-      ? ctx.unauthorized("You are not allowed to view this project details")
-      : (entry = entry[0]);
-    if (entry.visibility == "only for me" || entry.visibility == "listed only")
-      if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
-      else
-        return ctx.unauthorized(
-          "You are not allowed to view this project due to visibility option"
-        );
-    else return this.getRequests(entry);
+    if (entry.length == 0)
+      return ctx.unauthorized(
+        "You are not allowed to view this project details"
+      );
+
+    entry = entry[0];
+    // if (entry.visibility == "only for me" || entry.visibility == "listed only")
+    if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
+    // else
+    //   return ctx.unauthorized(
+    //     "You are not allowed to view this project due to visibility option"
+    //   );
+    else return entry;
+  },
+  async create(ctx) {
+    ctx.request.body.data.owner = ctx.state.user;
+    let entity = await super.create(ctx);
+    return entity;
+  },
+  async update(ctx) {
+    delete ctx.request.body.data.owner;
+    var entry = await strapi.entityService.findMany("api::project.project", {
+      populate: {
+        owner: { fields: ["username"] },
+      },
+      filters: {
+        $or: [
+          {
+            owner: { id: ctx.state.user.id },
+          },
+          {
+            editors: { id: ctx.state.user.id },
+          },
+        ],
+        id: ctx.request.url.substr(14, 1),
+      },
+    });
+    if (entry.length == 0)
+      return ctx.unauthorized(
+        "You are not allowed to edit this project details"
+      );
+    else return await super.update(ctx);
   },
   async getRequests(entry) {
     const requests = await strapi.entityService.findMany(
