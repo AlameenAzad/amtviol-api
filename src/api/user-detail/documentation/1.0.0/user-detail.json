@@ -1247,6 +1247,37 @@
                                                             }
                                                           }
                                                         },
+                                                        "published": {
+                                                          "type": "boolean"
+                                                        },
+                                                        "readers": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "string"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "visibility": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "only for me",
+                                                            "all users",
+                                                            "listed only"
+                                                          ]
+                                                        },
                                                         "municipality": {
                                                           "type": "object",
                                                           "properties": {
@@ -1635,6 +1666,26 @@
                                                                         }
                                                                       }
                                                                     },
+                                                                    "projects": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "data": {
+                                                                          "type": "array",
+                                                                          "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                              "id": {
+                                                                                "type": "string"
+                                                                              },
+                                                                              "attributes": {
+                                                                                "type": "object",
+                                                                                "properties": {}
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
                                                                     "createdAt": {
                                                                       "type": "string",
                                                                       "format": "date-time"
@@ -1682,37 +1733,6 @@
                                                               }
                                                             }
                                                           }
-                                                        },
-                                                        "published": {
-                                                          "type": "boolean"
-                                                        },
-                                                        "readers": {
-                                                          "type": "object",
-                                                          "properties": {
-                                                            "data": {
-                                                              "type": "array",
-                                                              "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                  "id": {
-                                                                    "type": "string"
-                                                                  },
-                                                                  "attributes": {
-                                                                    "type": "object",
-                                                                    "properties": {}
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        },
-                                                        "visibility": {
-                                                          "type": "string",
-                                                          "enum": [
-                                                            "only for me",
-                                                            "all users",
-                                                            "listed only"
-                                                          ]
                                                         },
                                                         "createdAt": {
                                                           "type": "string",
@@ -3939,6 +3959,37 @@
                                                           }
                                                         }
                                                       },
+                                                      "published": {
+                                                        "type": "boolean"
+                                                      },
+                                                      "readers": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "string"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "visibility": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "only for me",
+                                                          "all users",
+                                                          "listed only"
+                                                        ]
+                                                      },
                                                       "municipality": {
                                                         "type": "object",
                                                         "properties": {
@@ -4327,6 +4378,26 @@
                                                                       }
                                                                     }
                                                                   },
+                                                                  "projects": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                      "data": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                          "type": "object",
+                                                                          "properties": {
+                                                                            "id": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "attributes": {
+                                                                              "type": "object",
+                                                                              "properties": {}
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
                                                                   "createdAt": {
                                                                     "type": "string",
                                                                     "format": "date-time"
@@ -4374,37 +4445,6 @@
                                                             }
                                                           }
                                                         }
-                                                      },
-                                                      "published": {
-                                                        "type": "boolean"
-                                                      },
-                                                      "readers": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                          "data": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "object",
-                                                              "properties": {
-                                                                "id": {
-                                                                  "type": "string"
-                                                                },
-                                                                "attributes": {
-                                                                  "type": "object",
-                                                                  "properties": {}
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      },
-                                                      "visibility": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "only for me",
-                                                          "all users",
-                                                          "listed only"
-                                                        ]
                                                       },
                                                       "createdAt": {
                                                         "type": "string",
@@ -6676,6 +6716,37 @@
                                                           }
                                                         }
                                                       },
+                                                      "published": {
+                                                        "type": "boolean"
+                                                      },
+                                                      "readers": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "string"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "visibility": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "only for me",
+                                                          "all users",
+                                                          "listed only"
+                                                        ]
+                                                      },
                                                       "municipality": {
                                                         "type": "object",
                                                         "properties": {
@@ -7064,6 +7135,26 @@
                                                                       }
                                                                     }
                                                                   },
+                                                                  "projects": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                      "data": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                          "type": "object",
+                                                                          "properties": {
+                                                                            "id": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "attributes": {
+                                                                              "type": "object",
+                                                                              "properties": {}
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
                                                                   "createdAt": {
                                                                     "type": "string",
                                                                     "format": "date-time"
@@ -7111,37 +7202,6 @@
                                                             }
                                                           }
                                                         }
-                                                      },
-                                                      "published": {
-                                                        "type": "boolean"
-                                                      },
-                                                      "readers": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                          "data": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "object",
-                                                              "properties": {
-                                                                "id": {
-                                                                  "type": "string"
-                                                                },
-                                                                "attributes": {
-                                                                  "type": "object",
-                                                                  "properties": {}
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      },
-                                                      "visibility": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "only for me",
-                                                          "all users",
-                                                          "listed only"
-                                                        ]
                                                       },
                                                       "createdAt": {
                                                         "type": "string",
@@ -9277,6 +9337,37 @@
                                                           }
                                                         }
                                                       },
+                                                      "published": {
+                                                        "type": "boolean"
+                                                      },
+                                                      "readers": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "string"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "visibility": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "only for me",
+                                                          "all users",
+                                                          "listed only"
+                                                        ]
+                                                      },
                                                       "municipality": {
                                                         "type": "object",
                                                         "properties": {
@@ -9665,6 +9756,26 @@
                                                                       }
                                                                     }
                                                                   },
+                                                                  "projects": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                      "data": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                          "type": "object",
+                                                                          "properties": {
+                                                                            "id": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "attributes": {
+                                                                              "type": "object",
+                                                                              "properties": {}
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
                                                                   "createdAt": {
                                                                     "type": "string",
                                                                     "format": "date-time"
@@ -9712,37 +9823,6 @@
                                                             }
                                                           }
                                                         }
-                                                      },
-                                                      "published": {
-                                                        "type": "boolean"
-                                                      },
-                                                      "readers": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                          "data": {
-                                                            "type": "array",
-                                                            "items": {
-                                                              "type": "object",
-                                                              "properties": {
-                                                                "id": {
-                                                                  "type": "string"
-                                                                },
-                                                                "attributes": {
-                                                                  "type": "object",
-                                                                  "properties": {}
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      },
-                                                      "visibility": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "only for me",
-                                                          "all users",
-                                                          "listed only"
-                                                        ]
                                                       },
                                                       "createdAt": {
                                                         "type": "string",

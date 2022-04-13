@@ -4,7 +4,8 @@
   "info": {
     "singularName": "municipality",
     "pluralName": "municipalities",
-    "displayName": "municipality"
+    "displayName": "municipality",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,11 +23,18 @@
       "unique": true
     },
     "profile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "municipality"
     }
   }
 }
