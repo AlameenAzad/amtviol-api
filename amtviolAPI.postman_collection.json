@@ -41,7 +41,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject3\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject68\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"visibility\":\"only for me\",\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        }\r\n        \r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,7 +68,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/projects/5",
+							"raw": "localhost:1337/api/projects/3",
 							"host": [
 								"localhost"
 							],
@@ -76,7 +76,36 @@
 							"path": [
 								"api",
 								"projects",
-								"5"
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"asdasd2\",\r\n        \"plannedStart\": null,\r\n        \"plannedEnd\": null,\r\n        \"published\": true,\r\n        \"visibility\": \"only for me\",\r\n        \"owner\": {\r\n            \"id\": 1\r\n        },\r\n        \"readers\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"asdasd\",\r\n            \"phone\": null,\r\n            \"email\": null,\r\n            \"location\": null,\r\n            \"streetNo\": null,\r\n            \"postalCode\": null\r\n        },\r\n        \"details\": {\r\n            \"content\": \"asdasd\",\r\n            \"goals\": \"asdasd\",\r\n            \"valuesAndBenefits\": \"asdasd\",\r\n            \"partner\": null,\r\n            \"investive\": true,\r\n            \"status\": null\r\n        },\r\n        \"estimatedCosts\": [],\r\n        \"links\": [],\r\n        \"uploads\": [\r\n            {\r\n                \"id\": 6,\r\n                \"name\": \"MicrosoftTeams-image (3).png\",\r\n                \"alternativeText\": null,\r\n                \"caption\": null,\r\n                \"width\": 1242,\r\n                \"height\": 2550,\r\n                \"formats\": {\r\n                    \"thumbnail\": {\r\n                        \"name\": \"thumbnail_MicrosoftTeams-image (3).png\",\r\n                        \"hash\": \"thumbnail_Microsoft_Teams_image_3_15e6dab9ef\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 76,\r\n                        \"height\": 156,\r\n                        \"size\": 1.93,\r\n                        \"url\": \"/uploads/thumbnail_Microsoft_Teams_image_3_15e6dab9ef.png\"\r\n                    },\r\n                    \"large\": {\r\n                        \"name\": \"large_MicrosoftTeams-image (3).png\",\r\n                        \"hash\": \"large_Microsoft_Teams_image_3_15e6dab9ef\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 487,\r\n                        \"height\": 1000,\r\n                        \"size\": 37.51,\r\n                        \"url\": \"/uploads/large_Microsoft_Teams_image_3_15e6dab9ef.png\"\r\n                    },\r\n                    \"medium\": {\r\n                        \"name\": \"medium_MicrosoftTeams-image (3).png\",\r\n                        \"hash\": \"medium_Microsoft_Teams_image_3_15e6dab9ef\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 365,\r\n                        \"height\": 750,\r\n                        \"size\": 24.38,\r\n                        \"url\": \"/uploads/medium_Microsoft_Teams_image_3_15e6dab9ef.png\"\r\n                    },\r\n                    \"small\": {\r\n                        \"name\": \"small_MicrosoftTeams-image (3).png\",\r\n                        \"hash\": \"small_Microsoft_Teams_image_3_15e6dab9ef\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 243,\r\n                        \"height\": 500,\r\n                        \"size\": 12.33,\r\n                        \"url\": \"/uploads/small_Microsoft_Teams_image_3_15e6dab9ef.png\"\r\n                    }\r\n                },\r\n                \"hash\": \"Microsoft_Teams_image_3_15e6dab9ef\",\r\n                \"ext\": \".png\",\r\n                \"mime\": \"image/png\",\r\n                \"size\": 138.67,\r\n                \"url\": \"/uploads/Microsoft_Teams_image_3_15e6dab9ef.png\",\r\n                \"previewUrl\": null,\r\n                \"provider\": \"local\",\r\n                \"provider_metadata\": null,\r\n                \"createdAt\": \"2022-04-04T09:10:43.327Z\",\r\n                \"updatedAt\": \"2022-04-04T09:10:43.327Z\"\r\n            },\r\n            {\r\n                \"id\": 7,\r\n                \"name\": \"MicrosoftTeams-image (4).png\",\r\n                \"alternativeText\": null,\r\n                \"caption\": null,\r\n                \"width\": 1080,\r\n                \"height\": 2340,\r\n                \"formats\": {\r\n                    \"thumbnail\": {\r\n                        \"name\": \"thumbnail_MicrosoftTeams-image (4).png\",\r\n                        \"hash\": \"thumbnail_Microsoft_Teams_image_4_8881410030\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 72,\r\n                        \"height\": 156,\r\n                        \"size\": 2.25,\r\n                        \"url\": \"/uploads/thumbnail_Microsoft_Teams_image_4_8881410030.png\"\r\n                    },\r\n                    \"large\": {\r\n                        \"name\": \"large_MicrosoftTeams-image (4).png\",\r\n                        \"hash\": \"large_Microsoft_Teams_image_4_8881410030\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 462,\r\n                        \"height\": 1000,\r\n                        \"size\": 34.88,\r\n                        \"url\": \"/uploads/large_Microsoft_Teams_image_4_8881410030.png\"\r\n                    },\r\n                    \"medium\": {\r\n                        \"name\": \"medium_MicrosoftTeams-image (4).png\",\r\n                        \"hash\": \"medium_Microsoft_Teams_image_4_8881410030\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 346,\r\n                        \"height\": 750,\r\n                        \"size\": 23.29,\r\n                        \"url\": \"/uploads/medium_Microsoft_Teams_image_4_8881410030.png\"\r\n                    },\r\n                    \"small\": {\r\n                        \"name\": \"small_MicrosoftTeams-image (4).png\",\r\n                        \"hash\": \"small_Microsoft_Teams_image_4_8881410030\",\r\n                        \"ext\": \".png\",\r\n                        \"mime\": \"image/png\",\r\n                        \"path\": null,\r\n                        \"width\": 231,\r\n                        \"height\": 500,\r\n                        \"size\": 13.03,\r\n                        \"url\": \"/uploads/small_Microsoft_Teams_image_4_8881410030.png\"\r\n                    }\r\n                },\r\n                \"hash\": \"Microsoft_Teams_image_4_8881410030\",\r\n                \"ext\": \".png\",\r\n                \"mime\": \"image/png\",\r\n                \"size\": 99.72,\r\n                \"url\": \"/uploads/Microsoft_Teams_image_4_8881410030.png\",\r\n                \"previewUrl\": null,\r\n                \"provider\": \"local\",\r\n                \"provider_metadata\": null,\r\n                \"createdAt\": \"2022-04-04T09:10:43.329Z\",\r\n                \"updatedAt\": \"2022-04-04T09:10:43.329Z\"\r\n            },\r\n            {\r\n                \"id\": 8,\r\n                \"name\": \"67A6598B-36C4-4912-82E0-5B3CA52C2A32.mp4\",\r\n                \"alternativeText\": null,\r\n                \"caption\": null,\r\n                \"width\": null,\r\n                \"height\": null,\r\n                \"formats\": null,\r\n                \"hash\": \"67_A6598_B_36_C4_4912_82_E0_5_B3_CA_52_C2_A32_ab967576b2\",\r\n                \"ext\": \".mp4\",\r\n                \"mime\": \"video/mp4\",\r\n                \"size\": 10892.67,\r\n                \"url\": \"/uploads/67_A6598_B_36_C4_4912_82_E0_5_B3_CA_52_C2_A32_ab967576b2.mp4\",\r\n                \"previewUrl\": null,\r\n                \"provider\": \"local\",\r\n                \"provider_metadata\": null,\r\n                \"createdAt\": \"2022-04-04T09:10:43.380Z\",\r\n                \"updatedAt\": \"2022-04-04T09:10:43.380Z\"\r\n            }\r\n        ],\r\n        \"fundingGuideline\": null,\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/projects/3",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"projects",
+								"3"
 							]
 						}
 					},
@@ -260,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"test2\",\r\n    \"email\":\"alameen.azad@pm.me\",\r\n    \"role\":\"admin\", \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\":\"Ahmed\",\r\n    \"email\":\"Melanie.Boieck@amt-vioel.de\",\r\n    \"role\":\"admin\", \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +347,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": \"64ca68dad2ba0f3833e2259685aa4bdc6d1880ac97fc8b7b4252b42da850df775b53cd25c8acd2791b64aaee750bfc9b4d87a6173bc3e514489d64e205f182b9\",\r\n    \"password\": \"123456\",\r\n    \"passwordConfirmation\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"code\": \"b7d30556a2b5f36cf8bbb7a46c753b0dc07768cce7b6d2a7f18d5222f0895fc50eea4101577e89b427168620a5e283e8037a0c3f1b9f49fd4d2a9ca158de987d\",\r\n    \"password\": \"123456\",\r\n    \"passwordConfirmation\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -468,7 +497,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/municipalities",
+							"raw": "localhost:1337/api/municipalities?populate=*",
 							"host": [
 								"localhost"
 							],
@@ -476,6 +505,12 @@
 							"path": [
 								"api",
 								"municipalities"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
 							]
 						}
 					},
@@ -550,7 +585,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/requests?populate=*",
+							"raw": "localhost:1337/api/requests",
 							"host": [
 								"localhost"
 							],
@@ -558,12 +593,6 @@
 							"path": [
 								"api",
 								"requests"
-							],
-							"query": [
-								{
-									"key": "populate",
-									"value": "*"
-								}
 							]
 						}
 					},
@@ -593,6 +622,34 @@
 								"api",
 								"requests",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a join request to project or funding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"user\": {\r\n            \"id\": 1\r\n        },\r\n        \"project\": {\r\n            \"id\": 3\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/requests",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"requests"
 							]
 						}
 					},
