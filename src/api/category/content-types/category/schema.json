@@ -4,7 +4,8 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category"
+    "displayName": "category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,6 +23,9 @@
       "target": "api::project.project",
       "autoPopulate": false,
       "mappedBy": "categories"
+    },
+    "test": {
+      "type": "string"
     }
   }
 }
