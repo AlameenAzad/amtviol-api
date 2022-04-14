@@ -23,9 +23,6 @@
       "target": "api::project.project",
       "autoPopulate": false,
       "mappedBy": "categories"
-    },
-    "test": {
-      "type": "string"
     }
   }
 }

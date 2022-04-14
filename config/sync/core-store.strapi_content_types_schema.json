@@ -1394,7 +1394,8 @@
       "info": {
         "singularName": "category",
         "pluralName": "categories",
-        "displayName": "category"
+        "displayName": "category",
+        "description": ""
       },
       "options": {
         "draftAndPublish": false
@@ -1445,7 +1446,8 @@
         "info": {
           "singularName": "category",
           "pluralName": "categories",
-          "displayName": "category"
+          "displayName": "category",
+          "description": ""
         },
         "options": {
           "draftAndPublish": false
