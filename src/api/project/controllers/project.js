@@ -11,7 +11,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     const entries = await strapi.entityService.findMany(
       "api::project.project",
       {
-        fields: ["title", "visibility"],
+        fields: ["title", "visibility","published"],
         filters: {
           $or: [
             {
@@ -118,7 +118,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
             ],
           },
         ],
-        id: ctx.request.url.substr(14, 1),
+        id: ctx.params.id,
       },
     });
     if (entry.length == 0)
@@ -155,7 +155,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
             editors: { id: ctx.state.user.id },
           },
         ],
-        id: ctx.request.url.substr(14, 1),
+        id: ctx.params.id,
       },
     });
     if (entry.length == 0)
@@ -163,6 +163,22 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         "You are not allowed to edit this project details"
       );
     else return await super.update(ctx);
+  },
+  async delete (ctx) {
+    var entry = await strapi.entityService.findMany("api::project.project", {
+      populate: {
+        owner: { fields: ["username"] },
+      },
+      filters: {
+        owner: { id: ctx.state.user.id },
+        id: ctx.params.id,
+      }
+    });
+     if (entry.length == 0)
+      return ctx.unauthorized(
+        "You are not allowed to delete this project"
+      );
+    else return await super.delete(ctx);
   },
   async getRequests(entry) {
     const requests = await strapi.entityService.findMany(
@@ -181,4 +197,5 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     entry.requests = requests;
     return entry;
   },
+  
 }));
