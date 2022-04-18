@@ -31,8 +31,8 @@ module.exports = (plugin, env) => {
       "plugin::users-permissions.user",
       {
         fields: ["username", "email"],
-        populate: { role: { fields: ["type"] } },
-      }
+        populate: { role: { fields: ["type"] }, user_detail: { fields:["fullName"],populate: {municipality: {fields:["title","location"]}} } },
+}
     );
 
     ctx.body = users.map((user) => sanitizeOutput(user));
