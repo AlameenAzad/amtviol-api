@@ -10,7 +10,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
   async update(ctx) {
     const projectOwner = await strapi.entityService.findOne(
       "api::request.request",
-      ctx.request.url.substr(14, 1),
+      ctx.params.id,
       {
         fields: ["approved"],
         populate: {
