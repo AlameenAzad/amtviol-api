@@ -43,19 +43,18 @@ module.exports = (plugin, env) => {
       await strapi.controller("plugin::users-permissions.auth").register(ctx);
       const resetPasswordToken = crypto.randomBytes(64).toString("hex");
       await sendPwdInEmail(ctx, resetPasswordToken);
-      var qdata = { resetPasswordToken };
+      var user_detail = await strapi.entityService.create("api::user-detail.user-detail", {
+        data: {
+          municipality: ctx.request.body.municipality,
+          fullName: ctx.request.body.username,
+        },
+      });
+      var qdata = { resetPasswordToken, user_detail };
       if (ctx.request.body.role == "admin") qdata.role = { id: 4 };
-      var data = await strapi.query("plugin::users-permissions.user").update({
+      await strapi.query("plugin::users-permissions.user").update({
         where: { email: ctx.request.body.email },
         data: qdata,
       });
-      await strapi.entityService.create("api::user-detail.user-detail", {
-        data: {
-          user: data,
-          municipality: ctx.request.body.municipality,
-        },
-      });
-      console.log(data);
     } catch (error) {
       return ctx.badRequest(error.message, error.details);
     }
