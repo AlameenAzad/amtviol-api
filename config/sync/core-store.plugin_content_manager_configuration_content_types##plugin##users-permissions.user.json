@@ -192,6 +192,21 @@
           "sortable": false
         }
       },
+      "user_detail": {
+        "edit": {
+          "label": "user_detail",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "fullName"
+        },
+        "list": {
+          "label": "user_detail",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -260,7 +275,8 @@
         "role",
         "projectEditor",
         "watchlists",
-        "projectReader"
+        "projectReader",
+        "user_detail"
       ]
     }
   },

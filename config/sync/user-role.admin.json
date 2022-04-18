@@ -37,6 +37,9 @@
       "action": "api::project.project.create"
     },
     {
+      "action": "api::project.project.delete"
+    },
+    {
       "action": "api::project.project.find"
     },
     {

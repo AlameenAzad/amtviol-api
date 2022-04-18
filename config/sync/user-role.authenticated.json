@@ -13,6 +13,9 @@
       "action": "api::municipality.municipality.find"
     },
     {
+      "action": "api::project.project.delete"
+    },
+    {
       "action": "api::project.project.find"
     },
     {

@@ -82,6 +82,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "mappedBy": "readers"
+    },
+    "user_detail": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::user-detail.user-detail",
+      "inversedBy": "user"
     }
   }
 }

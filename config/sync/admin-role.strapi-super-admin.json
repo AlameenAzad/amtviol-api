@@ -619,7 +619,8 @@
           "email",
           "projectEditor",
           "watchlists",
-          "projectReader"
+          "projectReader",
+          "user_detail"
         ]
       },
       "conditions": []
@@ -646,7 +647,8 @@
           "email",
           "projectEditor",
           "watchlists",
-          "projectReader"
+          "projectReader",
+          "user_detail"
         ]
       },
       "conditions": []
@@ -667,7 +669,8 @@
           "email",
           "projectEditor",
           "watchlists",
-          "projectReader"
+          "projectReader",
+          "user_detail"
         ]
       },
       "conditions": []

@@ -1252,6 +1252,12 @@
           "target": "api::project.project",
           "mappedBy": "readers"
         },
+        "user_detail": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::user-detail.user-detail",
+          "inversedBy": "user"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1377,6 +1383,12 @@
             "relation": "manyToMany",
             "target": "api::project.project",
             "mappedBy": "readers"
+          },
+          "user_detail": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::user-detail.user-detail",
+            "inversedBy": "user"
           }
         },
         "kind": "collectionType"
@@ -2149,7 +2161,8 @@
         "user": {
           "type": "relation",
           "relation": "oneToOne",
-          "target": "plugin::users-permissions.user"
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "user_detail"
         },
         "phone": {
           "type": "string"
@@ -2226,7 +2239,8 @@
           "user": {
             "type": "relation",
             "relation": "oneToOne",
-            "target": "plugin::users-permissions.user"
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "user_detail"
           },
           "phone": {
             "type": "string"
