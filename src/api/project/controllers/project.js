@@ -11,7 +11,13 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     const entries = await strapi.entityService.findMany(
       "api::project.project",
       {
-        fields: ["title", "visibility","published"],
+        fields: [
+          "title",
+          "visibility",
+          "published",
+          "plannedStart",
+          "plannedEnd",
+        ],
         filters: {
           $or: [
             {
@@ -79,9 +85,10 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         details: "*",
         estimatedCosts: "*",
         links: "*",
-        uploads: "*",
-        fundingGuideline: "*",
-        municipality: "*",
+        media: "*",
+        files: "*",
+        fundings: { fields: ["title"] },
+        municipality: { fields: ["title", "location"] },
       },
       filters: {
         // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
@@ -164,7 +171,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       );
     else return await super.update(ctx);
   },
-  async delete (ctx) {
+  async delete(ctx) {
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
         owner: { fields: ["username"] },
@@ -172,12 +179,10 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       filters: {
         owner: { id: ctx.state.user.id },
         id: ctx.params.id,
-      }
+      },
     });
-     if (entry.length == 0)
-      return ctx.unauthorized(
-        "You are not allowed to delete this project"
-      );
+    if (entry.length == 0)
+      return ctx.unauthorized("You are not allowed to delete this project");
     else return await super.delete(ctx);
   },
   async getRequests(entry) {
@@ -187,6 +192,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         fields: ["approved"],
         filters: {
           approved: false,
+          project: { id: entry.id },
         },
         populate: {
           user: { fields: "username" },
@@ -197,5 +203,4 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     entry.requests = requests;
     return entry;
   },
-  
 }));
