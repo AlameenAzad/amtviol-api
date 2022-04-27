@@ -40,17 +40,31 @@ module.exports = createCoreController(
 
       // ctx.request.body.data.user = ctx.state.user;
       //init default notifications settings
-      ctx.request.body.data.notifications = {
-        email: {},
-        app: {},
-      };
-      let entity = await super.create(ctx);
-      return entity;
+      // ctx.request.body.data.notifications = {
+      //   email: {},
+      //   app: {},
+      // };
+      if (ctx.request.body.data.invite) {
+        let entity = await super.create(ctx);
+        return entity;
+      } else {
+        return ctx.unauthorized("You can't create an entry for this user.");
+      }
       // }
+    },
+    async update(ctx) {
+      var hasEntry = await this.getEntry(ctx, false);
+      if (hasEntry.length > 0) {
+        delete ctx.request.body.data.municipality;
+        let entity = await super.update(ctx);
+        return entity;
+      } else {
+        return ctx.unauthorized("You can't update this entry for this user.");
+      }
     },
     async find(ctx) {
       var entry = await this.getEntry(ctx, true);
-      return entry.length > 0 ? entry : ctx.badRequest(`User has no entry`);
+      return entry.length > 0 ? entry[0] : ctx.badRequest(`User has no entry`);
     },
   })
 );
