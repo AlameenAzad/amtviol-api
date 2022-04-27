@@ -77,6 +77,36 @@
           "sortable": false
         }
       },
+      "checklists": {
+        "edit": {
+          "label": "checklists",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklists",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "user_details": {
+        "edit": {
+          "label": "user_details",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "fullName"
+        },
+        "list": {
+          "label": "user_details",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -132,7 +162,9 @@
         ]
       ],
       "editRelations": [
-        "projects"
+        "projects",
+        "checklists",
+        "user_details"
       ]
     }
   },

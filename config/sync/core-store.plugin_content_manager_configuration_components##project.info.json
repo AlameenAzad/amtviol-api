@@ -62,20 +62,6 @@
           "sortable": true
         }
       },
-      "location": {
-        "edit": {
-          "label": "location",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "location",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "streetNo": {
         "edit": {
           "label": "streetNo",
@@ -129,10 +115,6 @@
           }
         ],
         [
-          {
-            "name": "location",
-            "size": 6
-          },
           {
             "name": "streetNo",
             "size": 6

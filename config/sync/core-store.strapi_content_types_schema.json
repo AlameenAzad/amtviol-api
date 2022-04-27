@@ -1256,7 +1256,25 @@
           "type": "relation",
           "relation": "oneToOne",
           "target": "api::user-detail.user-detail",
-          "inversedBy": "user"
+          "mappedBy": "user"
+        },
+        "fundings": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "editors"
+        },
+        "checklistEditor": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::checklist.checklist",
+          "mappedBy": "editors"
+        },
+        "fundingReader": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "readers"
         },
         "createdAt": {
           "type": "datetime"
@@ -1388,7 +1406,25 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::user-detail.user-detail",
-            "inversedBy": "user"
+            "mappedBy": "user"
+          },
+          "fundings": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "editors"
+          },
+          "checklistEditor": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::checklist.checklist",
+            "mappedBy": "editors"
+          },
+          "fundingReader": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "readers"
           }
         },
         "kind": "collectionType"
@@ -1424,6 +1460,18 @@
           "relation": "manyToMany",
           "target": "api::project.project",
           "autoPopulate": false,
+          "mappedBy": "categories"
+        },
+        "fundings": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "categories"
+        },
+        "checklists": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::checklist.checklist",
           "mappedBy": "categories"
         },
         "createdAt": {
@@ -1477,6 +1525,18 @@
             "target": "api::project.project",
             "autoPopulate": false,
             "mappedBy": "categories"
+          },
+          "fundings": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "categories"
+          },
+          "checklists": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::checklist.checklist",
+            "mappedBy": "categories"
           }
         },
         "kind": "collectionType"
@@ -1490,16 +1550,17 @@
       "actions": {},
       "lifecycles": {}
     },
-    "api::funding.funding": {
+    "api::checklist.checklist": {
       "kind": "collectionType",
-      "collectionName": "fundings",
+      "collectionName": "checklists",
       "info": {
-        "singularName": "funding",
-        "pluralName": "fundings",
-        "displayName": "funding"
+        "singularName": "checklist",
+        "pluralName": "checklists",
+        "displayName": "checklist",
+        "description": ""
       },
       "options": {
-        "draftAndPublish": true
+        "draftAndPublish": false
       },
       "pluginOptions": {},
       "attributes": {
@@ -1507,17 +1568,323 @@
           "type": "string",
           "required": true
         },
+        "ideaProvider": {
+          "type": "enumeration",
+          "enum": [
+            "volunteering",
+            "mainOffice"
+          ]
+        },
+        "info": {
+          "type": "component",
+          "repeatable": false,
+          "component": "project.info"
+        },
+        "project": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::project.project"
+        },
+        "editors": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "checklistEditor"
+        },
+        "visibility": {
+          "type": "enumeration",
+          "enum": [
+            "only for me",
+            "all users",
+            "listed only"
+          ]
+        },
+        "categories": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::category.category",
+          "inversedBy": "checklists"
+        },
+        "tags": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::tag.tag",
+          "inversedBy": "checklists"
+        },
+        "municipality": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::municipality.municipality",
+          "inversedBy": "checklists"
+        },
+        "owner": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
         "createdAt": {
           "type": "datetime"
         },
         "updatedAt": {
           "type": "datetime"
         },
-        "publishedAt": {
-          "type": "datetime",
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
           "configurable": false,
-          "writable": true,
-          "visible": false
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "checklists",
+        "info": {
+          "singularName": "checklist",
+          "pluralName": "checklists",
+          "displayName": "checklist",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "ideaProvider": {
+            "type": "enumeration",
+            "enum": [
+              "volunteering",
+              "mainOffice"
+            ]
+          },
+          "info": {
+            "type": "component",
+            "repeatable": false,
+            "component": "project.info"
+          },
+          "project": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::project.project"
+          },
+          "editors": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "checklistEditor"
+          },
+          "visibility": {
+            "type": "enumeration",
+            "enum": [
+              "only for me",
+              "all users",
+              "listed only"
+            ]
+          },
+          "categories": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::category.category",
+            "inversedBy": "checklists"
+          },
+          "tags": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::tag.tag",
+            "inversedBy": "checklists"
+          },
+          "municipality": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::municipality.municipality",
+            "inversedBy": "checklists"
+          },
+          "owner": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "checklist",
+      "connection": "default",
+      "uid": "api::checklist.checklist",
+      "apiName": "checklist",
+      "globalId": "Checklist",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::funding.funding": {
+      "kind": "collectionType",
+      "collectionName": "fundings",
+      "info": {
+        "singularName": "funding",
+        "pluralName": "fundings",
+        "displayName": "funding",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "provider": {
+          "type": "string"
+        },
+        "info": {
+          "type": "component",
+          "repeatable": false,
+          "component": "project.info"
+        },
+        "editors": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "fundings"
+        },
+        "owner": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "details": {
+          "displayName": "details",
+          "type": "component",
+          "repeatable": false,
+          "component": "funding.details"
+        },
+        "categories": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::category.category",
+          "inversedBy": "fundings"
+        },
+        "tags": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::tag.tag",
+          "inversedBy": "fundings"
+        },
+        "visibility": {
+          "type": "enumeration",
+          "enum": [
+            "only for me",
+            "all users",
+            "listed only"
+          ]
+        },
+        "rates": {
+          "displayName": "rates",
+          "type": "component",
+          "repeatable": true,
+          "component": "funding.rates"
+        },
+        "ownContribution": {
+          "type": "decimal"
+        },
+        "accumulability": {
+          "type": "enumeration",
+          "enum": [
+            "test",
+            "test 1",
+            "test 2"
+          ]
+        },
+        "fundingsLinkedTo": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "inversedBy": "fundingsLinkedToMe"
+        },
+        "fundingsLinkedToMe": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "inversedBy": "fundingsLinkedTo"
+        },
+        "plannedStart": {
+          "type": "date"
+        },
+        "plannedEnd": {
+          "type": "date"
+        },
+        "assessment": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "links": {
+          "type": "component",
+          "repeatable": true,
+          "component": "project.links"
+        },
+        "media": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images",
+            "videos"
+          ]
+        },
+        "files": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "files"
+          ]
+        },
+        "projects": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::project.project",
+          "inversedBy": "fundings"
+        },
+        "published": {
+          "type": "boolean",
+          "required": true
+        },
+        "readers": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "fundingReader"
+        },
+        "checklist": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::checklist.checklist"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
         },
         "createdBy": {
           "type": "relation",
@@ -1545,16 +1912,147 @@
         "info": {
           "singularName": "funding",
           "pluralName": "fundings",
-          "displayName": "funding"
+          "displayName": "funding",
+          "description": ""
         },
         "options": {
-          "draftAndPublish": true
+          "draftAndPublish": false
         },
         "pluginOptions": {},
         "attributes": {
           "title": {
             "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "provider": {
+            "type": "string"
+          },
+          "info": {
+            "type": "component",
+            "repeatable": false,
+            "component": "project.info"
+          },
+          "editors": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "fundings"
+          },
+          "owner": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          },
+          "details": {
+            "displayName": "details",
+            "type": "component",
+            "repeatable": false,
+            "component": "funding.details"
+          },
+          "categories": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::category.category",
+            "inversedBy": "fundings"
+          },
+          "tags": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::tag.tag",
+            "inversedBy": "fundings"
+          },
+          "visibility": {
+            "type": "enumeration",
+            "enum": [
+              "only for me",
+              "all users",
+              "listed only"
+            ]
+          },
+          "rates": {
+            "displayName": "rates",
+            "type": "component",
+            "repeatable": true,
+            "component": "funding.rates"
+          },
+          "ownContribution": {
+            "type": "decimal"
+          },
+          "accumulability": {
+            "type": "enumeration",
+            "enum": [
+              "test",
+              "test 1",
+              "test 2"
+            ]
+          },
+          "fundingsLinkedTo": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "inversedBy": "fundingsLinkedToMe"
+          },
+          "fundingsLinkedToMe": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "inversedBy": "fundingsLinkedTo"
+          },
+          "plannedStart": {
+            "type": "date"
+          },
+          "plannedEnd": {
+            "type": "date"
+          },
+          "assessment": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "links": {
+            "type": "component",
+            "repeatable": true,
+            "component": "project.links"
+          },
+          "media": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images",
+              "videos"
+            ]
+          },
+          "files": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "files"
+            ]
+          },
+          "projects": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::project.project",
+            "inversedBy": "fundings"
+          },
+          "published": {
+            "type": "boolean",
             "required": true
+          },
+          "readers": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "fundingReader"
+          },
+          "checklist": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::checklist.checklist"
           }
         },
         "kind": "collectionType"
@@ -1604,6 +2102,18 @@
           "type": "relation",
           "relation": "oneToMany",
           "target": "api::project.project",
+          "mappedBy": "municipality"
+        },
+        "checklists": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::checklist.checklist",
+          "mappedBy": "municipality"
+        },
+        "user_details": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::user-detail.user-detail",
           "mappedBy": "municipality"
         },
         "createdAt": {
@@ -1668,6 +2178,18 @@
             "type": "relation",
             "relation": "oneToMany",
             "target": "api::project.project",
+            "mappedBy": "municipality"
+          },
+          "checklists": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::checklist.checklist",
+            "mappedBy": "municipality"
+          },
+          "user_details": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::user-detail.user-detail",
             "mappedBy": "municipality"
           }
         },
@@ -1744,7 +2266,7 @@
           "repeatable": true,
           "component": "project.links"
         },
-        "uploads": {
+        "media": {
           "type": "media",
           "multiple": true,
           "required": false,
@@ -1755,10 +2277,11 @@
             "audios"
           ]
         },
-        "fundingGuideline": {
+        "fundings": {
           "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::funding.funding"
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "projects"
         },
         "categories": {
           "type": "relation",
@@ -1796,6 +2319,13 @@
           "relation": "manyToOne",
           "target": "api::municipality.municipality",
           "inversedBy": "projects"
+        },
+        "files": {
+          "allowedTypes": [
+            "files"
+          ],
+          "type": "media",
+          "multiple": true
         },
         "createdAt": {
           "type": "datetime"
@@ -1885,7 +2415,7 @@
             "repeatable": true,
             "component": "project.links"
           },
-          "uploads": {
+          "media": {
             "type": "media",
             "multiple": true,
             "required": false,
@@ -1896,10 +2426,11 @@
               "audios"
             ]
           },
-          "fundingGuideline": {
+          "fundings": {
             "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::funding.funding"
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "projects"
           },
           "categories": {
             "type": "relation",
@@ -1937,6 +2468,13 @@
             "relation": "manyToOne",
             "target": "api::municipality.municipality",
             "inversedBy": "projects"
+          },
+          "files": {
+            "allowedTypes": [
+              "files"
+            ],
+            "type": "media",
+            "multiple": true
           }
         },
         "kind": "collectionType"
@@ -2078,6 +2616,18 @@
           "target": "api::project.project",
           "mappedBy": "tags"
         },
+        "fundings": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "tags"
+        },
+        "checklists": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::checklist.checklist",
+          "mappedBy": "tags"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2126,6 +2676,18 @@
             "type": "relation",
             "relation": "manyToMany",
             "target": "api::project.project",
+            "mappedBy": "tags"
+          },
+          "fundings": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "tags"
+          },
+          "checklists": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::checklist.checklist",
             "mappedBy": "tags"
           }
         },
@@ -2189,8 +2751,9 @@
         },
         "municipality": {
           "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::municipality.municipality"
+          "relation": "manyToOne",
+          "target": "api::municipality.municipality",
+          "inversedBy": "user_details"
         },
         "createdAt": {
           "type": "datetime"
@@ -2267,8 +2830,9 @@
           },
           "municipality": {
             "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::municipality.municipality"
+            "relation": "manyToOne",
+            "target": "api::municipality.municipality",
+            "inversedBy": "user_details"
           }
         },
         "kind": "collectionType"

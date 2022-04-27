@@ -148,23 +148,23 @@
           "sortable": false
         }
       },
-      "uploads": {
+      "media": {
         "edit": {
-          "label": "uploads",
+          "label": "media",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "uploads",
+          "label": "media",
           "searchable": false,
           "sortable": false
         }
       },
-      "fundingGuideline": {
+      "fundings": {
         "edit": {
-          "label": "fundingGuideline",
+          "label": "fundings",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -172,9 +172,9 @@
           "mainField": "title"
         },
         "list": {
-          "label": "fundingGuideline",
-          "searchable": true,
-          "sortable": true
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
         }
       },
       "categories": {
@@ -205,21 +205,6 @@
           "label": "tags",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "municipality": {
-        "edit": {
-          "label": "municipality",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "municipality",
-          "searchable": true,
-          "sortable": true
         }
       },
       "published": {
@@ -263,6 +248,35 @@
           "label": "visibility",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "municipality": {
+        "edit": {
+          "label": "municipality",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "municipality",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "files": {
+        "edit": {
+          "label": "files",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "files",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -347,10 +361,6 @@
         ],
         [
           {
-            "name": "uploads",
-            "size": 6
-          },
-          {
             "name": "published",
             "size": 4
           }
@@ -358,6 +368,16 @@
         [
           {
             "name": "visibility",
+            "size": 6
+          },
+          {
+            "name": "media",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "files",
             "size": 6
           }
         ]
@@ -368,7 +388,8 @@
         "categories",
         "tags",
         "municipality",
-        "readers"
+        "readers",
+        "fundings"
       ]
     }
   },

@@ -10,10 +10,25 @@
       "action": "api::category.category.findOne"
     },
     {
+      "action": "api::checklist.checklist.create"
+    },
+    {
+      "action": "api::checklist.checklist.find"
+    },
+    {
+      "action": "api::checklist.checklist.findOne"
+    },
+    {
+      "action": "api::checklist.checklist.update"
+    },
+    {
       "action": "api::municipality.municipality.find"
     },
     {
-      "action": "api::project.project.delete"
+      "action": "api::municipality.municipality.findOne"
+    },
+    {
+      "action": "api::project.project.create"
     },
     {
       "action": "api::project.project.find"
@@ -22,7 +37,13 @@
       "action": "api::project.project.findOne"
     },
     {
+      "action": "api::project.project.update"
+    },
+    {
       "action": "api::request.request.create"
+    },
+    {
+      "action": "api::request.request.find"
     },
     {
       "action": "api::request.request.update"
@@ -31,10 +52,13 @@
       "action": "api::tag.tag.find"
     },
     {
-      "action": "api::user-detail.user-detail.create"
+      "action": "api::tag.tag.findOne"
     },
     {
       "action": "api::user-detail.user-detail.find"
+    },
+    {
+      "action": "api::user-detail.user-detail.findOne"
     },
     {
       "action": "api::user-detail.user-detail.update"
@@ -50,6 +74,9 @@
     },
     {
       "action": "api::watchlist.watchlist.findOne"
+    },
+    {
+      "action": "api::watchlist.watchlist.update"
     },
     {
       "action": "plugin::upload.content-api.destroy"

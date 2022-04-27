@@ -207,6 +207,51 @@
           "sortable": true
         }
       },
+      "fundings": {
+        "edit": {
+          "label": "fundings",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "checklistEditor": {
+        "edit": {
+          "label": "checklistEditor",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklistEditor",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingReader": {
+        "edit": {
+          "label": "fundingReader",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingReader",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -276,7 +321,10 @@
         "projectEditor",
         "watchlists",
         "projectReader",
-        "user_detail"
+        "user_detail",
+        "fundings",
+        "checklistEditor",
+        "fundingReader"
       ]
     }
   },

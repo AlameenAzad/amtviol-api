@@ -49,6 +49,36 @@
           "sortable": false
         }
       },
+      "fundings": {
+        "edit": {
+          "label": "fundings",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "checklists": {
+        "edit": {
+          "label": "checklists",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklists",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -94,7 +124,9 @@
         ]
       ],
       "editRelations": [
-        "projects"
+        "projects",
+        "fundings",
+        "checklists"
       ]
     }
   },

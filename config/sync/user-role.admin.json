@@ -19,6 +19,36 @@
       "action": "api::category.category.update"
     },
     {
+      "action": "api::checklist.checklist.create"
+    },
+    {
+      "action": "api::checklist.checklist.delete"
+    },
+    {
+      "action": "api::checklist.checklist.find"
+    },
+    {
+      "action": "api::checklist.checklist.findOne"
+    },
+    {
+      "action": "api::checklist.checklist.update"
+    },
+    {
+      "action": "api::funding.funding.create"
+    },
+    {
+      "action": "api::funding.funding.delete"
+    },
+    {
+      "action": "api::funding.funding.find"
+    },
+    {
+      "action": "api::funding.funding.findOne"
+    },
+    {
+      "action": "api::funding.funding.update"
+    },
+    {
       "action": "api::municipality.municipality.create"
     },
     {
@@ -26,9 +56,6 @@
     },
     {
       "action": "api::municipality.municipality.find"
-    },
-    {
-      "action": "api::municipality.municipality.findOne"
     },
     {
       "action": "api::municipality.municipality.update"
@@ -122,24 +149,6 @@
     },
     {
       "action": "plugin::users-permissions.auth.sendEmailConfirmation"
-    },
-    {
-      "action": "plugin::users-permissions.permissions.getPermissions"
-    },
-    {
-      "action": "plugin::users-permissions.role.createRole"
-    },
-    {
-      "action": "plugin::users-permissions.role.deleteRole"
-    },
-    {
-      "action": "plugin::users-permissions.role.getRole"
-    },
-    {
-      "action": "plugin::users-permissions.role.getRoles"
-    },
-    {
-      "action": "plugin::users-permissions.role.updateRole"
     },
     {
       "action": "plugin::users-permissions.user.count"

@@ -34,6 +34,351 @@
           "sortable": true
         }
       },
+      "provider": {
+        "edit": {
+          "label": "provider",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "provider",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "info": {
+        "edit": {
+          "label": "info",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "info",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "editors": {
+        "edit": {
+          "label": "editors",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "editors",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "owner": {
+        "edit": {
+          "label": "owner",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "owner",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "details": {
+        "edit": {
+          "label": "details",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "details",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "categories": {
+        "edit": {
+          "label": "categories",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "categories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "tags",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "visibility": {
+        "edit": {
+          "label": "visibility",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "visibility",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "rates": {
+        "edit": {
+          "label": "rates",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "rates",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "ownContribution": {
+        "edit": {
+          "label": "ownContribution",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "ownContribution",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "accumulability": {
+        "edit": {
+          "label": "accumulability",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "accumulability",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "fundingsLinkedTo": {
+        "edit": {
+          "label": "fundingsLinkedTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingsLinkedTo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingsLinkedToMe": {
+        "edit": {
+          "label": "fundingsLinkedToMe",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingsLinkedToMe",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "plannedStart": {
+        "edit": {
+          "label": "plannedStart",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "plannedStart",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "plannedEnd": {
+        "edit": {
+          "label": "plannedEnd",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "plannedEnd",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "assessment": {
+        "edit": {
+          "label": "assessment",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "assessment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "notes": {
+        "edit": {
+          "label": "notes",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "notes",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "links": {
+        "edit": {
+          "label": "links",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "links",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "media": {
+        "edit": {
+          "label": "media",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "media",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "files": {
+        "edit": {
+          "label": "files",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "files",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "projects": {
+        "edit": {
+          "label": "projects",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "projects",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "published": {
+        "edit": {
+          "label": "published",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "published",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "readers": {
+        "edit": {
+          "label": "readers",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "readers",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "checklist": {
+        "edit": {
+          "label": "checklist",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklist",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -70,14 +415,104 @@
         "createdAt",
         "updatedAt"
       ],
-      "editRelations": [],
       "edit": [
         [
           {
             "name": "title",
             "size": 6
+          },
+          {
+            "name": "provider",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "info",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "details",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "visibility",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "rates",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "ownContribution",
+            "size": 4
+          },
+          {
+            "name": "accumulability",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "plannedStart",
+            "size": 4
+          },
+          {
+            "name": "plannedEnd",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "assessment",
+            "size": 6
+          },
+          {
+            "name": "notes",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "links",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "media",
+            "size": 6
+          },
+          {
+            "name": "files",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "published",
+            "size": 4
           }
         ]
+      ],
+      "editRelations": [
+        "editors",
+        "owner",
+        "categories",
+        "tags",
+        "fundingsLinkedTo",
+        "fundingsLinkedToMe",
+        "projects",
+        "readers",
+        "checklist"
       ]
     }
   },

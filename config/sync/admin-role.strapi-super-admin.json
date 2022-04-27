@@ -9,7 +9,9 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
         ]
       },
       "conditions": []
@@ -26,7 +28,9 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
         ]
       },
       "conditions": []
@@ -37,7 +41,84 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::checklist.checklist",
+      "properties": {
+        "fields": [
+          "title",
+          "ideaProvider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "project",
+          "editors",
+          "visibility",
+          "categories",
+          "tags",
+          "municipality",
+          "owner"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::checklist.checklist",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::checklist.checklist",
+      "properties": {
+        "fields": [
+          "title",
+          "ideaProvider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "project",
+          "editors",
+          "visibility",
+          "categories",
+          "tags",
+          "municipality",
+          "owner"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::checklist.checklist",
+      "properties": {
+        "fields": [
+          "title",
+          "ideaProvider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "project",
+          "editors",
+          "visibility",
+          "categories",
+          "tags",
+          "municipality",
+          "owner"
         ]
       },
       "conditions": []
@@ -47,7 +128,41 @@
       "subject": "api::funding.funding",
       "properties": {
         "fields": [
-          "title"
+          "title",
+          "provider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "editors",
+          "owner",
+          "details.goal",
+          "details.funded",
+          "details.notFunded",
+          "details.willBeFunded",
+          "details.condition",
+          "categories",
+          "tags",
+          "visibility",
+          "rates.content",
+          "rates.amount",
+          "ownContribution",
+          "accumulability",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
+          "plannedStart",
+          "plannedEnd",
+          "assessment",
+          "notes",
+          "links.title",
+          "links.link",
+          "media",
+          "files",
+          "projects",
+          "published",
+          "readers",
+          "checklist"
         ]
       },
       "conditions": []
@@ -59,17 +174,45 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.publish",
-      "subject": "api::funding.funding",
-      "properties": {},
-      "conditions": []
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::funding.funding",
       "properties": {
         "fields": [
-          "title"
+          "title",
+          "provider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "editors",
+          "owner",
+          "details.goal",
+          "details.funded",
+          "details.notFunded",
+          "details.willBeFunded",
+          "details.condition",
+          "categories",
+          "tags",
+          "visibility",
+          "rates.content",
+          "rates.amount",
+          "ownContribution",
+          "accumulability",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
+          "plannedStart",
+          "plannedEnd",
+          "assessment",
+          "notes",
+          "links.title",
+          "links.link",
+          "media",
+          "files",
+          "projects",
+          "published",
+          "readers",
+          "checklist"
         ]
       },
       "conditions": []
@@ -79,7 +222,41 @@
       "subject": "api::funding.funding",
       "properties": {
         "fields": [
-          "title"
+          "title",
+          "provider",
+          "info.contactName",
+          "info.phone",
+          "info.email",
+          "info.streetNo",
+          "info.postalCode",
+          "editors",
+          "owner",
+          "details.goal",
+          "details.funded",
+          "details.notFunded",
+          "details.willBeFunded",
+          "details.condition",
+          "categories",
+          "tags",
+          "visibility",
+          "rates.content",
+          "rates.amount",
+          "ownContribution",
+          "accumulability",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
+          "plannedStart",
+          "plannedEnd",
+          "assessment",
+          "notes",
+          "links.title",
+          "links.link",
+          "media",
+          "files",
+          "projects",
+          "published",
+          "readers",
+          "checklist"
         ]
       },
       "conditions": []
@@ -92,7 +269,9 @@
           "title",
           "location",
           "profile",
-          "projects"
+          "projects",
+          "checklists",
+          "user_details"
         ]
       },
       "conditions": []
@@ -111,7 +290,9 @@
           "title",
           "location",
           "profile",
-          "projects"
+          "projects",
+          "checklists",
+          "user_details"
         ]
       },
       "conditions": []
@@ -124,7 +305,9 @@
           "title",
           "location",
           "profile",
-          "projects"
+          "projects",
+          "checklists",
+          "user_details"
         ]
       },
       "conditions": []
@@ -138,7 +321,6 @@
           "info.contactName",
           "info.phone",
           "info.email",
-          "info.location",
           "info.streetNo",
           "info.postalCode",
           "editors",
@@ -155,14 +337,15 @@
           "plannedEnd",
           "links.title",
           "links.link",
-          "uploads",
-          "fundingGuideline",
+          "media",
+          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
-          "municipality"
+          "municipality",
+          "files"
         ]
       },
       "conditions": []
@@ -182,7 +365,6 @@
           "info.contactName",
           "info.phone",
           "info.email",
-          "info.location",
           "info.streetNo",
           "info.postalCode",
           "editors",
@@ -199,14 +381,15 @@
           "plannedEnd",
           "links.title",
           "links.link",
-          "uploads",
-          "fundingGuideline",
+          "media",
+          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
-          "municipality"
+          "municipality",
+          "files"
         ]
       },
       "conditions": []
@@ -220,7 +403,6 @@
           "info.contactName",
           "info.phone",
           "info.email",
-          "info.location",
           "info.streetNo",
           "info.postalCode",
           "editors",
@@ -237,14 +419,15 @@
           "plannedEnd",
           "links.title",
           "links.link",
-          "uploads",
-          "fundingGuideline",
+          "media",
+          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
-          "municipality"
+          "municipality",
+          "files"
         ]
       },
       "conditions": []
@@ -300,7 +483,9 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
         ]
       },
       "conditions": []
@@ -317,7 +502,9 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
         ]
       },
       "conditions": []
@@ -328,7 +515,9 @@
       "properties": {
         "fields": [
           "title",
-          "projects"
+          "projects",
+          "fundings",
+          "checklists"
         ]
       },
       "conditions": []
@@ -620,7 +809,10 @@
           "projectEditor",
           "watchlists",
           "projectReader",
-          "user_detail"
+          "user_detail",
+          "fundings",
+          "checklistEditor",
+          "fundingReader"
         ]
       },
       "conditions": []
@@ -648,7 +840,10 @@
           "projectEditor",
           "watchlists",
           "projectReader",
-          "user_detail"
+          "user_detail",
+          "fundings",
+          "checklistEditor",
+          "fundingReader"
         ]
       },
       "conditions": []
@@ -670,7 +865,10 @@
           "projectEditor",
           "watchlists",
           "projectReader",
-          "user_detail"
+          "user_detail",
+          "fundings",
+          "checklistEditor",
+          "fundingReader"
         ]
       },
       "conditions": []
