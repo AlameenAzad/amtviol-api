@@ -60,11 +60,32 @@ module.exports = createCoreController(
           entry.checklists.forEach((project) => {
             project.type = "Implementation Checklist";
           });
-          // delete entry.checklists;
-          // delete entry.projects;
+          entry.data = [...entry.projects, ...entry.checklists];
+          delete entry.checklists;
+          delete entry.projects;
           delete entry.user_details;
         });
       return entries;
+    },
+    async delete(ctx) {
+      const { id } = ctx.params;
+      const entries = await strapi.entityService.findMany(
+        "api::municipality.municipality",
+        {
+          filters: {
+            id,
+          },
+          fields: ["title"],
+          populate: { user_details: true },
+        }
+      );
+      console.log(entries);
+      if (entries.length == 0) return ctx.badRequest("No municipality found");
+      else if (entries[0].user_details.length > 0)
+        return ctx.unauthorized(
+          "Can't delete. There are users linked to this municipality."
+        );
+      else return super.delete(ctx);
     },
   })
 );
