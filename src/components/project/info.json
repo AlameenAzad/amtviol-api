@@ -17,9 +17,6 @@
     "email": {
       "type": "string"
     },
-    "location": {
-      "type": "string"
-    },
     "streetNo": {
       "type": "string"
     },

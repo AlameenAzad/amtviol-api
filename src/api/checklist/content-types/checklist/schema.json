@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "checklists",
+  "info": {
+    "singularName": "checklist",
+    "pluralName": "checklists",
+    "displayName": "checklist"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ideaProvider": {
+      "type": "enumeration",
+      "enum": [
+        "volunteering",
+        "mainOffice"
+      ]
+    },
+    "info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "project.info"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    },
+    "editors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "checklistEditor"
+    },
+    "visibility": {
+      "type": "enumeration",
+      "enum": [
+        "only for me",
+        "all users",
+        "listed only"
+      ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "checklists"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "checklists"
+    }
+  }
+}

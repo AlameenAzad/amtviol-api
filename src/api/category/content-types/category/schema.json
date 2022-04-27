@@ -23,6 +23,18 @@
       "target": "api::project.project",
       "autoPopulate": false,
       "mappedBy": "categories"
+    },
+    "fundings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "categories"
+    },
+    "checklists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::checklist.checklist",
+      "inversedBy": "categories"
     }
   }
 }

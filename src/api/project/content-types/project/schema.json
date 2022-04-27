@@ -60,7 +60,7 @@
       "repeatable": true,
       "component": "project.links"
     },
-    "uploads": {
+    "media": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -71,10 +71,11 @@
         "audios"
       ]
     },
-    "fundingGuideline": {
+    "fundings": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::funding.funding"
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "projects"
     },
     "categories": {
       "type": "relation",
@@ -112,6 +113,13 @@
       "relation": "manyToOne",
       "target": "api::municipality.municipality",
       "inversedBy": "projects"
+    },
+    "files": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

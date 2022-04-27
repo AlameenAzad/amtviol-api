@@ -88,6 +88,24 @@
       "relation": "oneToOne",
       "target": "api::user-detail.user-detail",
       "inversedBy": "user"
+    },
+    "fundings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "editors"
+    },
+    "checklistEditor": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::checklist.checklist",
+      "inversedBy": "editors"
+    },
+    "fundingReader": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "readers"
     }
   }
 }
