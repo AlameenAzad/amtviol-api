@@ -31,8 +31,14 @@ module.exports = (plugin, env) => {
       "plugin::users-permissions.user",
       {
         fields: ["username", "email"],
-        populate: { role: { fields: ["type"] }, user_detail: { fields:["fullName"],populate: {municipality: {fields:["title","location"]}} } },
-}
+        populate: {
+          role: { fields: ["type"] },
+          user_detail: {
+            fields: ["fullName"],
+            populate: { municipality: { fields: ["title", "location"] } },
+          },
+        },
+      }
     );
 
     ctx.body = users.map((user) => sanitizeOutput(user));
@@ -43,12 +49,20 @@ module.exports = (plugin, env) => {
       await strapi.controller("plugin::users-permissions.auth").register(ctx);
       const resetPasswordToken = crypto.randomBytes(64).toString("hex");
       await sendPwdInEmail(ctx, resetPasswordToken);
-      var user_detail = await strapi.entityService.create("api::user-detail.user-detail", {
-        data: {
-          municipality: ctx.request.body.municipality,
-          fullName: ctx.request.body.username,
-        },
-      });
+      var user_detail = await strapi.entityService.create(
+        "api::user-detail.user-detail",
+        {
+          data: {
+            invite: true,
+            municipality: ctx.request.body.municipality,
+            fullName: ctx.request.body.username,
+            notifications: {
+              email: {},
+              app: {},
+            },
+          },
+        }
+      );
       var qdata = { resetPasswordToken, user_detail };
       if (ctx.request.body.role == "admin") qdata.role = { id: 4 };
       await strapi.query("plugin::users-permissions.user").update({
