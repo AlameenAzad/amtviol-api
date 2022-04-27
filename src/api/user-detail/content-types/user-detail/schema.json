@@ -47,8 +47,9 @@
     },
     "municipality": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::municipality.municipality"
+      "relation": "manyToOne",
+      "target": "api::municipality.municipality",
+      "inversedBy": "user_details"
     }
   }
 }

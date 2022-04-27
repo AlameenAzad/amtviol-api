@@ -34,7 +34,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::checklist.checklist",
-      "inversedBy": "categories"
+      "mappedBy": "categories"
     }
   }
 }

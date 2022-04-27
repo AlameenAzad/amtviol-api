@@ -4,7 +4,8 @@
   "info": {
     "singularName": "checklist",
     "pluralName": "checklists",
-    "displayName": "checklist"
+    "displayName": "checklist",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -57,6 +58,17 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "checklists"
+    },
+    "municipality": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::municipality.municipality",
+      "inversedBy": "checklists"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
