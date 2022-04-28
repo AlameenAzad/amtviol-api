@@ -68,7 +68,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/projects/3",
+							"raw": "localhost:1337/api/projects/2",
 							"host": [
 								"localhost"
 							],
@@ -76,7 +76,7 @@
 							"path": [
 								"api",
 								"projects",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -110,6 +110,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete project owner only",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/projects/10",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"projects",
+								"10"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -117,7 +137,7 @@
 			"name": "user center",
 			"item": [
 				{
-					"name": "register",
+					"name": "[deprecated] register",
 					"event": [
 						{
 							"listen": "test",
@@ -216,7 +236,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user-details?populate=*",
+							"raw": "localhost:1337/api/user-details",
 							"host": [
 								"localhost"
 							],
@@ -228,7 +248,8 @@
 							"query": [
 								{
 									"key": "populate",
-									"value": "*"
+									"value": "*",
+									"disabled": true
 								}
 							]
 						}
@@ -236,7 +257,7 @@
 					"response": []
 				},
 				{
-					"name": "add user-details",
+					"name": "[deprecated] add user-details",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -277,6 +298,13 @@
 							"path": [
 								"api",
 								"users"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -289,7 +317,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"Ahmed\",\r\n    \"email\":\"Melanie.Boieck@amt-vioel.de\",\r\n    \"role\":\"admin\", \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol\"\r\n}",
+							"raw": "{\r\n    \"username\":\"Alameen\",\r\n    \"email\":\"alameen.azad@pm.me\",\r\n    \"role\":\"admin\", \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol habibi\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -369,6 +397,64 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "update user-details",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"fullName\": \"alameen2\",\r\n        \"phone\": \"2398273497\",\r\n        \"location\": \"Home\",\r\n        \"contactPrivacy\": null,\r\n        \"notifications\": {\r\n            \"id\": 1,\r\n            \"email\": {\r\n                \"id\": 1,\r\n                \"dataRequests\": true,\r\n                \"inquiry\": true,\r\n                \"newProjects\": true,\r\n                \"fundingExpiry\": true,\r\n                \"newChecklists\": true,\r\n                \"networkRequests\": true,\r\n                \"secureEmails\": true\r\n            },\r\n            \"app\": {\r\n                \"id\": 1,\r\n                \"dataRequests\": true,\r\n                \"inquiry\": true,\r\n                \"newProjects\": true,\r\n                \"fundingExpiry\": true,\r\n                \"newChecklists\": true,\r\n                \"networkRequest\": true\r\n            }\r\n        },\r\n        \"profile\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/user-details/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"user-details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alameen3\",\r\n    \"email\":\"alameen.azad5@pm.me\",\r\n    \"role\":4, \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol habibi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/users/84",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users",
+								"84"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -381,7 +467,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/tags?populate=*",
+							"raw": "localhost:1337/api/tags",
 							"host": [
 								"localhost"
 							],
@@ -389,12 +475,6 @@
 							"path": [
 								"api",
 								"tags"
-							],
-							"query": [
-								{
-									"key": "populate",
-									"value": "*"
-								}
 							]
 						}
 					},
@@ -439,7 +519,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/categories?populate=*",
+							"raw": "localhost:1337/api/categories",
 							"host": [
 								"localhost"
 							],
@@ -447,12 +527,6 @@
 							"path": [
 								"api",
 								"categories"
-							],
-							"query": [
-								{
-									"key": "populate",
-									"value": "*"
-								}
 							]
 						}
 					},
@@ -497,7 +571,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/municipalities?populate=*",
+							"raw": "localhost:1337/api/municipalities",
 							"host": [
 								"localhost"
 							],
@@ -508,8 +582,9 @@
 							],
 							"query": [
 								{
-									"key": "populate",
-									"value": "*"
+									"key": "",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
@@ -523,7 +598,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"municipality001\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"municipality001\",\r\n        \"location\": \"test\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -539,6 +614,26 @@
 							"path": [
 								"api",
 								"municipalities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Municipality",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/municipalities/4",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"municipalities",
+								"4"
 							]
 						}
 					},
@@ -650,6 +745,133 @@
 							"path": [
 								"api",
 								"requests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fundings",
+			"item": [
+				{
+					"name": "fundings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/fundings",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"fundings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Specific funding details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/fundings/2",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"fundings",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "funding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"funding 111210\",\r\n        \"provider\": \"teest\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 22,\r\n        \"accumulability\": \"test\",\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"checklist\": {\r\n            \"id\": 1\r\n        },\r\n        \"projects\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/fundings?populate=*",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"fundings"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete funding owner only",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/fundings/19",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"fundings",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update funding",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"funding 11121011333\",\r\n        \"provider\": \"teest\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 22,\r\n        \"accumulability\": \"test\",\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"checklist\": {\r\n            \"id\": 1\r\n        },\r\n        \"projects\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/fundings/20",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"fundings",
+								"20"
 							]
 						}
 					},
