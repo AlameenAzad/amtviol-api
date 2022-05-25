@@ -98,5 +98,25 @@ module.exports = (plugin, env) => {
         "</p>",
     });
   }
+  plugin.controllers.user.update = async (ctx) => {
+    // console.log(ctx.state.user);
+    const user = await strapi
+      .service("plugin::users-permissions.user")
+      .edit(ctx.params.id, ctx.request.body.data);
+    const payload = ctx;
+    payload.state.user.id = ctx.params.id;
+    payload.request.body.admin = true;
+    // console.log(payload.state.user);
+    const userDetail = await strapi
+      .controller("api::user-detail.user-detail")
+      .getEntry(payload, false);
+    const entry = await strapi.db.query("api::user-detail.user-detail").update({
+      where: { id: userDetail[0].id },
+      data: {
+        municipality: ctx.request.body.data.municipality.id,
+      },
+    });
+    return entry;
+  };
   return plugin;
 };

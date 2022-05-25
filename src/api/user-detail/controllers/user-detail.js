@@ -66,5 +66,26 @@ module.exports = createCoreController(
       var entry = await this.getEntry(ctx, true);
       return entry.length > 0 ? entry[0] : ctx.badRequest(`User has no entry`);
     },
+    async transferData(ctx) {
+      if (ctx.state.user.id != ctx.params.id) {
+        var dataCount = {
+          projects: 0,
+          fundings: 0,
+          checklists: 0,
+        };
+        console.log("user", ctx.state.user.id);
+        console.log("to user", ctx.params.id);
+        return await strapi.db.query("api::project.project").updateMany({
+          where: {
+            owner: ctx.state.user,
+          },
+          data: {
+            title: ctx.params.id,
+          },
+        });
+      } else {
+        return ctx.unauthorized("You can't transfer data to yourself.");
+      }
+    },
   })
 );
