@@ -107,6 +107,21 @@
           "sortable": false
         }
       },
+      "fundings": {
+        "edit": {
+          "label": "fundings",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -164,7 +179,8 @@
       "editRelations": [
         "projects",
         "checklists",
-        "user_details"
+        "user_details",
+        "fundings"
       ]
     }
   },

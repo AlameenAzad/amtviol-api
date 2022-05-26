@@ -34,20 +34,6 @@
           "sortable": true
         }
       },
-      "provider": {
-        "edit": {
-          "label": "provider",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "provider",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "info": {
         "edit": {
           "label": "info",
@@ -60,36 +46,6 @@
           "label": "info",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "editors": {
-        "edit": {
-          "label": "editors",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "editors",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "owner": {
-        "edit": {
-          "label": "owner",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "owner",
-          "searchable": true,
-          "sortable": true
         }
       },
       "details": {
@@ -106,34 +62,18 @@
           "sortable": false
         }
       },
-      "categories": {
+      "provider": {
         "edit": {
-          "label": "categories",
+          "label": "provider",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "title"
+          "editable": true
         },
         "list": {
-          "label": "categories",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "tags": {
-        "edit": {
-          "label": "tags",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "tags",
-          "searchable": false,
-          "sortable": false
+          "label": "provider",
+          "searchable": true,
+          "sortable": true
         }
       },
       "visibility": {
@@ -190,36 +130,6 @@
           "label": "accumulability",
           "searchable": true,
           "sortable": true
-        }
-      },
-      "fundingsLinkedTo": {
-        "edit": {
-          "label": "fundingsLinkedTo",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "fundingsLinkedTo",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "fundingsLinkedToMe": {
-        "edit": {
-          "label": "fundingsLinkedToMe",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "fundingsLinkedToMe",
-          "searchable": false,
-          "sortable": false
         }
       },
       "plannedStart": {
@@ -320,21 +230,6 @@
           "sortable": false
         }
       },
-      "projects": {
-        "edit": {
-          "label": "projects",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "projects",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "published": {
         "edit": {
           "label": "published",
@@ -347,6 +242,96 @@
           "label": "published",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "editors": {
+        "edit": {
+          "label": "editors",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "editors",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "owner": {
+        "edit": {
+          "label": "owner",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "owner",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "categories": {
+        "edit": {
+          "label": "categories",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "categories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "tags",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingsLinkedTo": {
+        "edit": {
+          "label": "fundingsLinkedTo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingsLinkedTo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingsLinkedToMe": {
+        "edit": {
+          "label": "fundingsLinkedToMe",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingsLinkedToMe",
+          "searchable": false,
+          "sortable": false
         }
       },
       "readers": {
@@ -375,6 +360,36 @@
         },
         "list": {
           "label": "checklist",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "projects": {
+        "edit": {
+          "label": "projects",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "projects",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "municipality": {
+        "edit": {
+          "label": "municipality",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "municipality",
           "searchable": true,
           "sortable": true
         }
@@ -512,7 +527,8 @@
         "fundingsLinkedToMe",
         "projects",
         "readers",
-        "checklist"
+        "checklist",
+        "municipality"
       ]
     }
   },

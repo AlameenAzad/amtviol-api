@@ -22,14 +22,19 @@
       "relation": "oneToOne",
       "target": "api::project.project"
     },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    },
     "funding": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::funding.funding"
     },
-    "approved": {
-      "type": "boolean",
-      "default": false
+    "checklist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::checklist.checklist"
     }
   }
 }

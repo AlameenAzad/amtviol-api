@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "641b0924-80a6-4b64-879f-e4584e50e01f",
 		"name": "amtviolAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8582447"
 	},
 	"item": [
 		{
@@ -41,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject68\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"visibility\":\"only for me\",\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        }\r\n        \r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject682\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"visibility\":\"only for me\",\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        },\r\n        \"fundingGuideline\":[\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n        \r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -434,7 +435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"Alameen3\",\r\n    \"email\":\"alameen.azad5@pm.me\",\r\n    \"role\":4, \r\n    \"municipality\": {\r\n        \"id\":1\r\n    } ,\r\n    \"message\": \"Welcome to amt viol habibi\"\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"username\": \"Alameen5\",\r\n        \"email\": \"alameen.azad7@pm.me\",\r\n        \"role\": 4,\r\n        \"municipality\": {\r\n            \"id\": 5\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -451,6 +452,35 @@
 								"api",
 								"users",
 								"84"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null,
+									"description": "roles Admin = 4, User = 1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data transfer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/user/transfer/88",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"user",
+								"transfer",
+								"88"
 							]
 						}
 					},
@@ -780,7 +810,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/fundings/2",
+							"raw": "localhost:1337/api/fundings/54",
 							"host": [
 								"localhost"
 							],
@@ -788,7 +818,7 @@
 							"path": [
 								"api",
 								"fundings",
-								"2"
+								"54"
 							]
 						}
 					},
@@ -801,7 +831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"funding 111210\",\r\n        \"provider\": \"teest\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 22,\r\n        \"accumulability\": \"test\",\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"checklist\": {\r\n            \"id\": 1\r\n        },\r\n        \"projects\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"funding 6\",\r\n        \"provider\": \"teest\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 22,\r\n        \"accumulability\": true,\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"checklist\": {\r\n            \"id\": 2,\r\n            \"title\": \"testss\"\r\n        },\r\n        \"municipality\":{\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -809,7 +839,8 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:1337/api/fundings?populate=*",
+							"raw": "http://localhost:1337/api/fundings",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -817,12 +848,6 @@
 							"path": [
 								"api",
 								"fundings"
-							],
-							"query": [
-								{
-									"key": "populate",
-									"value": "*"
-								}
 							]
 						}
 					},
@@ -872,6 +897,37 @@
 								"api",
 								"fundings",
 								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "checklist",
+			"item": [
+				{
+					"name": "Checklists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/checklists/2?populate=*",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklists",
+								"2"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
 							]
 						}
 					},

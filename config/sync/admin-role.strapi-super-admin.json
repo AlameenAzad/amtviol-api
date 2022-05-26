@@ -10,8 +10,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -29,8 +29,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -42,8 +42,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -66,7 +66,8 @@
           "categories",
           "tags",
           "municipality",
-          "owner"
+          "owner",
+          "funding"
         ]
       },
       "conditions": []
@@ -95,7 +96,8 @@
           "categories",
           "tags",
           "municipality",
-          "owner"
+          "owner",
+          "funding"
         ]
       },
       "conditions": []
@@ -118,7 +120,8 @@
           "categories",
           "tags",
           "municipality",
-          "owner"
+          "owner",
+          "funding"
         ]
       },
       "conditions": []
@@ -129,28 +132,22 @@
       "properties": {
         "fields": [
           "title",
-          "provider",
           "info.contactName",
           "info.phone",
           "info.email",
           "info.streetNo",
           "info.postalCode",
-          "editors",
-          "owner",
           "details.goal",
           "details.funded",
           "details.notFunded",
           "details.willBeFunded",
           "details.condition",
-          "categories",
-          "tags",
+          "provider",
           "visibility",
           "rates.content",
           "rates.amount",
           "ownContribution",
           "accumulability",
-          "fundingsLinkedTo",
-          "fundingsLinkedToMe",
           "plannedStart",
           "plannedEnd",
           "assessment",
@@ -159,10 +156,17 @@
           "links.link",
           "media",
           "files",
-          "projects",
           "published",
+          "editors",
+          "owner",
+          "categories",
+          "tags",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
           "readers",
-          "checklist"
+          "checklist",
+          "projects",
+          "municipality"
         ]
       },
       "conditions": []
@@ -179,28 +183,22 @@
       "properties": {
         "fields": [
           "title",
-          "provider",
           "info.contactName",
           "info.phone",
           "info.email",
           "info.streetNo",
           "info.postalCode",
-          "editors",
-          "owner",
           "details.goal",
           "details.funded",
           "details.notFunded",
           "details.willBeFunded",
           "details.condition",
-          "categories",
-          "tags",
+          "provider",
           "visibility",
           "rates.content",
           "rates.amount",
           "ownContribution",
           "accumulability",
-          "fundingsLinkedTo",
-          "fundingsLinkedToMe",
           "plannedStart",
           "plannedEnd",
           "assessment",
@@ -209,10 +207,17 @@
           "links.link",
           "media",
           "files",
-          "projects",
           "published",
+          "editors",
+          "owner",
+          "categories",
+          "tags",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
           "readers",
-          "checklist"
+          "checklist",
+          "projects",
+          "municipality"
         ]
       },
       "conditions": []
@@ -223,28 +228,22 @@
       "properties": {
         "fields": [
           "title",
-          "provider",
           "info.contactName",
           "info.phone",
           "info.email",
           "info.streetNo",
           "info.postalCode",
-          "editors",
-          "owner",
           "details.goal",
           "details.funded",
           "details.notFunded",
           "details.willBeFunded",
           "details.condition",
-          "categories",
-          "tags",
+          "provider",
           "visibility",
           "rates.content",
           "rates.amount",
           "ownContribution",
           "accumulability",
-          "fundingsLinkedTo",
-          "fundingsLinkedToMe",
           "plannedStart",
           "plannedEnd",
           "assessment",
@@ -253,10 +252,17 @@
           "links.link",
           "media",
           "files",
-          "projects",
           "published",
+          "editors",
+          "owner",
+          "categories",
+          "tags",
+          "fundingsLinkedTo",
+          "fundingsLinkedToMe",
           "readers",
-          "checklist"
+          "checklist",
+          "projects",
+          "municipality"
         ]
       },
       "conditions": []
@@ -271,7 +277,8 @@
           "profile",
           "projects",
           "checklists",
-          "user_details"
+          "user_details",
+          "fundings"
         ]
       },
       "conditions": []
@@ -292,7 +299,8 @@
           "profile",
           "projects",
           "checklists",
-          "user_details"
+          "user_details",
+          "fundings"
         ]
       },
       "conditions": []
@@ -307,7 +315,8 @@
           "profile",
           "projects",
           "checklists",
-          "user_details"
+          "user_details",
+          "fundings"
         ]
       },
       "conditions": []
@@ -338,14 +347,14 @@
           "links.title",
           "links.link",
           "media",
-          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
           "municipality",
-          "files"
+          "files",
+          "fundingGuideline"
         ]
       },
       "conditions": []
@@ -382,14 +391,14 @@
           "links.title",
           "links.link",
           "media",
-          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
           "municipality",
-          "files"
+          "files",
+          "fundingGuideline"
         ]
       },
       "conditions": []
@@ -420,14 +429,14 @@
           "links.title",
           "links.link",
           "media",
-          "fundings",
           "categories",
           "tags",
           "published",
           "readers",
           "visibility",
           "municipality",
-          "files"
+          "files",
+          "fundingGuideline"
         ]
       },
       "conditions": []
@@ -439,8 +448,9 @@
         "fields": [
           "user",
           "project",
+          "approved",
           "funding",
-          "approved"
+          "checklist"
         ]
       },
       "conditions": []
@@ -458,8 +468,9 @@
         "fields": [
           "user",
           "project",
+          "approved",
           "funding",
-          "approved"
+          "checklist"
         ]
       },
       "conditions": []
@@ -471,8 +482,9 @@
         "fields": [
           "user",
           "project",
+          "approved",
           "funding",
-          "approved"
+          "checklist"
         ]
       },
       "conditions": []
@@ -484,8 +496,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -503,8 +515,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -516,8 +528,8 @@
         "fields": [
           "title",
           "projects",
-          "fundings",
-          "checklists"
+          "checklists",
+          "fundings"
         ]
       },
       "conditions": []
@@ -810,8 +822,8 @@
           "watchlists",
           "projectReader",
           "user_detail",
-          "fundings",
           "checklistEditor",
+          "fundings",
           "fundingReader"
         ]
       },
@@ -841,8 +853,8 @@
           "watchlists",
           "projectReader",
           "user_detail",
-          "fundings",
           "checklistEditor",
+          "fundings",
           "fundingReader"
         ]
       },
@@ -866,8 +878,8 @@
           "watchlists",
           "projectReader",
           "user_detail",
-          "fundings",
           "checklistEditor",
+          "fundings",
           "fundingReader"
         ]
       },

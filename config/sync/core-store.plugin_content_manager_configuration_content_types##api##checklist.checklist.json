@@ -166,6 +166,21 @@
           "sortable": true
         }
       },
+      "funding": {
+        "edit": {
+          "label": "funding",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "funding",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -232,7 +247,8 @@
         "categories",
         "tags",
         "municipality",
-        "owner"
+        "owner",
+        "funding"
       ]
     }
   },

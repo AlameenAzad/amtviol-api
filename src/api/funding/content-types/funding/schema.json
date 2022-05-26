@@ -17,42 +17,19 @@
       "required": true,
       "unique": true
     },
-    "provider": {
-      "type": "string"
-    },
     "info": {
+      "displayName": "info",
       "type": "component",
       "repeatable": false,
-      "component": "project.info"
-    },
-    "editors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "fundings"
-    },
-    "owner": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "component": "funding.info"
     },
     "details": {
-      "displayName": "details",
       "type": "component",
       "repeatable": false,
       "component": "funding.details"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "fundings"
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "fundings"
+    "provider": {
+      "type": "string"
     },
     "visibility": {
       "type": "enumeration",
@@ -63,7 +40,6 @@
       ]
     },
     "rates": {
-      "displayName": "rates",
       "type": "component",
       "repeatable": true,
       "component": "funding.rates"
@@ -72,24 +48,7 @@
       "type": "decimal"
     },
     "accumulability": {
-      "type": "enumeration",
-      "enum": [
-        "test",
-        "test 1",
-        "test 2"
-      ]
-    },
-    "fundingsLinkedTo": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "inversedBy": "fundingsLinkedToMe"
-    },
-    "fundingsLinkedToMe": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "inversedBy": "fundingsLinkedTo"
+      "type": "boolean"
     },
     "plannedStart": {
       "type": "date"
@@ -104,9 +63,10 @@
       "type": "string"
     },
     "links": {
+      "displayName": "links",
       "type": "component",
       "repeatable": true,
-      "component": "project.links"
+      "component": "funding.links"
     },
     "media": {
       "type": "media",
@@ -125,15 +85,43 @@
         "files"
       ]
     },
-    "projects": {
+    "published": {
+      "type": "boolean"
+    },
+    "editors": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::project.project",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "fundings"
     },
-    "published": {
-      "type": "boolean",
-      "required": true
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "fundings"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "fundings"
+    },
+    "fundingsLinkedTo": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "inversedBy": "fundingsLinkedToMe"
+    },
+    "fundingsLinkedToMe": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "inversedBy": "fundingsLinkedTo"
     },
     "readers": {
       "type": "relation",
@@ -144,7 +132,20 @@
     "checklist": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::checklist.checklist"
+      "target": "api::checklist.checklist",
+      "inversedBy": "funding"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "fundingGuideline"
+    },
+    "municipality": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::municipality.municipality",
+      "inversedBy": "fundings"
     }
   }
 }

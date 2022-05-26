@@ -50,6 +50,20 @@
           "sortable": true
         }
       },
+      "approved": {
+        "edit": {
+          "label": "approved",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "approved",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "funding": {
         "edit": {
           "label": "funding",
@@ -65,16 +79,17 @@
           "sortable": true
         }
       },
-      "approved": {
+      "checklist": {
         "edit": {
-          "label": "approved",
+          "label": "checklist",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "title"
         },
         "list": {
-          "label": "approved",
+          "label": "checklist",
           "searchable": true,
           "sortable": true
         }
@@ -125,8 +140,9 @@
       ],
       "editRelations": [
         "project",
+        "user",
         "funding",
-        "user"
+        "checklist"
       ]
     }
   },

@@ -22,16 +22,16 @@
       "target": "api::project.project",
       "mappedBy": "tags"
     },
-    "fundings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "mappedBy": "tags"
-    },
     "checklists": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::checklist.checklist",
+      "mappedBy": "tags"
+    },
+    "fundings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
       "mappedBy": "tags"
     }
   }

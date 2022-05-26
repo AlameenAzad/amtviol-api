@@ -162,21 +162,6 @@
           "sortable": false
         }
       },
-      "fundings": {
-        "edit": {
-          "label": "fundings",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "fundings",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "categories": {
         "edit": {
           "label": "categories",
@@ -275,6 +260,21 @@
         },
         "list": {
           "label": "files",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingGuideline": {
+        "edit": {
+          "label": "fundingGuideline",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingGuideline",
           "searchable": false,
           "sortable": false
         }
@@ -389,7 +389,7 @@
         "tags",
         "municipality",
         "readers",
-        "fundings"
+        "fundingGuideline"
       ]
     }
   },

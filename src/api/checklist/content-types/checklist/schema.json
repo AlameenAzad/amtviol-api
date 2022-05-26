@@ -69,6 +69,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "funding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::funding.funding",
+      "mappedBy": "checklist"
     }
   }
 }

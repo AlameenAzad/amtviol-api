@@ -89,16 +89,16 @@
       "target": "api::user-detail.user-detail",
       "mappedBy": "user"
     },
-    "fundings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "mappedBy": "editors"
-    },
     "checklistEditor": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::checklist.checklist",
+      "mappedBy": "editors"
+    },
+    "fundings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
       "mappedBy": "editors"
     },
     "fundingReader": {

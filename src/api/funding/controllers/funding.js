@@ -131,8 +131,16 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     else return entry;
   },
   async create(ctx) {
-    console.log(ctx.request.body.data);
     ctx.request.body.data.owner = ctx.state.user;
+    if (ctx.request.body.data.hasOwnProperty("checklist")) {
+      const checkChecklist = await this.checkChecklist(
+        ctx.request.body.data.checklist.id
+      );
+      if (checkChecklist == null || checkChecklist.funding != null)
+        return ctx.badRequest(
+          "The checklist you have selected already has a funding linked to it."
+        );
+    }
     let entity = await super.create(ctx);
     return entity;
   },
@@ -175,6 +183,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     else return await super.delete(ctx);
   },
   async getRequests(entry) {
+    console.log(entry);
     const requests = await strapi.entityService.findMany(
       "api::request.request",
       {
@@ -191,5 +200,13 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     );
     entry.requests = requests;
     return entry;
+  },
+  async checkChecklist(id) {
+    const checklist = await strapi.entityService.findOne(
+      "api::checklist.checklist",
+      id,
+      { populate: { funding: true } }
+    );
+    return checklist;
   },
 }));

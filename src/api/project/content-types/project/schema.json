@@ -71,12 +71,6 @@
         "audios"
       ]
     },
-    "fundings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "mappedBy": "projects"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -115,11 +109,18 @@
       "inversedBy": "projects"
     },
     "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "fundingGuideline": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "projects"
     }
   }
 }
