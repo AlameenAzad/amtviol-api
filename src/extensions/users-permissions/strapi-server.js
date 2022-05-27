@@ -64,7 +64,7 @@ module.exports = (plugin, env) => {
         }
       );
       var qdata = { resetPasswordToken, user_detail };
-      if (ctx.request.body.role == "admin") qdata.role = { id: 4 };
+      if (ctx.request.body.role == "admin") qdata.role = { id: 3 };
       await strapi.query("plugin::users-permissions.user").update({
         where: { email: ctx.request.body.email },
         data: qdata,
