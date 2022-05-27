@@ -68,23 +68,55 @@ module.exports = createCoreController(
     },
     async transferData(ctx) {
       if (ctx.state.user.id != ctx.params.id) {
-        var dataCount = {
-          projects: 0,
-          fundings: 0,
-          checklists: 0,
-        };
-        console.log("user", ctx.state.user.id);
-        console.log("to user", ctx.params.id);
-        return await strapi.db.query("api::project.project").updateMany({
+        const dataAndCount = this.countAndGetTransferableData(ctx);
+        return dataAndCount;
+      } else {
+        return ctx.unauthorized("You can't transfer data to yourself.");
+      }
+    },
+    async countAndGetTransferableData(ctx) {
+      var dataCount = {
+        projects: {},
+        fundings: {},
+        checklists: {},
+        projectsCount: 0,
+        fundingsCount: 0,
+        checklistsCount: 0,
+      };
+      [dataCount.projects, dataCount.projectsCount] = await strapi.db
+        .query("api::project.project")
+        .findWithCount({
+          select: ["id"],
           where: {
             owner: ctx.state.user,
           },
+        });
+      [dataCount.fundings, dataCount.fundingsCount] = await strapi.db
+        .query("api::funding.funding")
+        .findWithCount({
+          select: ["id"],
+          where: {
+            owner: ctx.state.user,
+          },
+        });
+      [dataCount.checklists, dataCount.checklistsCount] = await strapi.db
+        .query("api::checklist.checklist")
+        .findWithCount({
+          select: ["id"],
+          where: {
+            owner: ctx.state.user,
+          },
+        });
+      return dataCount;
+    },
+    async transferDataToUser(ctx, api, data) {
+      for (const item of data) {
+        await strapi.db.query("api::" + api).update({
+          where: { id: item.id },
           data: {
             title: ctx.params.id,
           },
         });
-      } else {
-        return ctx.unauthorized("You can't transfer data to yourself.");
       }
     },
   })
