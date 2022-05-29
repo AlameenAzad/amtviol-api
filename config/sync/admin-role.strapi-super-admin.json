@@ -67,7 +67,7 @@
           "tags",
           "municipality",
           "owner",
-          "funding"
+          "fundings"
         ]
       },
       "conditions": []
@@ -97,7 +97,7 @@
           "tags",
           "municipality",
           "owner",
-          "funding"
+          "fundings"
         ]
       },
       "conditions": []
@@ -121,7 +121,7 @@
           "tags",
           "municipality",
           "owner",
-          "funding"
+          "fundings"
         ]
       },
       "conditions": []

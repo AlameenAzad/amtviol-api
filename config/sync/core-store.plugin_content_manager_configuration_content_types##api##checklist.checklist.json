@@ -166,9 +166,9 @@
           "sortable": true
         }
       },
-      "funding": {
+      "fundings": {
         "edit": {
-          "label": "funding",
+          "label": "fundings",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -176,9 +176,9 @@
           "mainField": "title"
         },
         "list": {
-          "label": "funding",
-          "searchable": true,
-          "sortable": true
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -248,7 +248,7 @@
         "tags",
         "municipality",
         "owner",
-        "funding"
+        "fundings"
       ]
     }
   },

@@ -1622,9 +1622,9 @@
           "relation": "oneToOne",
           "target": "plugin::users-permissions.user"
         },
-        "funding": {
+        "fundings": {
           "type": "relation",
-          "relation": "oneToOne",
+          "relation": "oneToMany",
           "target": "api::funding.funding",
           "mappedBy": "checklist"
         },
@@ -1726,9 +1726,9 @@
             "relation": "oneToOne",
             "target": "plugin::users-permissions.user"
           },
-          "funding": {
+          "fundings": {
             "type": "relation",
-            "relation": "oneToOne",
+            "relation": "oneToMany",
             "target": "api::funding.funding",
             "mappedBy": "checklist"
           }
@@ -1877,9 +1877,9 @@
         },
         "checklist": {
           "type": "relation",
-          "relation": "oneToOne",
+          "relation": "manyToOne",
           "target": "api::checklist.checklist",
-          "inversedBy": "funding"
+          "inversedBy": "fundings"
         },
         "projects": {
           "type": "relation",
@@ -2052,9 +2052,9 @@
           },
           "checklist": {
             "type": "relation",
-            "relation": "oneToOne",
+            "relation": "manyToOne",
             "target": "api::checklist.checklist",
-            "inversedBy": "funding"
+            "inversedBy": "fundings"
           },
           "projects": {
             "type": "relation",

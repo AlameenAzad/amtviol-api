@@ -131,9 +131,9 @@
     },
     "checklist": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::checklist.checklist",
-      "inversedBy": "funding"
+      "inversedBy": "fundings"
     },
     "projects": {
       "type": "relation",

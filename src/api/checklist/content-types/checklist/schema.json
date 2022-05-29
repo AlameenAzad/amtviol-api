@@ -70,9 +70,9 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "funding": {
+    "fundings": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::funding.funding",
       "mappedBy": "checklist"
     }
