@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_checklist_projektidee_quellen_details",
+  "info": {
+    "displayName": "projektideeQuellenDetails"
+  },
+  "options": {},
+  "attributes": {
+    "bestehenden": {
+      "type": "boolean"
+    }
+  }
+}
