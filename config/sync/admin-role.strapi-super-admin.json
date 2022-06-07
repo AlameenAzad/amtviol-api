@@ -67,7 +67,18 @@
           "tags",
           "municipality",
           "owner",
-          "fundings"
+          "fundings",
+          "captureIdea.start",
+          "captureIdea.end",
+          "captureIdea.name",
+          "captureIdea.text",
+          "captureIdea.project",
+          "captureIdea.file",
+          "captureIdea.sortPosition",
+          "captureIdea.active",
+          "captureIdea.projektideeQuellen.active",
+          "captureIdea.projektideeQuellen.sortPosition",
+          "captureIdea.projektideeQuellenDetails.bestehenden"
         ]
       },
       "conditions": []
@@ -97,7 +108,18 @@
           "tags",
           "municipality",
           "owner",
-          "fundings"
+          "fundings",
+          "captureIdea.start",
+          "captureIdea.end",
+          "captureIdea.name",
+          "captureIdea.text",
+          "captureIdea.project",
+          "captureIdea.file",
+          "captureIdea.sortPosition",
+          "captureIdea.active",
+          "captureIdea.projektideeQuellen.active",
+          "captureIdea.projektideeQuellen.sortPosition",
+          "captureIdea.projektideeQuellenDetails.bestehenden"
         ]
       },
       "conditions": []
@@ -121,7 +143,18 @@
           "tags",
           "municipality",
           "owner",
-          "fundings"
+          "fundings",
+          "captureIdea.start",
+          "captureIdea.end",
+          "captureIdea.name",
+          "captureIdea.text",
+          "captureIdea.project",
+          "captureIdea.file",
+          "captureIdea.sortPosition",
+          "captureIdea.active",
+          "captureIdea.projektideeQuellen.active",
+          "captureIdea.projektideeQuellen.sortPosition",
+          "captureIdea.projektideeQuellenDetails.bestehenden"
         ]
       },
       "conditions": []
@@ -558,7 +591,9 @@
           "notifications.email.secureEmails",
           "contactPrivacy",
           "profile",
-          "municipality"
+          "municipality",
+          "postalCode",
+          "streetNo"
         ]
       },
       "conditions": []
@@ -593,7 +628,9 @@
           "notifications.email.secureEmails",
           "contactPrivacy",
           "profile",
-          "municipality"
+          "municipality",
+          "postalCode",
+          "streetNo"
         ]
       },
       "conditions": []
@@ -622,7 +659,9 @@
           "notifications.email.secureEmails",
           "contactPrivacy",
           "profile",
-          "municipality"
+          "municipality",
+          "postalCode",
+          "streetNo"
         ]
       },
       "conditions": []
