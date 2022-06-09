@@ -22,6 +22,9 @@
     },
     "postalCode": {
       "type": "string"
+    },
+    "location": {
+      "type": "string"
     }
   }
 }

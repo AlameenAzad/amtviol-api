@@ -134,6 +134,34 @@
           "sortable": true
         }
       },
+      "postalCode": {
+        "edit": {
+          "label": "postalCode",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "postalCode",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "streetNo": {
+        "edit": {
+          "label": "streetNo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "streetNo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -200,6 +228,16 @@
           },
           {
             "name": "profile",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "postalCode",
+            "size": 6
+          },
+          {
+            "name": "streetNo",
             "size": 6
           }
         ]

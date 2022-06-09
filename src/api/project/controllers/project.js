@@ -87,7 +87,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         links: "*",
         media: "*",
         files: "*",
-        fundings: { fields: ["title"] },
+        fundingGuideline: { fields: ["title"] },
         municipality: { fields: ["title", "location"] },
       },
       filters: {

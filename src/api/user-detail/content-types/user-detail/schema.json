@@ -50,6 +50,12 @@
       "relation": "manyToOne",
       "target": "api::municipality.municipality",
       "inversedBy": "user_details"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "streetNo": {
+      "type": "string"
     }
   }
 }

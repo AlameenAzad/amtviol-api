@@ -12,7 +12,7 @@
       "required": true
     },
     "goals": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "valuesAndBenefits": {

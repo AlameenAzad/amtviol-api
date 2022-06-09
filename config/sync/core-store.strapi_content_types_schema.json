@@ -1628,6 +1628,12 @@
           "target": "api::funding.funding",
           "mappedBy": "checklist"
         },
+        "captureIdea": {
+          "displayName": "captureIdea",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.capture-idea"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1731,6 +1737,12 @@
             "relation": "oneToMany",
             "target": "api::funding.funding",
             "mappedBy": "checklist"
+          },
+          "captureIdea": {
+            "displayName": "captureIdea",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.capture-idea"
           }
         },
         "kind": "collectionType"
@@ -2793,6 +2805,12 @@
           "target": "api::municipality.municipality",
           "inversedBy": "user_details"
         },
+        "postalCode": {
+          "type": "string"
+        },
+        "streetNo": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2871,6 +2889,12 @@
             "relation": "manyToOne",
             "target": "api::municipality.municipality",
             "inversedBy": "user_details"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "streetNo": {
+            "type": "string"
           }
         },
         "kind": "collectionType"

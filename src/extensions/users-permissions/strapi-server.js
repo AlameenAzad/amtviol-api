@@ -100,7 +100,10 @@ module.exports = (plugin, env) => {
   }
   plugin.controllers.user.update = async (ctx) => {
     // console.log(ctx.state.user);
-    if (ctx.request.body.role == "admin") ctx.request.body.role = { id: 3 };
+    if (ctx.request.body.data.role == "admin")
+      ctx.request.body.data.role = { id: 3 };
+    if (ctx.request.body.data.role == "user")
+      ctx.request.body.data.role = { id: 1 };
     const user = await strapi
       .service("plugin::users-permissions.user")
       .edit(ctx.params.id, ctx.request.body.data);

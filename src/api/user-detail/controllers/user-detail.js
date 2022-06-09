@@ -67,23 +67,27 @@ module.exports = createCoreController(
       return entry.length > 0 ? entry[0] : ctx.badRequest(`User has no entry`);
     },
     async transferData(ctx) {
-      if (ctx.state.user.id != ctx.params.id) {
-        const dataAndCount = this.countAndGetTransferableData(ctx);
+      const user = await this.checkUserAvailable(ctx.params.id);
+      if (ctx.state.user.id != ctx.params.id || user == null) {
+        const dataAndCount = await this.countAndGetTransferableData(ctx);
+        await this.transferDataToUser(ctx, dataAndCount);
         return dataAndCount;
       } else {
-        return ctx.unauthorized("You can't transfer data to yourself.");
+        return ctx.unauthorized(
+          "You can't transfer data to yourself. And/Or user you are transferring to doesn't exist."
+        );
       }
     },
     async countAndGetTransferableData(ctx) {
       var dataCount = {
-        projects: {},
-        fundings: {},
-        checklists: {},
+        project: {},
+        funding: {},
+        checklist: {},
         projectsCount: 0,
         fundingsCount: 0,
         checklistsCount: 0,
       };
-      [dataCount.projects, dataCount.projectsCount] = await strapi.db
+      [dataCount.project, dataCount.projectsCount] = await strapi.db
         .query("api::project.project")
         .findWithCount({
           select: ["id"],
@@ -91,7 +95,7 @@ module.exports = createCoreController(
             owner: ctx.state.user,
           },
         });
-      [dataCount.fundings, dataCount.fundingsCount] = await strapi.db
+      [dataCount.funding, dataCount.fundingsCount] = await strapi.db
         .query("api::funding.funding")
         .findWithCount({
           select: ["id"],
@@ -99,7 +103,7 @@ module.exports = createCoreController(
             owner: ctx.state.user,
           },
         });
-      [dataCount.checklists, dataCount.checklistsCount] = await strapi.db
+      [dataCount.checklist, dataCount.checklistsCount] = await strapi.db
         .query("api::checklist.checklist")
         .findWithCount({
           select: ["id"],
@@ -109,15 +113,38 @@ module.exports = createCoreController(
         });
       return dataCount;
     },
-    async transferDataToUser(ctx, api, data) {
-      for (const item of data) {
-        await strapi.db.query("api::" + api).update({
-          where: { id: item.id },
-          data: {
-            title: ctx.params.id,
-          },
-        });
+    async transferDataToUser(ctx, data) {
+      delete data.projectsCount;
+      delete data.fundingsCount;
+      delete data.checklistsCount;
+      console.log(data);
+      for (var key in data) {
+        console.log(data[key]);
+        for (var index = 0; index < data[key].length; index++) {
+          var item = data[key][index];
+          console.log(item);
+          var res = await strapi.db.query("api::" + key + "." + key).update({
+            where: { id: item.id },
+            data: {
+              owner: {
+                id: ctx.params.id,
+              },
+            },
+          });
+          console.log(res);
+        }
       }
+    },
+    async checkUserAvailable(id) {
+      const user = await strapi.entityService.findOne(
+        "plugin::users-permissions.user",
+        99,
+        {
+          fields: ["username"],
+        }
+      );
+
+      return user;
     },
   })
 );

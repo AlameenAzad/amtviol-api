@@ -75,6 +75,12 @@
       "relation": "oneToMany",
       "target": "api::funding.funding",
       "mappedBy": "checklist"
+    },
+    "captureIdea": {
+      "displayName": "captureIdea",
+      "type": "component",
+      "repeatable": false,
+      "component": "checklist.capture-idea"
     }
   }
 }

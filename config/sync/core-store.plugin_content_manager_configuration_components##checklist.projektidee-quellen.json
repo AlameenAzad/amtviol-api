@@ -1,0 +1,77 @@
+{
+  "key": "plugin_content_manager_configuration_components::checklist.projektidee-quellen",
+  "value": {
+    "uid": "checklist.projektidee-quellen",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "active": {
+        "edit": {
+          "label": "active",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "active",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "sortPosition": {
+        "edit": {
+          "label": "sortPosition",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "sortPosition",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "active",
+        "sortPosition"
+      ],
+      "edit": [
+        [
+          {
+            "name": "active",
+            "size": 4
+          },
+          {
+            "name": "sortPosition",
+            "size": 4
+          }
+        ]
+      ],
+      "editRelations": []
+    },
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

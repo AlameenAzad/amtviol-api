@@ -181,6 +181,20 @@
           "sortable": false
         }
       },
+      "captureIdea": {
+        "edit": {
+          "label": "captureIdea",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "captureIdea",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -238,6 +252,12 @@
           {
             "name": "visibility",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "captureIdea",
+            "size": 12
           }
         ]
       ],
