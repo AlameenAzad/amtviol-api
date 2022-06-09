@@ -89,13 +89,28 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "location": {
+        "edit": {
+          "label": "location",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "location",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
       "list": [
         "id",
         "contactName",
-        "phone"
+        "phone",
+        "location"
       ],
       "edit": [
         [
@@ -123,6 +138,10 @@
         [
           {
             "name": "postalCode",
+            "size": 6
+          },
+          {
+            "name": "location",
             "size": 6
           }
         ]
