@@ -83,11 +83,15 @@ module.exports = createCoreController(
         project: {},
         funding: {},
         checklist: {},
-        projectsCount: 0,
-        fundingsCount: 0,
-        checklistsCount: 0,
+        watchlist: {},
+        count: {
+          projectsCount: 0,
+          fundingsCount: 0,
+          checklistsCount: 0,
+          watchlistCount: 0,
+        },
       };
-      [dataCount.project, dataCount.projectsCount] = await strapi.db
+      [dataCount.project, dataCount.count.projectsCount] = await strapi.db
         .query("api::project.project")
         .findWithCount({
           select: ["id"],
@@ -95,7 +99,7 @@ module.exports = createCoreController(
             owner: ctx.state.user,
           },
         });
-      [dataCount.funding, dataCount.fundingsCount] = await strapi.db
+      [dataCount.funding, dataCount.count.fundingsCount] = await strapi.db
         .query("api::funding.funding")
         .findWithCount({
           select: ["id"],
@@ -103,8 +107,16 @@ module.exports = createCoreController(
             owner: ctx.state.user,
           },
         });
-      [dataCount.checklist, dataCount.checklistsCount] = await strapi.db
+      [dataCount.checklist, dataCount.count.checklistsCount] = await strapi.db
         .query("api::checklist.checklist")
+        .findWithCount({
+          select: ["id"],
+          where: {
+            owner: ctx.state.user,
+          },
+        });
+      [dataCount.watchlist, dataCount.count.watchlistCount] = await strapi.db
+        .query("api::watchlist.watchlist")
         .findWithCount({
           select: ["id"],
           where: {
@@ -114,15 +126,20 @@ module.exports = createCoreController(
       return dataCount;
     },
     async transferDataToUser(ctx, data) {
-      delete data.projectsCount;
-      delete data.fundingsCount;
-      delete data.checklistsCount;
-      console.log(data);
+      ctx.request.query.data = ctx.request.query.data.toLowerCase();
+      var dataToTransfer = ctx.request.query.data.split(",");
+      //loop through the keys (items to transfer)
       for (var key in data) {
-        console.log(data[key]);
+        //ignore the items that werent selected to transfer
+        if (!dataToTransfer.includes(key) || key == "count") continue;
+        //loop through the items to transfer each one of them
         for (var index = 0; index < data[key].length; index++) {
+          //have to check each watchlist item to see if the user being transfered to already has one.
+          //This is to prevent duplicates
           var item = data[key][index];
-          console.log(item);
+          if (key == "watchlist")
+            var watchlistExist = await this.checkUserHasWatchlist(ctx, item);
+          if (!watchlistExist) continue;
           var res = await strapi.db.query("api::" + key + "." + key).update({
             where: { id: item.id },
             data: {
@@ -131,7 +148,6 @@ module.exports = createCoreController(
               },
             },
           });
-          console.log(res);
         }
       }
     },
@@ -145,6 +161,34 @@ module.exports = createCoreController(
       );
 
       return user;
+    },
+    async checkUserHasWatchlist(ctx, item) {
+      const currentWatchlist = await strapi.entityService.findOne(
+        "api::watchlist.watchlist",
+        item.id,
+        {
+          fields: ["id"],
+          populate: {
+            project: {
+              fields: ["id"],
+            },
+            funding: {
+              fields: ["id"],
+            },
+            checklist: {
+              fields: ["id"],
+            },
+          },
+        }
+      );
+      delete currentWatchlist.id;
+      currentWatchlist.owner = {
+        id: ctx.params.id,
+      };
+      const entry = await strapi.db.query("api::watchlist.watchlist").findOne({
+        where: currentWatchlist,
+      });
+      return entry == null;
     },
   })
 );
