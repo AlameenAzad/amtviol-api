@@ -4,14 +4,15 @@
   "info": {
     "singularName": "watchlist",
     "pluralName": "watchlists",
-    "displayName": "watchlist"
+    "displayName": "watchlist",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
+    "owner": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
@@ -21,6 +22,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::project.project"
+    },
+    "checklist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::checklist.checklist"
+    },
+    "funding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::funding.funding"
     }
   }
 }

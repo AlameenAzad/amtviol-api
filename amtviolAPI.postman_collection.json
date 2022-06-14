@@ -406,7 +406,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"fullName\": \"alameen2\",\r\n        \"phone\": \"2398273497\",\r\n        \"location\": \"Home\",\r\n        \"contactPrivacy\": null,\r\n        \"notifications\": {\r\n            \"id\": 1,\r\n            \"email\": {\r\n                \"id\": 1,\r\n                \"dataRequests\": true,\r\n                \"inquiry\": true,\r\n                \"newProjects\": true,\r\n                \"fundingExpiry\": true,\r\n                \"newChecklists\": true,\r\n                \"networkRequests\": true,\r\n                \"secureEmails\": true\r\n            },\r\n            \"app\": {\r\n                \"id\": 1,\r\n                \"dataRequests\": true,\r\n                \"inquiry\": true,\r\n                \"newProjects\": true,\r\n                \"fundingExpiry\": true,\r\n                \"newChecklists\": true,\r\n                \"networkRequest\": true\r\n            }\r\n        },\r\n        \"profile\": null\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"fullName\": \"alameen2\",\r\n        \"phone\": \"2398273497\",\r\n        \"location\": \"Home\",\r\n        \"contactPrivacy\": null,\r\n        \"notifications\": {\r\n            \"email\": {\r\n                \"dataRequests\": false,\r\n                \"inquiry\": false,\r\n                \"newProjects\": false,\r\n                \"fundingExpiry\": false,\r\n                \"newChecklists\": false,\r\n                \"networkRequests\": false,\r\n                \"secureEmails\": false\r\n            },\r\n            \"app\": {\r\n                \"dataRequests\": false,\r\n                \"inquiry\": false,\r\n                \"newProjects\": false,\r\n                \"fundingExpiry\": false,\r\n                \"newChecklists\": false,\r\n                \"networkRequest\": false\r\n            }\r\n        },\r\n        \"profile\": null\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,7 +435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"username\": \"Alameen5\",\r\n        \"email\": \"alameen.azad7@pm.me\",\r\n        \"role\": 4,\r\n        \"municipality\": {\r\n            \"id\": 5\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"username\": \"Alameen6\",\r\n        \"email\": \"alameen.azad7@pm.me\",\r\n        \"role\": \"admin\",\r\n        \"municipality\": {\r\n            \"id\": 5\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,7 +471,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user/transfer/88",
+							"raw": "localhost:1337/api/user/transfer/88?data=Project,Funding,Watchlist",
 							"host": [
 								"localhost"
 							],
@@ -481,6 +481,33 @@
 								"user",
 								"transfer",
 								"88"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "Project,Funding,Watchlist"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get logged in user info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users",
+								"me"
 							]
 						}
 					},
@@ -680,7 +707,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/watchlists?populate=*",
+							"raw": "localhost:1337/api/watchlists",
 							"host": [
 								"localhost"
 							],
@@ -692,8 +719,57 @@
 							"query": [
 								{
 									"key": "populate",
-									"value": "*"
+									"value": "*",
+									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add to watchlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\":{\r\n        \"project\":4\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/watchlists",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"watchlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete watchlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/watchlists/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"watchlists",
+								"1"
 							]
 						}
 					},

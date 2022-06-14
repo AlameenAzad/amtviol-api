@@ -20,9 +20,9 @@
           "sortable": true
         }
       },
-      "user": {
+      "owner": {
         "edit": {
-          "label": "user",
+          "label": "owner",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -30,7 +30,7 @@
           "mainField": "username"
         },
         "list": {
-          "label": "user",
+          "label": "owner",
           "searchable": true,
           "sortable": true
         }
@@ -46,6 +46,36 @@
         },
         "list": {
           "label": "project",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "checklist": {
+        "edit": {
+          "label": "checklist",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklist",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "funding": {
+        "edit": {
+          "label": "funding",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "funding",
           "searchable": true,
           "sortable": true
         }
@@ -82,15 +112,17 @@
     "layouts": {
       "list": [
         "id",
-        "user",
         "project",
-        "createdAt"
+        "createdAt",
+        "owner"
       ],
+      "edit": [],
       "editRelations": [
-        "user",
-        "project"
-      ],
-      "edit": []
+        "project",
+        "checklist",
+        "funding",
+        "owner"
+      ]
     }
   },
   "type": "object",

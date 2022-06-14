@@ -2,7 +2,8 @@
   "collectionName": "components_notifications_emails",
   "info": {
     "displayName": "email",
-    "icon": "envelope"
+    "icon": "envelope",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -30,7 +31,7 @@
       "type": "boolean",
       "default": true
     },
-    "secureEmails": {
+    "saveEmails": {
       "type": "boolean",
       "default": true,
       "required": false

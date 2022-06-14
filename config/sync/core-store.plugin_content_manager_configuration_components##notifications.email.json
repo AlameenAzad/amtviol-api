@@ -104,16 +104,16 @@
           "sortable": true
         }
       },
-      "secureEmails": {
+      "saveEmails": {
         "edit": {
-          "label": "secureEmails",
+          "label": "saveEmails",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "secureEmails",
+          "label": "saveEmails",
           "searchable": true,
           "sortable": true
         }
@@ -157,7 +157,7 @@
         ],
         [
           {
-            "name": "secureEmails",
+            "name": "saveEmails",
             "size": 4
           }
         ]

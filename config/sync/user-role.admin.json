@@ -127,6 +127,9 @@
       "action": "api::watchlist.watchlist.findOne"
     },
     {
+      "action": "api::watchlist.watchlist.update"
+    },
+    {
       "action": "plugin::upload.content-api.destroy"
     },
     {

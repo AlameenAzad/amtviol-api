@@ -71,12 +71,6 @@
       "target": "api::project.project",
       "mappedBy": "editors"
     },
-    "watchlists": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::watchlist.watchlist",
-      "mappedBy": "user"
-    },
     "projectReader": {
       "type": "relation",
       "relation": "manyToMany",
@@ -106,6 +100,12 @@
       "relation": "manyToMany",
       "target": "api::funding.funding",
       "mappedBy": "readers"
+    },
+    "watchlists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::watchlist.watchlist",
+      "mappedBy": "owner"
     }
   }
 }
