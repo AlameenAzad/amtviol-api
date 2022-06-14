@@ -57,8 +57,8 @@ module.exports = createCoreController(
             project.type = "project";
           });
           //add type = checklist to all entries in entry.checklist
-          entry.checklists.forEach((project) => {
-            project.type = "Implementation Checklist";
+          entry.checklists.forEach((checklist) => {
+            checklist.type = "Implementation Checklist";
           });
           entry.data = [...entry.projects, ...entry.checklists];
           delete entry.checklists;
