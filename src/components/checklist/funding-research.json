@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_checklist_funding_researches",
+  "info": {
+    "displayName": "fundingResearch"
+  },
+  "options": {},
+  "attributes": {
+    "start": {
+      "type": "date"
+    },
+    "end": {
+      "type": "date"
+    },
+    "checkDatabase": {
+      "displayName": "checkDatabase",
+      "type": "component",
+      "repeatable": false,
+      "component": "checklist.check-database"
+    },
+    "checkForFunding": {
+      "displayName": "checkFunding",
+      "type": "component",
+      "repeatable": false,
+      "component": "checklist.check-funding"
+    },
+    "checkWithFunding": {
+      "displayName": "checkWithFunding",
+      "type": "component",
+      "repeatable": false,
+      "component": "checklist.check-with-funding"
+    },
+    "checkGuildlines": {
+      "displayName": "checkGuildlines",
+      "type": "component",
+      "repeatable": false,
+      "component": "checklist.check-guildlines"
+    }
+  }
+}

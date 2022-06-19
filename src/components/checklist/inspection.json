@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_checklist_inspections",
+  "info": {
+    "displayName": "inspection"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "tasks": {
+      "type": "json"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  }
+}

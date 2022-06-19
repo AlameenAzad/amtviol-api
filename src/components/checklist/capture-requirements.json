@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_checklist_capture_requirements",
+  "info": {
+    "displayName": "captureRequirements"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "tasks": {
+      "type": "json"
+    }
+  }
+}

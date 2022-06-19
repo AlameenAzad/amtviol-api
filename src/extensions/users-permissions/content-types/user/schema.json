@@ -106,6 +106,12 @@
       "relation": "oneToMany",
       "target": "api::watchlist.watchlist",
       "mappedBy": "owner"
+    },
+    "checklistReader": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::checklist.checklist",
+      "inversedBy": "readers"
     }
   }
 }

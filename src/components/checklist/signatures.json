@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_checklist_signatures",
+  "info": {
+    "displayName": "signatures"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "sortPosition": {
+      "type": "integer"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "tasks": {
+      "type": "json"
+    }
+  }
+}

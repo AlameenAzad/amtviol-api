@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_checklist_check_guildlines",
+  "info": {
+    "displayName": "checkGuildlines"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "sortPosition": {
+      "type": "integer"
+    },
+    "tasks": {
+      "type": "json"
+    }
+  }
+}

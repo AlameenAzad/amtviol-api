@@ -1,21 +1,16 @@
 {
   "collectionName": "components_checklist_capture_ideas",
   "info": {
-    "displayName": "captureIdea"
+    "displayName": "captureIdea",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "start": {
-      "type": "date"
-    },
-    "end": {
-      "type": "date"
-    },
     "name": {
       "type": "string"
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "project": {
       "type": "relation",
@@ -23,14 +18,15 @@
       "target": "api::project.project"
     },
     "file": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "sortPosition": {
       "type": "integer",
@@ -43,17 +39,8 @@
       "default": false,
       "required": true
     },
-    "projektideeQuellen": {
-      "displayName": "projektideeQuellen",
-      "type": "component",
-      "repeatable": false,
-      "component": "checklist.projektidee-quellen"
-    },
-    "projektideeQuellenDetails": {
-      "displayName": "projektideeQuellenDetails",
-      "type": "component",
-      "repeatable": false,
-      "component": "checklist.projektidee-quellen-details"
+    "tasks": {
+      "type": "json"
     }
   }
 }
