@@ -471,7 +471,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user/transfer/88?data=Project,Funding,Watchlist",
+							"raw": "localhost:1337/api/user/transfer/88?data=Watchlist",
 							"host": [
 								"localhost"
 							],
@@ -485,7 +485,7 @@
 							"query": [
 								{
 									"key": "data",
-									"value": "Project,Funding,Watchlist"
+									"value": "Watchlist"
 								}
 							]
 						}
@@ -989,7 +989,33 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/checklists/2?populate=*",
+							"raw": "localhost:1337/api/checklists",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklists"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specific Checklist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/checklists/3",
 							"host": [
 								"localhost"
 							],
@@ -997,13 +1023,91 @@
 							"path": [
 								"api",
 								"checklists",
-								"2"
+								"3"
 							],
 							"query": [
 								{
 									"key": "populate",
-									"value": "*"
+									"value": "*",
+									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create checklist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"new\",\r\n        \"ideaProvider\": \"volunteering\",\r\n        \"visibility\": \"only for me\",\r\n        \"createdAt\": \"2022-06-19T09:40:37.428Z\",\r\n        \"updatedAt\": \"2022-06-19T10:57:20.787Z\",\r\n        \"published\": true,\r\n        \"editors\": [],\r\n        \"readers\": [],\r\n        \"categories\": [],\r\n        \"tags\": [],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\",\r\n            \"location\": \"test\"\r\n        },\r\n        \"fundings\": [],\r\n        \"municipality\": null,\r\n        \"project\": null,\r\n        \"initialContact\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-03\",\r\n            \"captureIdea\": {\r\n                \"name\": \"asdasd\",\r\n                \"text\": \"asasd\",\r\n                \"sortPosition\": 1,\r\n                \"active\": false,\r\n                \"tasks\": null,\r\n                \"project\": {\r\n                \"id\": 4\r\n                }\r\n            },\r\n            \"caputreContect\": {\r\n                \"name\": \"asd\",\r\n                \"text\": \"asdads\",\r\n                \"active\": true,\r\n                \"tasks\": null,\r\n                \"sortPosition\": 1\r\n            }\r\n        },\r\n        \"preparation\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-22\",\r\n            \"inspection\": {\r\n                \"name\": \"test\",\r\n                \"text\": \"setset\",\r\n                \"tasks\": null,\r\n                \"active\": true\r\n            },\r\n            \"captureRequirements\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"captureNeeds\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"fundingResearch\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-28\",\r\n            \"checkDatabase\": {\r\n                \"name\": \"estset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"checkForFunding\": {\r\n                \"name\": \"setse\",\r\n                \"text\": \"tsetset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"checkWithFunding\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setsetset\",\r\n                \"active\": null,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            },\r\n            \"checkGuildlines\": {\r\n                \"name\": \"testet\",\r\n                \"text\": \"setsetset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"preparationOfProject\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-07-01\",\r\n            \"checkContent\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            },\r\n            \"checkCooperations\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 5,\r\n                \"tasks\": null\r\n            },\r\n            \"checkSimilarProejcts\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": null,\r\n                \"sortPosition\": 1,\r\n                \"tasks\": null\r\n            },\r\n            \"checkPlanning\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdfs\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"legitimation\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-06-22\",\r\n            \"template\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdfdf\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"finalExamination\": {\r\n            \"start\": \"2022-06-14\",\r\n            \"end\": \"2022-06-24\",\r\n            \"revision\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdf\",\r\n                \"active\": true,\r\n                \"sortPosition\": 2,\r\n                \"tasks\": null\r\n            },\r\n            \"signatures\": {\r\n                \"name\": \"zxczxc\",\r\n                \"text\": \"zxvxcvcv\",\r\n                \"sortPosition\": 7,\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/checklists",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete checklist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/checklists/5",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklists",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update checklist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"new222\",\r\n        \"ideaProvider\": \"volunteering\",\r\n        \"visibility\": \"only for me\",\r\n        \"createdAt\": \"2022-06-19T09:40:37.428Z\",\r\n        \"updatedAt\": \"2022-06-19T10:57:20.787Z\",\r\n        \"published\": true,\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\",\r\n            \"location\": \"test\"\r\n        },\r\n        \"initialContact\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-03\",\r\n            \"captureIdea\": {\r\n                \"name\": \"test\",\r\n                \"text\": \"asasd\",\r\n                \"sortPosition\": 1,\r\n                \"active\": false\r\n            },\r\n            \"caputreContect\": {\r\n                \"name\": \"asd\",\r\n                \"text\": \"asdads\",\r\n                \"active\": true,\r\n                \"sortPosition\": 1\r\n            }\r\n        },\r\n        \"preparation\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-22\",\r\n            \"inspection\": {\r\n                \"name\": \"test\",\r\n                \"text\": \"setset\",\r\n                \"active\": true\r\n            },\r\n            \"captureRequirements\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true\r\n            },\r\n            \"captureNeeds\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true\r\n            }\r\n        },\r\n        \"fundingResearch\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-28\",\r\n            \"checkDatabase\": {\r\n                \"name\": \"estset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true\r\n            },\r\n            \"checkForFunding\": {\r\n                \"name\": \"setse\",\r\n                \"text\": \"tsetset\",\r\n                \"active\": true\r\n            },\r\n            \"checkWithFunding\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setsetset\",\r\n                \"sortPosition\": 3\r\n            },\r\n            \"checkGuildlines\": {\r\n                \"name\": \"testet\",\r\n                \"text\": \"setsetset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3\r\n            }\r\n        },\r\n        \"preparationOfProject\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-07-01\",\r\n            \"checkContent\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3\r\n            },\r\n            \"checkCooperations\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 5\r\n            },\r\n            \"checkSimilarProejcts\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"sortPosition\": 1\r\n            },\r\n            \"checkPlanning\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdfs\",\r\n                \"active\": true\r\n            }\r\n        },\r\n        \"legitimation\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-06-22\"\r\n        },\r\n        \"finalExamination\": {\r\n            \"start\": \"2022-06-14\",\r\n            \"end\": \"2022-06-24\"\r\n        },\r\n        \"requests\": []\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/checklists/3",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklists",
+								"3"
 							]
 						}
 					},
