@@ -20,34 +20,6 @@
           "sortable": false
         }
       },
-      "start": {
-        "edit": {
-          "label": "start",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "start",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "end": {
-        "edit": {
-          "label": "end",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "end",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "name": {
         "edit": {
           "label": "name",
@@ -133,30 +105,16 @@
           "sortable": true
         }
       },
-      "projektideeQuellen": {
+      "tasks": {
         "edit": {
-          "label": "projektideeQuellen",
+          "label": "tasks",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "projektideeQuellen",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "projektideeQuellenDetails": {
-        "edit": {
-          "label": "projektideeQuellenDetails",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "projektideeQuellenDetails",
+          "label": "tasks",
           "searchable": false,
           "sortable": false
         }
@@ -165,21 +123,9 @@
     "layouts": {
       "list": [
         "id",
-        "start",
-        "end",
         "name"
       ],
       "edit": [
-        [
-          {
-            "name": "start",
-            "size": 4
-          },
-          {
-            "name": "end",
-            "size": 4
-          }
-        ],
         [
           {
             "name": "name",
@@ -212,13 +158,7 @@
         ],
         [
           {
-            "name": "projektideeQuellen",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "projektideeQuellenDetails",
+            "name": "tasks",
             "size": 12
           }
         ]

@@ -181,16 +181,115 @@
           "sortable": false
         }
       },
-      "captureIdea": {
+      "initialContact": {
         "edit": {
-          "label": "captureIdea",
+          "label": "initialContact",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "captureIdea",
+          "label": "initialContact",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "preparation": {
+        "edit": {
+          "label": "preparation",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "preparation",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingResearch": {
+        "edit": {
+          "label": "fundingResearch",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "fundingResearch",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "preparationOfProject": {
+        "edit": {
+          "label": "preparationOfProject",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "preparationOfProject",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "legitimation": {
+        "edit": {
+          "label": "legitimation",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "legitimation",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "finalExamination": {
+        "edit": {
+          "label": "finalExamination",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "finalExamination",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "published": {
+        "edit": {
+          "label": "published",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "published",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "readers": {
+        "edit": {
+          "label": "readers",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "readers",
           "searchable": false,
           "sortable": false
         }
@@ -256,8 +355,44 @@
         ],
         [
           {
-            "name": "captureIdea",
+            "name": "initialContact",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "preparation",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "fundingResearch",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "preparationOfProject",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "legitimation",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "finalExamination",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "published",
+            "size": 4
           }
         ]
       ],
@@ -268,7 +403,8 @@
         "tags",
         "municipality",
         "owner",
-        "fundings"
+        "fundings",
+        "readers"
       ]
     }
   },

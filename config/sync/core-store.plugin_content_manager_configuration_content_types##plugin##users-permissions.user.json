@@ -162,21 +162,6 @@
           "sortable": false
         }
       },
-      "watchlists": {
-        "edit": {
-          "label": "watchlists",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "id"
-        },
-        "list": {
-          "label": "watchlists",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "projectReader": {
         "edit": {
           "label": "projectReader",
@@ -207,21 +192,6 @@
           "sortable": true
         }
       },
-      "fundings": {
-        "edit": {
-          "label": "fundings",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "fundings",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "checklistEditor": {
         "edit": {
           "label": "checklistEditor",
@@ -237,6 +207,21 @@
           "sortable": false
         }
       },
+      "fundings": {
+        "edit": {
+          "label": "fundings",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundings",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "fundingReader": {
         "edit": {
           "label": "fundingReader",
@@ -248,6 +233,36 @@
         },
         "list": {
           "label": "fundingReader",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "watchlists": {
+        "edit": {
+          "label": "watchlists",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "watchlists",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "checklistReader": {
+        "edit": {
+          "label": "checklistReader",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "checklistReader",
           "searchable": false,
           "sortable": false
         }
@@ -324,7 +339,8 @@
         "user_detail",
         "fundings",
         "checklistEditor",
-        "fundingReader"
+        "fundingReader",
+        "checklistReader"
       ]
     }
   },

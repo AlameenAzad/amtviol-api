@@ -1276,6 +1276,12 @@
           "target": "api::watchlist.watchlist",
           "mappedBy": "owner"
         },
+        "checklistReader": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::checklist.checklist",
+          "inversedBy": "readers"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1425,6 +1431,12 @@
             "relation": "oneToMany",
             "target": "api::watchlist.watchlist",
             "mappedBy": "owner"
+          },
+          "checklistReader": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::checklist.checklist",
+            "inversedBy": "readers"
           }
         },
         "kind": "collectionType"
@@ -1628,11 +1640,50 @@
           "target": "api::funding.funding",
           "mappedBy": "checklist"
         },
-        "captureIdea": {
-          "displayName": "captureIdea",
+        "initialContact": {
+          "displayName": "initialContact",
           "type": "component",
           "repeatable": false,
-          "component": "checklist.capture-idea"
+          "component": "checklist.initial-contact"
+        },
+        "preparation": {
+          "displayName": "preparation",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.preparation"
+        },
+        "fundingResearch": {
+          "displayName": "fundingResearch",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.funding-research"
+        },
+        "preparationOfProject": {
+          "displayName": "preparationOfProject",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.preparation-of-project"
+        },
+        "legitimation": {
+          "displayName": "legitimation",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.legitimation"
+        },
+        "finalExamination": {
+          "displayName": "finalExamination",
+          "type": "component",
+          "repeatable": false,
+          "component": "checklist.final-examination"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "readers": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "checklistReader"
         },
         "createdAt": {
           "type": "datetime"
@@ -1738,11 +1789,50 @@
             "target": "api::funding.funding",
             "mappedBy": "checklist"
           },
-          "captureIdea": {
-            "displayName": "captureIdea",
+          "initialContact": {
+            "displayName": "initialContact",
             "type": "component",
             "repeatable": false,
-            "component": "checklist.capture-idea"
+            "component": "checklist.initial-contact"
+          },
+          "preparation": {
+            "displayName": "preparation",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.preparation"
+          },
+          "fundingResearch": {
+            "displayName": "fundingResearch",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.funding-research"
+          },
+          "preparationOfProject": {
+            "displayName": "preparationOfProject",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.preparation-of-project"
+          },
+          "legitimation": {
+            "displayName": "legitimation",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.legitimation"
+          },
+          "finalExamination": {
+            "displayName": "finalExamination",
+            "type": "component",
+            "repeatable": false,
+            "component": "checklist.final-examination"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "readers": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "checklistReader"
           }
         },
         "kind": "collectionType"
