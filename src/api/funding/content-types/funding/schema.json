@@ -45,7 +45,7 @@
       "component": "funding.rates"
     },
     "ownContribution": {
-      "type": "decimal"
+      "type": "float"
     },
     "accumulability": {
       "type": "boolean"

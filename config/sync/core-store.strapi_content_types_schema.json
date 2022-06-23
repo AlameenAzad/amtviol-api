@@ -1893,7 +1893,7 @@
           "component": "funding.rates"
         },
         "ownContribution": {
-          "type": "decimal"
+          "type": "float"
         },
         "accumulability": {
           "type": "boolean"
@@ -2068,7 +2068,7 @@
             "component": "funding.rates"
           },
           "ownContribution": {
-            "type": "decimal"
+            "type": "float"
           },
           "accumulability": {
             "type": "boolean"
