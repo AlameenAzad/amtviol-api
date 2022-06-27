@@ -111,11 +111,11 @@ module.exports = createCoreController(
             },
             legitimation: {
               populate: {
-                checkPlanning: { populate: "*" },
+                template: { populate: "*" },
               },
             },
             finalExamination: {
-              template: {
+              populate: {
                 revision: { populate: "*" },
                 signatures: { populate: "*" },
               },
