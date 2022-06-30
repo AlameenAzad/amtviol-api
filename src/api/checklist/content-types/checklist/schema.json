@@ -120,6 +120,19 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "checklistReader"
+    },
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "private": true
     }
   }
 }

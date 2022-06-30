@@ -44,9 +44,6 @@
       "repeatable": true,
       "component": "funding.rates"
     },
-    "ownContribution": {
-      "type": "float"
-    },
     "accumulability": {
       "type": "boolean"
     },
@@ -146,6 +143,14 @@
       "relation": "manyToOne",
       "target": "api::municipality.municipality",
       "inversedBy": "fundings"
+    },
+    "ownContribution": {
+      "type": "string"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "private": true
     }
   }
 }

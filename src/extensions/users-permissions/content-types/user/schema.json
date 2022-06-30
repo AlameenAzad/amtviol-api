@@ -111,7 +111,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::checklist.checklist",
-      "inversedBy": "readers"
+      "mappedBy": "readers"
     }
   }
 }

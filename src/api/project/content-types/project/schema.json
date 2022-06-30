@@ -121,6 +121,11 @@
       "relation": "manyToMany",
       "target": "api::funding.funding",
       "mappedBy": "projects"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "private": true
     }
   }
 }

@@ -2,24 +2,25 @@
   "collectionName": "components_funding_details",
   "info": {
     "displayName": "details",
-    "icon": "apple-alt"
+    "icon": "apple-alt",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "goal": {
-      "type": "string"
+      "type": "text"
     },
     "funded": {
-      "type": "string"
+      "type": "text"
     },
     "notFunded": {
-      "type": "string"
+      "type": "text"
     },
     "willBeFunded": {
-      "type": "string"
+      "type": "text"
     },
     "condition": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
