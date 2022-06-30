@@ -104,20 +104,6 @@
           "sortable": false
         }
       },
-      "ownContribution": {
-        "edit": {
-          "label": "ownContribution",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "ownContribution",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "accumulability": {
         "edit": {
           "label": "accumulability",
@@ -394,6 +380,34 @@
           "sortable": true
         }
       },
+      "ownContribution": {
+        "edit": {
+          "label": "ownContribution",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "ownContribution",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "archived": {
+        "edit": {
+          "label": "archived",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "archived",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -514,6 +528,10 @@
         [
           {
             "name": "published",
+            "size": 4
+          },
+          {
+            "name": "archived",
             "size": 4
           }
         ]

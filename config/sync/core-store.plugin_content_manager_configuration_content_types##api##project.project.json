@@ -279,6 +279,20 @@
           "sortable": false
         }
       },
+      "archived": {
+        "edit": {
+          "label": "archived",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "archived",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -379,6 +393,10 @@
           {
             "name": "files",
             "size": 6
+          },
+          {
+            "name": "archived",
+            "size": 4
           }
         ]
       ],

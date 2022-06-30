@@ -1280,7 +1280,7 @@
           "type": "relation",
           "relation": "manyToMany",
           "target": "api::checklist.checklist",
-          "inversedBy": "readers"
+          "mappedBy": "readers"
         },
         "createdAt": {
           "type": "datetime"
@@ -1436,7 +1436,7 @@
             "type": "relation",
             "relation": "manyToMany",
             "target": "api::checklist.checklist",
-            "inversedBy": "readers"
+            "mappedBy": "readers"
           }
         },
         "kind": "collectionType"
@@ -1685,6 +1685,19 @@
           "target": "plugin::users-permissions.user",
           "inversedBy": "checklistReader"
         },
+        "media": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "archived": {
+          "type": "boolean",
+          "default": false,
+          "private": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1833,6 +1846,19 @@
             "relation": "manyToMany",
             "target": "plugin::users-permissions.user",
             "inversedBy": "checklistReader"
+          },
+          "media": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false,
+            "private": true
           }
         },
         "kind": "collectionType"
@@ -1891,9 +1917,6 @@
           "type": "component",
           "repeatable": true,
           "component": "funding.rates"
-        },
-        "ownContribution": {
-          "type": "float"
         },
         "accumulability": {
           "type": "boolean"
@@ -1995,6 +2018,14 @@
           "target": "api::municipality.municipality",
           "inversedBy": "fundings"
         },
+        "ownContribution": {
+          "type": "string"
+        },
+        "archived": {
+          "type": "boolean",
+          "default": false,
+          "private": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2066,9 +2097,6 @@
             "type": "component",
             "repeatable": true,
             "component": "funding.rates"
-          },
-          "ownContribution": {
-            "type": "float"
           },
           "accumulability": {
             "type": "boolean"
@@ -2169,6 +2197,14 @@
             "relation": "manyToOne",
             "target": "api::municipality.municipality",
             "inversedBy": "fundings"
+          },
+          "ownContribution": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false,
+            "private": true
           }
         },
         "kind": "collectionType"
@@ -2456,6 +2492,11 @@
           "target": "api::funding.funding",
           "mappedBy": "projects"
         },
+        "archived": {
+          "type": "boolean",
+          "default": false,
+          "private": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2605,6 +2646,11 @@
             "relation": "manyToMany",
             "target": "api::funding.funding",
             "mappedBy": "projects"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false,
+            "private": true
           }
         },
         "kind": "collectionType"

@@ -172,7 +172,9 @@
           "finalExamination.signatures.active",
           "finalExamination.signatures.tasks",
           "published",
-          "readers"
+          "readers",
+          "media",
+          "archived"
         ]
       },
       "conditions": []
@@ -307,7 +309,9 @@
           "finalExamination.signatures.active",
           "finalExamination.signatures.tasks",
           "published",
-          "readers"
+          "readers",
+          "media",
+          "archived"
         ]
       },
       "conditions": []
@@ -436,7 +440,9 @@
           "finalExamination.signatures.active",
           "finalExamination.signatures.tasks",
           "published",
-          "readers"
+          "readers",
+          "media",
+          "archived"
         ]
       },
       "conditions": []
@@ -461,7 +467,6 @@
           "visibility",
           "rates.content",
           "rates.amount",
-          "ownContribution",
           "accumulability",
           "plannedStart",
           "plannedEnd",
@@ -481,7 +486,9 @@
           "readers",
           "checklist",
           "projects",
-          "municipality"
+          "municipality",
+          "ownContribution",
+          "archived"
         ]
       },
       "conditions": []
@@ -512,7 +519,6 @@
           "visibility",
           "rates.content",
           "rates.amount",
-          "ownContribution",
           "accumulability",
           "plannedStart",
           "plannedEnd",
@@ -532,7 +538,9 @@
           "readers",
           "checklist",
           "projects",
-          "municipality"
+          "municipality",
+          "ownContribution",
+          "archived"
         ]
       },
       "conditions": []
@@ -557,7 +565,6 @@
           "visibility",
           "rates.content",
           "rates.amount",
-          "ownContribution",
           "accumulability",
           "plannedStart",
           "plannedEnd",
@@ -577,7 +584,9 @@
           "readers",
           "checklist",
           "projects",
-          "municipality"
+          "municipality",
+          "ownContribution",
+          "archived"
         ]
       },
       "conditions": []
@@ -670,7 +679,8 @@
           "visibility",
           "municipality",
           "files",
-          "fundingGuideline"
+          "fundingGuideline",
+          "archived"
         ]
       },
       "conditions": []
@@ -715,7 +725,8 @@
           "visibility",
           "municipality",
           "files",
-          "fundingGuideline"
+          "fundingGuideline",
+          "archived"
         ]
       },
       "conditions": []
@@ -754,7 +765,8 @@
           "visibility",
           "municipality",
           "files",
-          "fundingGuideline"
+          "fundingGuideline",
+          "archived"
         ]
       },
       "conditions": []
