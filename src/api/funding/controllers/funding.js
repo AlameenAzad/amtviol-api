@@ -58,6 +58,9 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
                 },
               ],
             },
+            {
+              archived: false,
+            },
           ],
         },
       }
@@ -83,6 +86,11 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         fundingsLinkedTo: { fields: ["title"] },
         checklist: { fields: ["title"] },
         projects: { fields: ["title"] },
+        projects: { fields: ["title"] },
+        funding_comments: {
+          fileds: ["comment"],
+          populate: { owner: { fields: ["username"] } },
+        },
       },
       filters: {
         // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
@@ -117,6 +125,9 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
                 ],
               },
             ],
+          },
+          {
+            archived: false,
           },
         ],
         id: ctx.params.id,
@@ -183,7 +194,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     else return await super.delete(ctx);
   },
   async getRequests(entry) {
-    console.log(entry);
     const requests = await strapi.entityService.findMany(
       "api::request.request",
       {

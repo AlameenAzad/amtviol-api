@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "funding_comments",
+  "info": {
+    "singularName": "funding-comment",
+    "pluralName": "funding-comments",
+    "displayName": "fundingComment"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "comment": {
+      "type": "text",
+      "required": true
+    },
+    "funding": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::funding.funding",
+      "inversedBy": "funding_comments"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

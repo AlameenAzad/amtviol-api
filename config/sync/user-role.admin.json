@@ -34,6 +34,18 @@
       "action": "api::checklist.checklist.update"
     },
     {
+      "action": "api::funding-comment.funding-comment.create"
+    },
+    {
+      "action": "api::funding-comment.funding-comment.delete"
+    },
+    {
+      "action": "api::funding-comment.funding-comment.find"
+    },
+    {
+      "action": "api::funding-comment.funding-comment.findOne"
+    },
+    {
       "action": "api::funding.funding.create"
     },
     {

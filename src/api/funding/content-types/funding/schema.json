@@ -151,6 +151,12 @@
       "type": "boolean",
       "default": false,
       "private": true
+    },
+    "funding_comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::funding-comment.funding-comment",
+      "mappedBy": "funding"
     }
   }
 }

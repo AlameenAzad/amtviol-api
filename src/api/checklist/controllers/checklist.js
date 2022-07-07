@@ -60,6 +60,9 @@ module.exports = createCoreController(
                   },
                 ],
               },
+              {
+                archived: false,
+              },
             ],
           },
         }
@@ -154,6 +157,9 @@ module.exports = createCoreController(
                     ],
                   },
                 ],
+              },
+              {
+                archived: false,
               },
             ],
             id: ctx.params.id,

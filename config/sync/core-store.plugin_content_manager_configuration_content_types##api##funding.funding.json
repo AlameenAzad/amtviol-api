@@ -408,6 +408,21 @@
           "sortable": true
         }
       },
+      "funding_comments": {
+        "edit": {
+          "label": "funding_comments",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "funding_comments",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -546,7 +561,8 @@
         "projects",
         "readers",
         "checklist",
-        "municipality"
+        "municipality",
+        "funding_comments"
       ]
     }
   },

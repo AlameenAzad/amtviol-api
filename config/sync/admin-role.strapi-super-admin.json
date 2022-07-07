@@ -449,6 +449,48 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::funding-comment.funding-comment",
+      "properties": {
+        "fields": [
+          "comment",
+          "funding",
+          "owner"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::funding-comment.funding-comment",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::funding-comment.funding-comment",
+      "properties": {
+        "fields": [
+          "comment",
+          "funding",
+          "owner"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::funding-comment.funding-comment",
+      "properties": {
+        "fields": [
+          "comment",
+          "funding",
+          "owner"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::funding.funding",
       "properties": {
         "fields": [
@@ -488,7 +530,8 @@
           "projects",
           "municipality",
           "ownContribution",
-          "archived"
+          "archived",
+          "funding_comments"
         ]
       },
       "conditions": []
@@ -540,7 +583,8 @@
           "projects",
           "municipality",
           "ownContribution",
-          "archived"
+          "archived",
+          "funding_comments"
         ]
       },
       "conditions": []
@@ -586,7 +630,8 @@
           "projects",
           "municipality",
           "ownContribution",
-          "archived"
+          "archived",
+          "funding_comments"
         ]
       },
       "conditions": []

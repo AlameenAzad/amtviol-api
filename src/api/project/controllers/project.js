@@ -54,6 +54,9 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
                 },
               ],
             },
+            {
+              archived: false,
+            },
           ],
         },
         populate: {
@@ -123,6 +126,9 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
                 ],
               },
             ],
+          },
+          {
+            archived: false,
           },
         ],
         id: ctx.params.id,

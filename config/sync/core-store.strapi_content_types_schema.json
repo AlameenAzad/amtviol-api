@@ -2026,6 +2026,12 @@
           "default": false,
           "private": true
         },
+        "funding_comments": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::funding-comment.funding-comment",
+          "mappedBy": "funding"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2205,6 +2211,12 @@
             "type": "boolean",
             "default": false,
             "private": true
+          },
+          "funding_comments": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::funding-comment.funding-comment",
+            "mappedBy": "funding"
           }
         },
         "kind": "collectionType"
@@ -2215,6 +2227,100 @@
       "uid": "api::funding.funding",
       "apiName": "funding",
       "globalId": "Funding",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::funding-comment.funding-comment": {
+      "kind": "collectionType",
+      "collectionName": "funding_comments",
+      "info": {
+        "singularName": "funding-comment",
+        "pluralName": "funding-comments",
+        "displayName": "fundingComment"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "comment": {
+          "type": "text",
+          "required": true
+        },
+        "funding": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::funding.funding",
+          "inversedBy": "funding_comments"
+        },
+        "owner": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "funding_comments",
+        "info": {
+          "singularName": "funding-comment",
+          "pluralName": "funding-comments",
+          "displayName": "fundingComment"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "comment": {
+            "type": "text",
+            "required": true
+          },
+          "funding": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::funding.funding",
+            "inversedBy": "funding_comments"
+          },
+          "owner": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "funding-comment",
+      "connection": "default",
+      "uid": "api::funding-comment.funding-comment",
+      "apiName": "funding-comment",
+      "globalId": "FundingComment",
       "actions": {},
       "lifecycles": {}
     },
