@@ -190,5 +190,67 @@ module.exports = createCoreController(
       });
       return entry == null;
     },
+    async dataOverview(ctx) {
+      if (ctx.state.user.role.type == "admin")
+        return await this.adminOverview(ctx);
+      let projects = await strapi.controller("api::project.project").find(ctx);
+      let fundings = await strapi.controller("api::funding.funding").find(ctx);
+      let checklists = await strapi
+        .controller("api::checklist.checklist")
+        .find(ctx);
+
+      return { fundings, projects, checklists };
+    },
+    async adminOverview(ctx) {
+      let projects = await strapi.entityService.findMany(
+        "api::project.project",
+        {
+          fields: ["title", "plannedStart", "plannedEnd"],
+          populate: {
+            owner: { fields: ["username"] },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+          },
+          filters: {
+            archived: false,
+          },
+        }
+      );
+      let fundings = await strapi.entityService.findMany(
+        "api::funding.funding",
+        {
+          fields: ["title", "plannedStart", "plannedEnd"],
+          populate: {
+            owner: { fields: ["username"] },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+          },
+          filters: {
+            archived: false,
+          },
+        }
+      );
+      let checklists = await strapi.entityService.findMany(
+        "api::checklist.checklist",
+        {
+          fields: ["title"],
+          populate: {
+            owner: { fields: ["username"] },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+          },
+          filters: {
+            archived: false,
+          },
+        }
+      );
+      return { fundings, projects, checklists };
+    },
   })
 );
