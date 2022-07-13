@@ -112,6 +112,9 @@
       "action": "api::user-detail.user-detail.create"
     },
     {
+      "action": "api::user-detail.user-detail.dataOverview"
+    },
+    {
       "action": "api::user-detail.user-detail.delete"
     },
     {

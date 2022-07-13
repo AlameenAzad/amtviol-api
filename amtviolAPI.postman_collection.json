@@ -69,7 +69,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/projects/2",
+							"raw": "localhost:1337/api/projects/4",
 							"host": [
 								"localhost"
 							],
@@ -77,7 +77,7 @@
 							"path": [
 								"api",
 								"projects",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -512,6 +512,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data Overview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/user/overview",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"user",
+								"overview"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -886,7 +926,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/fundings/2",
+							"raw": "localhost:1337/api/fundings/54",
 							"host": [
 								"localhost"
 							],
@@ -894,7 +934,7 @@
 							"path": [
 								"api",
 								"fundings",
-								"2"
+								"54"
 							]
 						}
 					},
@@ -956,7 +996,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"funding 11121011333\",\r\n        \"provider\": \"teest\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 22,\r\n        \"accumulability\": \"test\",\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"checklist\": {\r\n            \"id\": 1\r\n        },\r\n        \"projects\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"archived\": true\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -964,7 +1004,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:1337/api/fundings/20",
+							"raw": "localhost:1337/api/fundings/54",
 							"host": [
 								"localhost"
 							],
@@ -972,7 +1012,7 @@
 							"path": [
 								"api",
 								"fundings",
-								"20"
+								"54"
 							]
 						}
 					},
@@ -1044,7 +1084,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/checklists/3",
+							"raw": "localhost:1337/api/checklists/4",
 							"host": [
 								"localhost"
 							],
@@ -1052,7 +1092,7 @@
 							"path": [
 								"api",
 								"checklists",
-								"3"
+								"4"
 							],
 							"query": [
 								{

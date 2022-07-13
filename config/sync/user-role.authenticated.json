@@ -64,6 +64,9 @@
       "action": "api::tag.tag.findOne"
     },
     {
+      "action": "api::user-detail.user-detail.dataOverview"
+    },
+    {
       "action": "api::user-detail.user-detail.find"
     },
     {
