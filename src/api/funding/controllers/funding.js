@@ -21,6 +21,9 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         populate: {
           owner: { fields: ["username"] },
           categories: { fields: ["title"] },
+          editors: { fields: ["username"] },
+          readers: { fields: ["username"] },
+          tags: { fields: ["title"] },
         },
         filters: {
           $or: [
@@ -68,6 +71,50 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     return entries;
   },
   async findOne(ctx) {
+    let filters = {
+      // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
+      $or: [
+        {
+          owner: { id: ctx.state.user.id },
+        },
+        {
+          editors: { id: ctx.state.user.id },
+        },
+        {
+          readers: { id: ctx.state.user.id },
+        },
+        {
+          visibility: "all users",
+        },
+      ],
+      $and: [
+        {
+          $or: [
+            {
+              published: true,
+            },
+            {
+              $and: [
+                {
+                  published: false,
+                },
+                {
+                  owner: { id: ctx.state.user.id },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          archived: false,
+        },
+      ],
+      id: ctx.params.id,
+    };
+    if (ctx.state.user.role.type == "admin") {
+      delete filters.$or;
+      delete filters.$and;
+    }
     var entry = await strapi.entityService.findMany("api::funding.funding", {
       populate: {
         owner: { fields: ["username"] },
@@ -92,46 +139,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
           populate: { owner: { fields: ["username"] } },
         },
       },
-      filters: {
-        // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
-        $or: [
-          {
-            owner: { id: ctx.state.user.id },
-          },
-          {
-            editors: { id: ctx.state.user.id },
-          },
-          {
-            readers: { id: ctx.state.user.id },
-          },
-          {
-            visibility: "all users",
-          },
-        ],
-        $and: [
-          {
-            $or: [
-              {
-                published: true,
-              },
-              {
-                $and: [
-                  {
-                    published: false,
-                  },
-                  {
-                    owner: { id: ctx.state.user.id },
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            archived: false,
-          },
-        ],
-        id: ctx.params.id,
-      },
+      filters,
     });
     if (entry.length == 0)
       return ctx.unauthorized(
