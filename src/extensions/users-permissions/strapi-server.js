@@ -122,5 +122,25 @@ module.exports = (plugin, env) => {
     });
     return entry;
   };
+  plugin.controllers.user.destroy = async (ctx) => {
+    if (ctx.state.user.id != ctx.request.params.id) {
+      return ctx.badRequest("You can't delete an account other than your own.");
+    }
+    let res = await strapi
+      .controller("api::user-detail.user-detail")
+      .countAndGetTransferableData(ctx);
+    if (
+      res.project.length > 0 ||
+      res.funding.length > 0 ||
+      res.checklist.length > 0
+    )
+      return ctx.badRequest(
+        "You have data linked to your account. Transfer this data first"
+      );
+    else
+      return strapi
+        .query("plugin::users-permissions.user")
+        .delete({ where: { id: ctx.request.params.id } });
+  };
   return plugin;
 };
