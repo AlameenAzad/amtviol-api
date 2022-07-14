@@ -69,7 +69,7 @@ module.exports = createCoreController(
     async transferData(ctx) {
       const user = await this.checkUserAvailable(ctx.params.id);
       if (ctx.state.user.id != ctx.params.id || user == null) {
-        const dataAndCount = await this.countAndGetTransferableData(ctx);
+        const dataAndCount = await this.countAndGetTransferableData(ctx); // for owner transfer
         await this.transferDataToUser(ctx, dataAndCount);
         return dataAndCount;
       } else {
@@ -132,6 +132,15 @@ module.exports = createCoreController(
       for (var key in data) {
         //ignore the items that werent selected to transfer
         if (!dataToTransfer.includes(key) || key == "count") continue;
+        if (key != "watchlist") {
+          //transfer reader and editor roles
+          await strapi.db.connection.context.raw(
+            `UPDATE ${key}s_editors_links SET user_id = ${ctx.params.id} WHERE user_id = ${ctx.state.user.id};`
+          );
+          await strapi.db.connection.context.raw(
+            `UPDATE ${key}s_readers_links SET user_id = ${ctx.params.id} WHERE user_id = ${ctx.state.user.id};`
+          );
+        }
         //loop through the items to transfer each one of them
         for (var index = 0; index < data[key].length; index++) {
           //have to check each watchlist item to see if the user being transfered to already has one.
@@ -139,7 +148,7 @@ module.exports = createCoreController(
           var item = data[key][index];
           if (key == "watchlist")
             var watchlistExist = await this.checkUserHasWatchlist(ctx, item);
-          if (!watchlistExist) continue;
+          if (key == "watchlist" && !watchlistExist) continue;
           var res = await strapi.db.query("api::" + key + "." + key).update({
             where: { id: item.id },
             data: {
