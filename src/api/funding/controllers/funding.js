@@ -227,4 +227,34 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     );
     return checklist;
   },
+  async count() {
+    return await strapi.db.query("api::funding.funding").count({
+      where: {
+        archived: false,
+      },
+    });
+  },
+  async countArchived() {
+    return await strapi.db.query("api::funding.funding").count({
+      where: {
+        archived: true,
+      },
+    });
+  },
+  async findArchived() {
+    const entries = await strapi.entityService.findMany(
+      "api::funding.funding",
+      {
+        fields: ["title", "plannedStart", "plannedEnd"],
+        populate: {
+          owner: { fields: ["username"] },
+          categories: { fields: ["title"] },
+        },
+        filters: {
+          archived: true,
+        },
+      }
+    );
+    return entries;
+  },
 }));

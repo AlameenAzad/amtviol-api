@@ -243,5 +243,28 @@ module.exports = createCoreController(
       entry.requests = requests;
       return entry;
     },
+    async count() {
+      return await strapi.db.query("api::checklist.checklist").count({
+        where: {
+          archived: false,
+        },
+      });
+    },
+    async findArchived() {
+      const entries = await strapi.entityService.findMany(
+        "api::checklist.checklist",
+        {
+          fields: ["title"],
+          populate: {
+            owner: { fields: ["username"] },
+            categories: { fields: ["title"] },
+          },
+          filters: {
+            archived: true,
+          },
+        }
+      );
+      return entries;
+    },
   })
 );

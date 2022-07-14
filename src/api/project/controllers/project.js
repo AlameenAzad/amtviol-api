@@ -217,4 +217,34 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     entry.requests = requests;
     return entry;
   },
+  async count() {
+    return await strapi.db.query("api::project.project").count({
+      where: {
+        archived: false,
+      },
+    });
+  },
+  async countArchived() {
+    return await strapi.db.query("api::project.project").count({
+      where: {
+        archived: true,
+      },
+    });
+  },
+  async findArchived() {
+    const entries = await strapi.entityService.findMany(
+      "api::project.project",
+      {
+        fields: ["title", "plannedStart", "plannedEnd"],
+        filters: {
+          archived: true,
+        },
+        populate: {
+          owner: { fields: ["username"] },
+          categories: { fields: ["title"] },
+        },
+      }
+    );
+    return entries;
+  },
 }));

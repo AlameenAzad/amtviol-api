@@ -87,5 +87,8 @@ module.exports = createCoreController(
         );
       else return super.delete(ctx);
     },
+    async count() {
+      return await strapi.db.query("api::municipality.municipality").count();
+    },
   })
 );

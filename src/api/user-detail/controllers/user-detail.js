@@ -252,5 +252,35 @@ module.exports = createCoreController(
       );
       return { fundings, projects, checklists };
     },
+    async statsAndArchive(ctx) {
+      let stats = {
+        fundings: await strapi.controller("api::funding.funding").count(),
+        archivedFundings: await strapi
+          .controller("api::funding.funding")
+          .countArchived(),
+        projects: await strapi.controller("api::project.project").count(),
+        archivedProjects: await strapi
+          .controller("api::project.project")
+          .countArchived(),
+        checklists: await strapi.controller("api::checklist.checklist").count(),
+        users: await strapi.db.query("plugin::users-permissions.user").count(),
+        watchlists: await strapi.controller("api::watchlist.watchlist").count(),
+        municipalities: await strapi
+          .controller("api::municipality.municipality")
+          .count(),
+      };
+      let table = {
+        projects: await strapi
+          .controller("api::project.project")
+          .findArchived(),
+        fundings: await strapi
+          .controller("api::funding.funding")
+          .findArchived(),
+        checklists: await strapi
+          .controller("api::checklist.checklist")
+          .findArchived(),
+      };
+      return { stats, table };
+    },
   })
 );
