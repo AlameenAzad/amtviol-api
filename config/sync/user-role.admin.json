@@ -124,6 +124,9 @@
       "action": "api::user-detail.user-detail.findOne"
     },
     {
+      "action": "api::user-detail.user-detail.statsAndArchive"
+    },
+    {
       "action": "api::user-detail.user-detail.transferData"
     },
     {

@@ -471,7 +471,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user/transfer/88?data=Watchlist",
+							"raw": "localhost:1337/api/user/transfer/88?data=Watchlist,Project,Checklist,Funding",
 							"host": [
 								"localhost"
 							],
@@ -485,7 +485,7 @@
 							"query": [
 								{
 									"key": "data",
-									"value": "Watchlist"
+									"value": "Watchlist,Project,Checklist,Funding"
 								}
 							]
 						}
@@ -1231,6 +1231,25 @@
 					"path": [
 						"api",
 						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats & Archive page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1337/api/stats",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"stats"
 					]
 				}
 			},
