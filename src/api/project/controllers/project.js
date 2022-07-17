@@ -163,21 +163,23 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
   },
   async update(ctx) {
     delete ctx.request.body.data.owner;
+    let filters = {
+      $or: [
+        {
+          owner: { id: ctx.state.user.id },
+        },
+        {
+          editors: { id: ctx.state.user.id },
+        },
+      ],
+      id: ctx.params.id,
+    };
+    if (ctx.state.user.role.type == "admin") delete filters.$or;
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
         owner: { fields: ["username"] },
       },
-      filters: {
-        $or: [
-          {
-            owner: { id: ctx.state.user.id },
-          },
-          {
-            editors: { id: ctx.state.user.id },
-          },
-        ],
-        id: ctx.params.id,
-      },
+      filters,
     });
     if (entry.length == 0)
       return ctx.unauthorized(
