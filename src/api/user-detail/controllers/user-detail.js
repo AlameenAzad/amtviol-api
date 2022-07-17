@@ -291,5 +291,62 @@ module.exports = createCoreController(
       };
       return { stats, table };
     },
+    async notification(ctx) {
+      //TODO: add funding expirey
+      //TODO: add funding comments
+      //TODO: add the ability to accept the requests
+      const requests = await strapi.entityService.findMany(
+        "api::request.request",
+        {
+          fields: ["approved"],
+          filters: {
+            approved: false,
+            $or: [
+              {
+                project: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                project: {
+                  editors: ctx.state.user.id,
+                },
+              },
+              {
+                funding: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                funding: {
+                  editors: ctx.state.user.id,
+                },
+              },
+              {
+                checklist: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                checklist: {
+                  editors: ctx.state.user.id,
+                },
+              },
+            ],
+          },
+          populate: {
+            user: { fields: "username" },
+            funding: { fields: ["title"] },
+            project: { fields: ["title"] },
+            checklist: { fields: ["title"] },
+          },
+        }
+      );
+      if (ctx.state.user.role.type == "admin")
+        var guest = await strapi.entityService.findMany(
+          "api::guest-request.guest-request"
+        );
+      return { requests, guest };
+    },
   })
 );
