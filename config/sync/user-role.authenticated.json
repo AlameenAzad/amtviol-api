@@ -73,6 +73,9 @@
       "action": "api::user-detail.user-detail.findOne"
     },
     {
+      "action": "api::user-detail.user-detail.notification"
+    },
+    {
       "action": "api::user-detail.user-detail.transferData"
     },
     {

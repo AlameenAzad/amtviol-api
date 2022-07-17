@@ -61,6 +61,18 @@
       "action": "api::funding.funding.update"
     },
     {
+      "action": "api::guest-request.guest-request.create"
+    },
+    {
+      "action": "api::guest-request.guest-request.delete"
+    },
+    {
+      "action": "api::guest-request.guest-request.find"
+    },
+    {
+      "action": "api::guest-request.guest-request.findOne"
+    },
+    {
       "action": "api::municipality.municipality.create"
     },
     {
@@ -122,6 +134,9 @@
     },
     {
       "action": "api::user-detail.user-detail.findOne"
+    },
+    {
+      "action": "api::user-detail.user-detail.notification"
     },
     {
       "action": "api::user-detail.user-detail.statsAndArchive"

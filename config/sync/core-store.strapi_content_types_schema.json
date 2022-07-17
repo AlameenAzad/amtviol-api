@@ -2324,6 +2324,76 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::guest-request.guest-request": {
+      "kind": "collectionType",
+      "collectionName": "guest_requests",
+      "info": {
+        "singularName": "guest-request",
+        "pluralName": "guest-requests",
+        "displayName": "guestRequest"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "email": {
+          "type": "email"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "guest_requests",
+        "info": {
+          "singularName": "guest-request",
+          "pluralName": "guest-requests",
+          "displayName": "guestRequest"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "email": {
+            "type": "email"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "guest-request",
+      "connection": "default",
+      "uid": "api::guest-request.guest-request",
+      "apiName": "guest-request",
+      "globalId": "GuestRequest",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::municipality.municipality": {
       "kind": "collectionType",
       "collectionName": "municipalities",
@@ -2808,6 +2878,14 @@
           "relation": "oneToOne",
           "target": "api::checklist.checklist"
         },
+        "type": {
+          "type": "enumeration",
+          "enum": [
+            "edit",
+            "view"
+          ],
+          "required": true
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2871,6 +2949,14 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::checklist.checklist"
+          },
+          "type": {
+            "type": "enumeration",
+            "enum": [
+              "edit",
+              "view"
+            ],
+            "required": true
           }
         },
         "kind": "collectionType"

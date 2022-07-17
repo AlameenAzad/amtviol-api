@@ -638,6 +638,42 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::guest-request.guest-request",
+      "properties": {
+        "fields": [
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::guest-request.guest-request",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::guest-request.guest-request",
+      "properties": {
+        "fields": [
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::guest-request.guest-request",
+      "properties": {
+        "fields": [
+          "email"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::municipality.municipality",
       "properties": {
         "fields": [
@@ -825,7 +861,8 @@
           "project",
           "approved",
           "funding",
-          "checklist"
+          "checklist",
+          "type"
         ]
       },
       "conditions": []
@@ -845,7 +882,8 @@
           "project",
           "approved",
           "funding",
-          "checklist"
+          "checklist",
+          "type"
         ]
       },
       "conditions": []
@@ -859,7 +897,8 @@
           "project",
           "approved",
           "funding",
-          "checklist"
+          "checklist",
+          "type"
         ]
       },
       "conditions": []

@@ -7,6 +7,9 @@
       "action": "api::category.category.find"
     },
     {
+      "action": "api::guest-request.guest-request.create"
+    },
+    {
       "action": "api::municipality.municipality.find"
     },
     {
