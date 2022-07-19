@@ -124,6 +124,7 @@ module.exports = createCoreController(
             editors: { fields: ["username"] },
             readers: { fields: ["username"] },
             categories: { fields: ["title"] },
+            media: "*",
             tags: { fields: ["title"] },
             info: "*",
             fundings: { fields: ["title"] },
