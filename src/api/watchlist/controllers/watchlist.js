@@ -113,7 +113,6 @@ module.exports = createCoreController(
         "api::watchlist.watchlist",
         filters
       );
-      console.log("entries", entries);
       return entries.length > 0;
     },
     async count() {

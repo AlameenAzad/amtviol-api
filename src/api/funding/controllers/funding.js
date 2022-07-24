@@ -284,8 +284,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       };
       filters.$and.pop();
     }
-    console.log(filters.$and[0].plannedEnd);
-    console.log(filters);
     const entries = await strapi.entityService.findMany(
       "api::funding.funding",
       {

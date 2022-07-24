@@ -99,7 +99,6 @@ module.exports = (plugin, env) => {
     });
   }
   plugin.controllers.user.update = async (ctx) => {
-    // console.log(ctx.state.user);
     if (ctx.request.body.data.role == "admin")
       ctx.request.body.data.role = { id: 3 };
     if (ctx.request.body.data.role == "user")
@@ -110,7 +109,6 @@ module.exports = (plugin, env) => {
     const payload = ctx;
     payload.state.user.id = ctx.params.id;
     payload.request.body.admin = true;
-    // console.log(payload.state.user);
     const userDetail = await strapi
       .controller("api::user-detail.user-detail")
       .getEntry(payload, false);

@@ -79,7 +79,6 @@ module.exports = createCoreController(
           populate: { user_details: true },
         }
       );
-      console.log(entries);
       if (entries.length == 0) return ctx.badRequest("No municipality found");
       else if (entries[0].user_details.length > 0)
         return ctx.unauthorized(
