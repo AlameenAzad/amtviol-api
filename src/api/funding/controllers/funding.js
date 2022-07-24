@@ -259,4 +259,41 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     );
     return entries;
   },
+  async getFundingExpirey(ctx) {
+    var forUsers = new Date();
+    var forAdmins = new Date();
+    var today = new Date();
+    forUsers.setDate(forUsers.getDate() + 180);
+    forAdmins.setDate(forAdmins.getDate() + 30);
+
+    var filters = {
+      $and: [
+        { plannedEnd: { $lte: forUsers.toISOString().split("T")[0] } },
+        { plannedEnd: { $gte: today.toISOString().split("T")[0] } },
+        { archived: false },
+        {
+          projects: {
+            owner: { id: ctx.state.user.id },
+          },
+        },
+      ],
+    };
+    if (ctx.state.user.role.type == "admin") {
+      filters.$and[0].plannedEnd = {
+        $lte: forAdmins.toISOString().split("T")[0],
+      };
+      filters.$and.pop();
+    }
+    console.log(filters.$and[0].plannedEnd);
+    console.log(filters);
+    const entries = await strapi.entityService.findMany(
+      "api::funding.funding",
+      {
+        fields: ["title", "plannedEnd"],
+        filters,
+        sort: { plannedEnd: "ASC" },
+      }
+    );
+    return entries;
+  },
 }));

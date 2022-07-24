@@ -292,13 +292,10 @@ module.exports = createCoreController(
       return { stats, table };
     },
     async notification(ctx) {
-      //TODO: add funding expirey
-      //TODO: add funding comments
-      //TODO: add the ability to accept the requests
       const requests = await strapi.entityService.findMany(
         "api::request.request",
         {
-          fields: ["approved"],
+          fields: ["approved", "type"],
           filters: {
             approved: false,
             $or: [
@@ -342,11 +339,26 @@ module.exports = createCoreController(
           },
         }
       );
-      if (ctx.state.user.role.type == "admin")
+      if (ctx.state.user.role.type == "admin") {
         var guest = await strapi.entityService.findMany(
           "api::guest-request.guest-request"
         );
-      return { requests, guest };
+        var fundingComments = await strapi.entityService.findMany(
+          "api::funding-comment.funding-comment",
+          {
+            fields: ["comment"],
+            populate: {
+              funding: { fields: ["title"] },
+              owner: { fields: ["username"] },
+            },
+          }
+        );
+      }
+      var fundingExpirey = await strapi
+        .controller("api::funding.funding")
+        .getFundingExpirey(ctx);
+
+      return { requests, guest, fundingComments, fundingExpirey };
     },
   })
 );
