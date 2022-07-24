@@ -207,21 +207,6 @@
           "sortable": false
         }
       },
-      "fundings": {
-        "edit": {
-          "label": "fundings",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "fundings",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "fundingReader": {
         "edit": {
           "label": "fundingReader",
@@ -263,6 +248,21 @@
         },
         "list": {
           "label": "checklistReader",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "fundingEditor": {
+        "edit": {
+          "label": "fundingEditor",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "fundingEditor",
           "searchable": false,
           "sortable": false
         }
@@ -337,10 +337,10 @@
         "watchlists",
         "projectReader",
         "user_detail",
-        "fundings",
         "checklistEditor",
         "fundingReader",
-        "checklistReader"
+        "checklistReader",
+        "fundingEditor"
       ]
     }
   },

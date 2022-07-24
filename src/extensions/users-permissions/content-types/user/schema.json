@@ -89,12 +89,6 @@
       "target": "api::checklist.checklist",
       "mappedBy": "editors"
     },
-    "fundings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::funding.funding",
-      "mappedBy": "editors"
-    },
     "fundingReader": {
       "type": "relation",
       "relation": "manyToMany",
@@ -112,6 +106,12 @@
       "relation": "manyToMany",
       "target": "api::checklist.checklist",
       "mappedBy": "readers"
+    },
+    "fundingEditor": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::funding.funding",
+      "mappedBy": "editors"
     }
   }
 }

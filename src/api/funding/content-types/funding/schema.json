@@ -89,7 +89,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "fundings"
+      "inversedBy": "fundingEditor"
     },
     "owner": {
       "type": "relation",

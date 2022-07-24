@@ -1258,12 +1258,6 @@
           "target": "api::checklist.checklist",
           "mappedBy": "editors"
         },
-        "fundings": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::funding.funding",
-          "mappedBy": "editors"
-        },
         "fundingReader": {
           "type": "relation",
           "relation": "manyToMany",
@@ -1281,6 +1275,12 @@
           "relation": "manyToMany",
           "target": "api::checklist.checklist",
           "mappedBy": "readers"
+        },
+        "fundingEditor": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::funding.funding",
+          "mappedBy": "editors"
         },
         "createdAt": {
           "type": "datetime"
@@ -1414,12 +1414,6 @@
             "target": "api::checklist.checklist",
             "mappedBy": "editors"
           },
-          "fundings": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::funding.funding",
-            "mappedBy": "editors"
-          },
           "fundingReader": {
             "type": "relation",
             "relation": "manyToMany",
@@ -1437,6 +1431,12 @@
             "relation": "manyToMany",
             "target": "api::checklist.checklist",
             "mappedBy": "readers"
+          },
+          "fundingEditor": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::funding.funding",
+            "mappedBy": "editors"
           }
         },
         "kind": "collectionType"
@@ -1963,7 +1963,7 @@
           "type": "relation",
           "relation": "manyToMany",
           "target": "plugin::users-permissions.user",
-          "inversedBy": "fundings"
+          "inversedBy": "fundingEditor"
         },
         "owner": {
           "type": "relation",
@@ -2149,7 +2149,7 @@
             "type": "relation",
             "relation": "manyToMany",
             "target": "plugin::users-permissions.user",
-            "inversedBy": "fundings"
+            "inversedBy": "fundingEditor"
           },
           "owner": {
             "type": "relation",

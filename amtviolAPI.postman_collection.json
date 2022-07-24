@@ -470,7 +470,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user/transfer/88?data=Watchlist,Project,Checklist,Funding",
+							"raw": "localhost:1337/api/user/transfer/88?data=Funding",
 							"host": [
 								"localhost"
 							],
@@ -484,7 +484,7 @@
 							"query": [
 								{
 									"key": "data",
-									"value": "Watchlist,Project,Checklist,Funding"
+									"value": "Funding"
 								}
 							]
 						}
