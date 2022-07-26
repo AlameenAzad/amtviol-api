@@ -224,6 +224,7 @@ module.exports = createCoreController(
           },
           filters: {
             archived: false,
+            published: true,
           },
         }
       );
@@ -240,6 +241,7 @@ module.exports = createCoreController(
           },
           filters: {
             archived: false,
+            published: true,
           },
         }
       );
@@ -256,6 +258,7 @@ module.exports = createCoreController(
           },
           filters: {
             archived: false,
+            published: true,
           },
         }
       );
