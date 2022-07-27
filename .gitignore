@@ -69,7 +69,8 @@ $RECYCLE.BIN/
 *.log
 *.sqlite
 *.sqlite3
-
+log-error.txt
+log-output.txt
 
 ############################
 # Misc.
@@ -111,4 +112,4 @@ exports
 *.cache
 build
 .strapi-updater.json
-
+server.js
