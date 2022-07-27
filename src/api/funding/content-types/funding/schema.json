@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string",
+      "type": "text",
       "required": true,
       "unique": true
     },
@@ -29,7 +29,7 @@
       "component": "funding.details"
     },
     "provider": {
-      "type": "string"
+      "type": "text"
     },
     "visibility": {
       "type": "enumeration",
@@ -54,10 +54,10 @@
       "type": "date"
     },
     "assessment": {
-      "type": "string"
+      "type": "text"
     },
     "notes": {
-      "type": "string"
+      "type": "text"
     },
     "links": {
       "displayName": "links",

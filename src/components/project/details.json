@@ -20,7 +20,7 @@
       "required": true
     },
     "partner": {
-      "type": "string"
+      "type": "text"
     },
     "investive": {
       "type": "boolean",
