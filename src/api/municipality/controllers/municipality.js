@@ -32,39 +32,36 @@ module.exports = createCoreController(
           profile: true,
         },
       };
-      if (role != "admin") delete filterObj.populate;
       const entries = await strapi.entityService.findMany(
         "api::municipality.municipality",
         filterObj
       );
-      if (role === "admin")
-        entries.forEach((entry) => {
-          entry.dataSet = {};
-          entry.users = "";
-          entry.dataSet.projects = entry.projects.length;
-          entry.dataSet.checklist = entry.checklists.length;
-          entry.dataSet.total =
-            entry.dataSet.projects + entry.dataSet.checklist;
-          //get users name in a string and remove excess data
-          if (entry.user_details.length > 0) {
-            entry.user_details.forEach((userDetails) => {
-              entry.users += userDetails.fullName + ", ";
-            });
-            entry.users = entry.users.slice(0, -2);
-          }
-          //add type = project to all entries in entry.projects
-          entry.projects.forEach((project) => {
-            project.type = "project";
+      entries.forEach((entry) => {
+        entry.dataSet = {};
+        entry.users = "";
+        entry.dataSet.projects = entry.projects.length;
+        entry.dataSet.checklist = entry.checklists.length;
+        entry.dataSet.total = entry.dataSet.projects + entry.dataSet.checklist;
+        //get users name in a string and remove excess data
+        if (entry.user_details.length > 0) {
+          entry.user_details.forEach((userDetails) => {
+            entry.users += userDetails.fullName + ", ";
           });
-          //add type = checklist to all entries in entry.checklist
-          entry.checklists.forEach((checklist) => {
-            checklist.type = "Implementation Checklist";
-          });
-          entry.data = [...entry.projects, ...entry.checklists];
-          delete entry.checklists;
-          delete entry.projects;
-          delete entry.user_details;
+          entry.users = entry.users.slice(0, -2);
+        }
+        //add type = project to all entries in entry.projects
+        entry.projects.forEach((project) => {
+          project.type = "project";
         });
+        //add type = checklist to all entries in entry.checklist
+        entry.checklists.forEach((checklist) => {
+          checklist.type = "Implementation Checklist";
+        });
+        entry.data = [...entry.projects, ...entry.checklists];
+        delete entry.checklists;
+        delete entry.projects;
+        delete entry.user_details;
+      });
       return entries;
     },
     async delete(ctx) {
