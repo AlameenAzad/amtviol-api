@@ -31,6 +31,12 @@
       "action": "api::funding-comment.funding-comment.findOne"
     },
     {
+      "action": "api::funding.funding.find"
+    },
+    {
+      "action": "api::funding.funding.findOne"
+    },
+    {
       "action": "api::municipality.municipality.find"
     },
     {

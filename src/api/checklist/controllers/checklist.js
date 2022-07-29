@@ -217,6 +217,7 @@ module.exports = createCoreController(
       else return await super.update(ctx);
     },
     async delete(ctx) {
+      if (ctx.state.user.role.type == "admin") return await super.delete(ctx);
       var entry = await strapi.entityService.findMany(
         "api::checklist.checklist",
         {

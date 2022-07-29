@@ -189,20 +189,21 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       );
     else return await super.update(ctx);
   },
-  async delete(ctx) {
-    var entry = await strapi.entityService.findMany("api::funding.funding", {
-      populate: {
-        owner: { fields: ["username"] },
-      },
-      filters: {
-        owner: { id: ctx.state.user.id },
-        id: ctx.params.id,
-      },
-    });
-    if (entry.length == 0)
-      return ctx.unauthorized("You are not allowed to delete this funding");
-    else return await super.delete(ctx);
-  },
+  // async delete(ctx) {
+
+  //   var entry = await strapi.entityService.findMany("api::funding.funding", {
+  //     populate: {
+  //       owner: { fields: ["username"] },
+  //     },
+  //     filters: {
+  //       owner: { id: ctx.state.user.id },
+  //       id: ctx.params.id,
+  //     },
+  //   });
+  //   if (entry.length == 0)
+  //     return ctx.unauthorized("You are not allowed to delete this funding");
+  //   else return await super.delete(ctx);
+  // },
   async getRequests(entry) {
     const requests = await strapi.entityService.findMany(
       "api::request.request",

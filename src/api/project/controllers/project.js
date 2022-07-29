@@ -193,6 +193,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     else return await super.update(ctx);
   },
   async delete(ctx) {
+    if (ctx.state.user.role.type == "admin") return await super.delete(ctx);
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
         owner: { fields: ["username"] },
