@@ -11,30 +11,17 @@
       "type": "boolean",
       "default": true
     },
-    "inquiry": {
-      "type": "boolean",
-      "default": true
-    },
-    "newProjects": {
-      "type": "boolean",
-      "default": false
-    },
     "fundingExpiry": {
       "type": "boolean",
       "default": true
     },
-    "newChecklists": {
+    "userJoinRequest": {
       "type": "boolean",
       "default": true
     },
-    "networkRequests": {
+    "fundingComments": {
       "type": "boolean",
       "default": true
-    },
-    "saveEmails": {
-      "type": "boolean",
-      "default": true,
-      "required": false
     }
   }
 }

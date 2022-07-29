@@ -7,22 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "contactName": {
-      "type": "string",
-      "required": true
-    },
-    "phone": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    },
-    "streetNo": {
-      "type": "string"
-    },
-    "postalCode": {
-      "type": "string"
-    },
     "location": {
       "type": "string"
     }
