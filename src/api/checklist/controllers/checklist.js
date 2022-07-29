@@ -179,6 +179,11 @@ module.exports = createCoreController(
           "You are not allowed to view this checklist details"
         );
       entry = entry[0];
+      var contactInfo = await strapi
+        .controller("api::user-detail.user-detail")
+        .getContactPersonInfo(ctx, entry.owner.id);
+      contactInfo.location = entry.info.location;
+      entry.info = contactInfo;
       if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
       else return entry;
     },
@@ -267,6 +272,30 @@ module.exports = createCoreController(
           },
           filters: {
             archived: true,
+          },
+        }
+      );
+      return entries;
+    },
+    async publicFind() {
+      const entries = await strapi.entityService.findMany(
+        "api::checklist.checklist",
+        {
+          fields: ["title"],
+          filters: {
+            $or: [
+              {
+                visibility: "all users",
+              },
+              {
+                visibility: "listed only",
+              },
+            ],
+            published: true,
+            archived: false,
+          },
+          populate: {
+            categories: { fields: ["title"] },
           },
         }
       );

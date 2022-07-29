@@ -148,6 +148,11 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       );
 
     entry = entry[0];
+    var contactInfo = await strapi
+      .controller("api::user-detail.user-detail")
+      .getContactPersonInfo(ctx, entry.owner.id);
+    contactInfo.location = entry.info.location;
+    entry.info = contactInfo;
     // if (entry.visibility == "only for me" || entry.visibility == "listed only")
     if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
     // else
@@ -247,6 +252,30 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
           editors: { fields: ["username"] },
           readers: { fields: ["username"] },
           tags: { fields: ["title"] },
+        },
+      }
+    );
+    return entries;
+  },
+  async publicFind() {
+    const entries = await strapi.entityService.findMany(
+      "api::project.project",
+      {
+        fields: ["title"],
+        filters: {
+          $or: [
+            {
+              visibility: "all users",
+            },
+            {
+              visibility: "listed only",
+            },
+          ],
+          published: true,
+          archived: false,
+        },
+        populate: {
+          categories: { fields: ["title"] },
         },
       }
     );
