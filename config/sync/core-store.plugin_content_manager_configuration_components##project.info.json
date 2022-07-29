@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "contactName",
-      "defaultSortBy": "contactName",
+      "mainField": "location",
+      "defaultSortBy": "location",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -18,76 +18,6 @@
           "label": "id",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "contactName": {
-        "edit": {
-          "label": "contactName",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "contactName",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "phone": {
-        "edit": {
-          "label": "phone",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "phone",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "email": {
-        "edit": {
-          "label": "email",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "email",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "streetNo": {
-        "edit": {
-          "label": "streetNo",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "streetNo",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "postalCode": {
-        "edit": {
-          "label": "postalCode",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "postalCode",
-          "searchable": true,
-          "sortable": true
         }
       },
       "location": {
@@ -108,38 +38,10 @@
     "layouts": {
       "list": [
         "id",
-        "contactName",
-        "phone",
         "location"
       ],
       "edit": [
         [
-          {
-            "name": "contactName",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "phone",
-            "size": 6
-          },
-          {
-            "name": "email",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "streetNo",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "postalCode",
-            "size": 6
-          },
           {
             "name": "location",
             "size": 6

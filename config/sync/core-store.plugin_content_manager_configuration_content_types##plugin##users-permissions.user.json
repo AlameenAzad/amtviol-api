@@ -259,7 +259,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "title"
+          "mainField": "ownContribution"
         },
         "list": {
           "label": "fundingEditor",

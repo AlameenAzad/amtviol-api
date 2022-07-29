@@ -34,34 +34,6 @@
           "sortable": true
         }
       },
-      "inquiry": {
-        "edit": {
-          "label": "inquiry",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "inquiry",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "newProjects": {
-        "edit": {
-          "label": "newProjects",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "newProjects",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "fundingExpiry": {
         "edit": {
           "label": "fundingExpiry",
@@ -76,30 +48,30 @@
           "sortable": true
         }
       },
-      "newChecklists": {
+      "userJoinRequest": {
         "edit": {
-          "label": "newChecklists",
+          "label": "userJoinRequest",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "newChecklists",
+          "label": "userJoinRequest",
           "searchable": true,
           "sortable": true
         }
       },
-      "networkRequest": {
+      "fundingComments": {
         "edit": {
-          "label": "networkRequest",
+          "label": "fundingComments",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "networkRequest",
+          "label": "fundingComments",
           "searchable": true,
           "sortable": true
         }
@@ -109,21 +81,13 @@
       "list": [
         "id",
         "dataRequests",
-        "inquiry",
-        "newProjects"
+        "userJoinRequest",
+        "fundingComments"
       ],
       "edit": [
         [
           {
             "name": "dataRequests",
-            "size": 4
-          },
-          {
-            "name": "inquiry",
-            "size": 4
-          },
-          {
-            "name": "newProjects",
             "size": 4
           }
         ],
@@ -133,11 +97,11 @@
             "size": 4
           },
           {
-            "name": "newChecklists",
+            "name": "userJoinRequest",
             "size": 4
           },
           {
-            "name": "networkRequest",
+            "name": "fundingComments",
             "size": 4
           }
         ]

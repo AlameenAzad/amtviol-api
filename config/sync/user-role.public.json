@@ -4,16 +4,10 @@
   "type": "public",
   "permissions": [
     {
-      "action": "api::category.category.find"
-    },
-    {
       "action": "api::guest-request.guest-request.create"
     },
     {
-      "action": "api::municipality.municipality.find"
-    },
-    {
-      "action": "api::tag.tag.find"
+      "action": "api::user-detail.user-detail.publicData"
     },
     {
       "action": "plugin::users-permissions.auth.callback"
