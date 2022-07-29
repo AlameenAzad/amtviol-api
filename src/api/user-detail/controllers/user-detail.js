@@ -286,7 +286,7 @@ module.exports = createCoreController(
         var requests = await strapi.entityService.findMany(
           "api::request.request",
           {
-            fields: ["approved", "type"],
+            fields: ["approved", "type", "created_at"],
             filters: {
               approved: false,
               $or: [
@@ -339,7 +339,7 @@ module.exports = createCoreController(
           var fundingComments = await strapi.entityService.findMany(
             "api::funding-comment.funding-comment",
             {
-              fields: ["comment"],
+              fields: ["comment", "created_at"],
               populate: {
                 funding: { fields: ["title"] },
                 owner: { fields: ["username"] },
