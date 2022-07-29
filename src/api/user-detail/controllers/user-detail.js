@@ -282,7 +282,6 @@ module.exports = createCoreController(
     async notification(ctx) {
       const userDetails = await this.find(ctx);
       const userSettings = userDetails.notifications.app;
-      console.log(userSettings);
       if (userSettings.dataRequests == true)
         var requests = await strapi.entityService.findMany(
           "api::request.request",
