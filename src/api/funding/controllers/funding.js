@@ -27,15 +27,15 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         },
         filters: {
           $or: [
-            {
-              owner: { id: ctx.state.user.id },
-            },
-            {
-              editors: { id: ctx.state.user.id },
-            },
-            {
-              readers: { id: ctx.state.user.id },
-            },
+            // {
+            //   owner: { id: ctx.state.user.id },
+            // },
+            // {
+            //   editors: { id: ctx.state.user.id },
+            // },
+            // {
+            //   readers: { id: ctx.state.user.id },
+            // },
             {
               visibility: "listed only",
             },
@@ -74,15 +74,15 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     let filters = {
       // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
       $or: [
-        {
-          owner: { id: ctx.state.user.id },
-        },
-        {
-          editors: { id: ctx.state.user.id },
-        },
-        {
-          readers: { id: ctx.state.user.id },
-        },
+        // {
+        //   owner: { id: ctx.state.user.id },
+        // },
+        // {
+        //   editors: { id: ctx.state.user.id },
+        // },
+        // {
+        //   readers: { id: ctx.state.user.id },
+        // },
         {
           visibility: "all users",
         },
@@ -293,6 +293,30 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         fields: ["title", "plannedEnd"],
         filters,
         sort: { plannedEnd: "ASC" },
+      }
+    );
+    return entries;
+  },
+  async publicFind() {
+    const entries = await strapi.entityService.findMany(
+      "api::funding.funding",
+      {
+        fields: ["title"],
+        filters: {
+          $or: [
+            {
+              visibility: "all users",
+            },
+            {
+              visibility: "listed only",
+            },
+          ],
+          published: true,
+          archived: false,
+        },
+        populate: {
+          categories: { fields: ["title"] },
+        },
       }
     );
     return entries;
