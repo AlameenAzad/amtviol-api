@@ -24,5 +24,11 @@ module.exports = {
       path: "/stats",
       handler: "user-detail.statsAndArchive",
     },
+    {
+      // Path defined with a URL parameter
+      method: "GET",
+      path: "/public/data",
+      handler: "user-detail.publicData",
+    },
   ],
 };

@@ -30,27 +30,12 @@ module.exports = createCoreController(
       );
     },
     async create(ctx) {
-      //query if logged in user has user-detail
-      // var hasEntry = await this.getEntry(ctx, false);
-      // if (hasEntry.length > 0) {
-      //   return ctx.unauthorized(
-      //     `You can't create an entry for this user. User already has an entry.`
-      //   );
-      // } else {
-
-      // ctx.request.body.data.user = ctx.state.user;
-      //init default notifications settings
-      // ctx.request.body.data.notifications = {
-      //   email: {},
-      //   app: {},
-      // };
       if (ctx.request.body.data.invite) {
         let entity = await super.create(ctx);
         return entity;
       } else {
         return ctx.unauthorized("You can't create an entry for this user.");
       }
-      // }
     },
     async update(ctx) {
       var hasEntry = await this.getEntry(ctx, false);
@@ -295,73 +280,111 @@ module.exports = createCoreController(
       return { stats, table };
     },
     async notification(ctx) {
-      const requests = await strapi.entityService.findMany(
-        "api::request.request",
-        {
-          fields: ["approved", "type"],
-          filters: {
-            approved: false,
-            $or: [
-              {
-                project: {
-                  owner: ctx.state.user.id,
-                },
-              },
-              {
-                project: {
-                  editors: ctx.state.user.id,
-                },
-              },
-              {
-                funding: {
-                  owner: ctx.state.user.id,
-                },
-              },
-              {
-                funding: {
-                  editors: ctx.state.user.id,
-                },
-              },
-              {
-                checklist: {
-                  owner: ctx.state.user.id,
-                },
-              },
-              {
-                checklist: {
-                  editors: ctx.state.user.id,
-                },
-              },
-            ],
-          },
-          populate: {
-            user: { fields: "username" },
-            funding: { fields: ["title"] },
-            project: { fields: ["title"] },
-            checklist: { fields: ["title"] },
-          },
-        }
-      );
-      if (ctx.state.user.role.type == "admin") {
-        var guest = await strapi.entityService.findMany(
-          "api::guest-request.guest-request"
-        );
-        var fundingComments = await strapi.entityService.findMany(
-          "api::funding-comment.funding-comment",
+      const userDetails = await this.find(ctx);
+      const userSettings = userDetails.notifications.app;
+      console.log(userSettings);
+      if (userSettings.dataRequests == true)
+        var requests = await strapi.entityService.findMany(
+          "api::request.request",
           {
-            fields: ["comment"],
+            fields: ["approved", "type"],
+            filters: {
+              approved: false,
+              $or: [
+                {
+                  project: {
+                    owner: ctx.state.user.id,
+                  },
+                },
+                {
+                  project: {
+                    editors: ctx.state.user.id,
+                  },
+                },
+                {
+                  funding: {
+                    owner: ctx.state.user.id,
+                  },
+                },
+                {
+                  funding: {
+                    editors: ctx.state.user.id,
+                  },
+                },
+                {
+                  checklist: {
+                    owner: ctx.state.user.id,
+                  },
+                },
+                {
+                  checklist: {
+                    editors: ctx.state.user.id,
+                  },
+                },
+              ],
+            },
             populate: {
+              user: { fields: "username" },
               funding: { fields: ["title"] },
-              owner: { fields: ["username"] },
+              project: { fields: ["title"] },
+              checklist: { fields: ["title"] },
             },
           }
         );
+      if (ctx.state.user.role.type == "admin") {
+        if (userSettings.userJoinRequest == true)
+          var guest = await strapi.entityService.findMany(
+            "api::guest-request.guest-request"
+          );
+        if (userSettings.fundingComments == true)
+          var fundingComments = await strapi.entityService.findMany(
+            "api::funding-comment.funding-comment",
+            {
+              fields: ["comment"],
+              populate: {
+                funding: { fields: ["title"] },
+                owner: { fields: ["username"] },
+              },
+            }
+          );
       }
-      var fundingExpirey = await strapi
-        .controller("api::funding.funding")
-        .getFundingExpirey(ctx);
+      if (userSettings.fundingExpiry == true)
+        var fundingExpirey = await strapi
+          .controller("api::funding.funding")
+          .getFundingExpirey(ctx);
 
       return { requests, guest, fundingComments, fundingExpirey };
+    },
+    //This API is to get specific user-detail of a user. For project ideas and checklists. For the Contact Person information section
+    async getContactPersonInfo(ctx, id) {
+      const userContactInfo = await strapi.entityService.findOne(
+        "api::user-detail.user-detail",
+        id,
+        {
+          fields: ["fullName", "phone", "postalCode", "streetNo"],
+          populate: {
+            user: { fields: ["email"] },
+          },
+        }
+      );
+      userContactInfo.contactName = userContactInfo.fullName;
+      delete userContactInfo.fullName;
+      userContactInfo.email = userContactInfo.user.email;
+      delete userContactInfo.user;
+      delete userContactInfo.id;
+      return userContactInfo;
+    },
+    async publicData() {
+      var projects = await strapi
+        .controller("api::project.project")
+        .publicFind();
+      var fundings = await strapi
+        .controller("api::funding.funding")
+        .publicFind();
+      var checklists = await strapi
+        .controller("api::checklist.checklist")
+        .publicFind();
+      return { projects, fundings, checklists };
     },
   })
 );
