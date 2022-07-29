@@ -44,6 +44,23 @@ module.exports = createCoreController(
         {
           filters: {
             owner: { id: ctx.state.user.id },
+            $or: [
+              {
+                funding: {
+                  archived: false,
+                },
+              },
+              {
+                project: {
+                  archived: false,
+                },
+              },
+              {
+                checklist: {
+                  archived: false,
+                },
+              },
+            ],
           },
           populate: {
             owner: { fields: ["username"] },
