@@ -27,15 +27,15 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         },
         filters: {
           $or: [
-            // {
-            //   owner: { id: ctx.state.user.id },
-            // },
-            // {
-            //   editors: { id: ctx.state.user.id },
-            // },
-            // {
-            //   readers: { id: ctx.state.user.id },
-            // },
+            {
+              owner: { id: ctx.state.user.id },
+            },
+            {
+              editors: { id: ctx.state.user.id },
+            },
+            {
+              readers: { id: ctx.state.user.id },
+            },
             {
               visibility: "listed only",
             },
@@ -74,15 +74,15 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     let filters = {
       // (owner == user|| editors == user || readers == user || visibility == "all users") && (published == true || published == false && owner==user)
       $or: [
-        // {
-        //   owner: { id: ctx.state.user.id },
-        // },
-        // {
-        //   editors: { id: ctx.state.user.id },
-        // },
-        // {
-        //   readers: { id: ctx.state.user.id },
-        // },
+        {
+          owner: { id: ctx.state.user.id },
+        },
+        {
+          editors: { id: ctx.state.user.id },
+        },
+        {
+          readers: { id: ctx.state.user.id },
+        },
         {
           visibility: "all users",
         },
@@ -275,6 +275,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         { plannedEnd: { $lte: forUsers.toISOString().split("T")[0] } },
         { plannedEnd: { $gte: today.toISOString().split("T")[0] } },
         { archived: false },
+        { published: true },
         {
           projects: {
             owner: { id: ctx.state.user.id },
