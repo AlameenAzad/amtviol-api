@@ -7,6 +7,19 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::request.request", ({ strapi }) => ({
+  async create(ctx) {
+    const exists = await strapi.entityService.findMany("api::request.request", {
+      filters: {
+        ...ctx.request.body.data,
+      },
+    });
+    if (exists.length > 0) {
+      ctx.throw(
+        400,
+        `Request to ${ctx.request.body.data.type} this document already exists.`
+      );
+    } else return await super.create(ctx);
+  },
   async update(ctx) {
     const request = await strapi.entityService.findMany(
       "api::request.request",
