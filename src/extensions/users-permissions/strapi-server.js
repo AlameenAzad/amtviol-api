@@ -129,7 +129,9 @@ module.exports = (plugin, env) => {
     }
     let res = await strapi
       .controller("api::user-detail.user-detail")
-      .countAndGetTransferableData(ctx);
+      .countAndGetTransferableData({
+        state: { user: { id: ctx.request.params.id } },
+      });
     if (
       res.project.length > 0 ||
       res.funding.length > 0 ||
@@ -138,10 +140,21 @@ module.exports = (plugin, env) => {
       return ctx.badRequest(
         "There is data linked to this account. Transfer this data first."
       );
-    else
+    else {
+      await strapi.query("api::user-detail.user-detail").delete({
+        where: { user: ctx.request.params.id },
+      });
+      await strapi.query("api::request.request").delete({
+        where: { user: ctx.request.params.id },
+      });
+      await strapi.query("api::watchlist.watchlist").delete({
+        where: { owner: ctx.request.params.id },
+      });
+
       return strapi
         .query("plugin::users-permissions.user")
         .delete({ where: { id: ctx.request.params.id } });
+    }
   };
   return plugin;
 };
