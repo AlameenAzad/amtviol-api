@@ -121,7 +121,10 @@ module.exports = (plugin, env) => {
     return entry;
   };
   plugin.controllers.user.destroy = async (ctx) => {
-    if (ctx.state.user.id != ctx.request.params.id) {
+    if (
+      ctx.state.user.id != ctx.request.params.id &&
+      ctx.state.user.role.type != "admin"
+    ) {
       return ctx.badRequest("You can't delete an account other than your own.");
     }
     let res = await strapi
@@ -133,7 +136,7 @@ module.exports = (plugin, env) => {
       res.checklist.length > 0
     )
       return ctx.badRequest(
-        "You have data linked to your account. Transfer this data first"
+        "There is data linked to this account. Transfer this data first."
       );
     else
       return strapi
