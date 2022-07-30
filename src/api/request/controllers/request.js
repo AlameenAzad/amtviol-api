@@ -56,10 +56,19 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
     );
     // return request;
     if (request.length > 0) {
-      if (request[0].funding != null) this.acceptFunding(request[0]);
-      else if (request[0].project != null) this.acceptProject(request[0]);
-      else if (request[0].checklist != null) this.acceptChecklist(request[0]);
-      const response = await super.update(ctx);
+      if (request[0].funding != null && ctx.request.body.data.approved == true)
+        this.acceptFunding(request[0]);
+      else if (
+        request[0].project != null &&
+        ctx.request.body.data.approved == true
+      )
+        this.acceptProject(request[0]);
+      else if (
+        request[0].checklist != null &&
+        ctx.request.body.data.approved == true
+      )
+        this.acceptChecklist(request[0]);
+      const response = await super.delete(ctx);
       return response;
     } else
       return ctx.unauthorized(`You are not authorized to accept this request.`);
