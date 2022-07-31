@@ -22,6 +22,47 @@ module.exports = createCoreController(
               editors: { fields: ["username"] },
               readers: { fields: ["username"] },
             },
+            filters: {
+              $or: [
+                {
+                  owner: { id: ctx.state.user.id },
+                },
+                {
+                  editors: { id: ctx.state.user.id },
+                },
+                {
+                  readers: { id: ctx.state.user.id },
+                },
+                {
+                  visibility: "listed only",
+                },
+                {
+                  visibility: "all users",
+                },
+              ],
+              $and: [
+                {
+                  $or: [
+                    {
+                      published: true,
+                    },
+                    {
+                      $and: [
+                        {
+                          published: false,
+                        },
+                        {
+                          owner: { id: ctx.state.user.id },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  archived: false,
+                },
+              ],
+            },
           },
           checklists: {
             fields: ["title", "visibility"],
@@ -30,6 +71,47 @@ module.exports = createCoreController(
               categories: { fields: ["title"] },
               editors: { fields: ["username"] },
               readers: { fields: ["username"] },
+            },
+            filters: {
+              $or: [
+                {
+                  owner: { id: ctx.state.user.id },
+                },
+                {
+                  editors: { id: ctx.state.user.id },
+                },
+                {
+                  readers: { id: ctx.state.user.id },
+                },
+                {
+                  visibility: "listed only",
+                },
+                {
+                  visibility: "all users",
+                },
+              ],
+              $and: [
+                {
+                  $or: [
+                    {
+                      published: true,
+                    },
+                    {
+                      $and: [
+                        {
+                          published: false,
+                        },
+                        {
+                          owner: { id: ctx.state.user.id },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  archived: false,
+                },
+              ],
             },
           },
           user_details: true,
