@@ -57,7 +57,11 @@ module.exports = createCoreController(
     },
     async transferData(ctx) {
       const user = await this.checkUserAvailable(ctx.params.id);
-      if (ctx.state.user.id != ctx.params.id || user == null) {
+      if (
+        ctx.state.user.role.type == "admin" ||
+        ctx.state.user.id != ctx.params.id ||
+        user != null
+      ) {
         const dataAndCount = await this.countAndGetTransferableData(ctx); // for owner transfer
         await this.transferDataToUser(ctx, dataAndCount);
         return dataAndCount;
@@ -68,6 +72,11 @@ module.exports = createCoreController(
       }
     },
     async countAndGetTransferableData(ctx) {
+      console.log(ctx.request);
+      const fromId =
+        ctx.request != undefined && ctx.request.query.hasOwnProperty("fromId")
+          ? ctx.request.query.fromId
+          : ctx.state.user.id;
       var dataCount = {
         project: {},
         funding: {},
@@ -85,7 +94,7 @@ module.exports = createCoreController(
         .findWithCount({
           select: ["id"],
           where: {
-            owner: ctx.state.user,
+            owner: { id: fromId },
           },
         });
       [dataCount.funding, dataCount.count.fundingsCount] = await strapi.db
@@ -93,7 +102,7 @@ module.exports = createCoreController(
         .findWithCount({
           select: ["id"],
           where: {
-            owner: ctx.state.user,
+            owner: { id: fromId },
           },
         });
       [dataCount.checklist, dataCount.count.checklistsCount] = await strapi.db
@@ -101,7 +110,7 @@ module.exports = createCoreController(
         .findWithCount({
           select: ["id"],
           where: {
-            owner: ctx.state.user,
+            owner: { id: fromId },
           },
         });
       [dataCount.watchlist, dataCount.count.watchlistCount] = await strapi.db
@@ -109,7 +118,7 @@ module.exports = createCoreController(
         .findWithCount({
           select: ["id"],
           where: {
-            owner: ctx.state.user,
+            owner: { id: fromId },
           },
         });
       return dataCount;
@@ -117,6 +126,10 @@ module.exports = createCoreController(
     async transferDataToUser(ctx, data) {
       ctx.request.query.data = ctx.request.query.data.toLowerCase();
       var dataToTransfer = ctx.request.query.data.split(",");
+      const fromId =
+        ctx.request != undefined && ctx.request.query.hasOwnProperty("fromId")
+          ? ctx.request.query.fromId
+          : ctx.state.user.id;
       //loop through the keys (items to transfer)
       for (var key in data) {
         //ignore the items that werent selected to transfer
@@ -124,10 +137,10 @@ module.exports = createCoreController(
         if (key != "watchlist") {
           //transfer reader and editor roles
           await strapi.db.connection.context.raw(
-            `UPDATE ${key}s_editors_links SET user_id = ${ctx.params.id} WHERE user_id = ${ctx.state.user.id};`
+            `UPDATE ${key}s_editors_links SET user_id = ${ctx.params.id} WHERE user_id = ${fromId};`
           );
           await strapi.db.connection.context.raw(
-            `UPDATE ${key}s_readers_links SET user_id = ${ctx.params.id} WHERE user_id = ${ctx.state.user.id};`
+            `UPDATE ${key}s_readers_links SET user_id = ${ctx.params.id} WHERE user_id = ${fromId};`
           );
         }
         //loop through the items to transfer each one of them
@@ -152,7 +165,7 @@ module.exports = createCoreController(
     async checkUserAvailable(id) {
       const user = await strapi.entityService.findOne(
         "plugin::users-permissions.user",
-        99,
+        id,
         {
           fields: ["username"],
         }
