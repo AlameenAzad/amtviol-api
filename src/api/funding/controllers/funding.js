@@ -143,7 +143,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     });
     if (entry.length == 0)
       return ctx.unauthorized(
-        "You are not allowed to view this funding details"
+        "Sie sind nicht berechtigt, diese Finanzierungsdetails einzusehen"
       );
     entry = entry[0];
     if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
@@ -157,7 +157,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       );
       if (checkChecklist == null || checkChecklist.funding != null)
         return ctx.badRequest(
-          "The checklist you have selected already has a funding linked to it."
+          "Die von Ihnen ausgewählte Checkliste ist bereits mit einer Förderung verknüpft."
         );
     }
     let entity = await super.create(ctx);
@@ -185,7 +185,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     });
     if (entry.length == 0)
       return ctx.unauthorized(
-        "You are not allowed to edit this funding details"
+        "Sie sind nicht berechtigt, diese Finanzierungsdetails zu bearbeiten"
       );
     else return await super.update(ctx);
   },

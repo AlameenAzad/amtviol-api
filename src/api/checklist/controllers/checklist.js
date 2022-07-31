@@ -176,7 +176,7 @@ module.exports = createCoreController(
       );
       if (entry.length == 0)
         return ctx.unauthorized(
-          "You are not allowed to view this checklist details"
+          "Sie sind nicht berechtigt, die Details dieser Checkliste anzuzeigen"
         );
       entry = entry[0];
       var contactInfo = await strapi
@@ -212,7 +212,7 @@ module.exports = createCoreController(
       );
       if (entry.length == 0)
         return ctx.unauthorized(
-          "You are not allowed to edit this checklist details"
+          "Sie sind nicht berechtigt, diese Checklistendetails zu bearbeiten"
         );
       else return await super.update(ctx);
     },
@@ -231,7 +231,7 @@ module.exports = createCoreController(
         }
       );
       if (entry.length == 0)
-        return ctx.unauthorized("You are not allowed to delete this checklist");
+        return ctx.unauthorized("Sie dürfen diese Checkliste nicht löschen");
       else return await super.delete(ctx);
     },
     async getRequests(entry) {

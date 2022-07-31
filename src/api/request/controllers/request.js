@@ -71,7 +71,9 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       const response = await super.delete(ctx);
       return response;
     } else
-      return ctx.unauthorized(`You are not authorized to accept this request.`);
+      return ctx.unauthorized(
+        `Sie sind nicht berechtigt, diese Anfrage anzunehmen.`
+      );
   },
   async acceptFunding(request) {
     if (request.type == "edit")

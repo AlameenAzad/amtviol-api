@@ -34,7 +34,9 @@ module.exports = createCoreController(
         let entity = await super.create(ctx);
         return entity;
       } else {
-        return ctx.unauthorized("You can't create an entry for this user.");
+        return ctx.unauthorized(
+          "Sie können für diesen Benutzer keinen Eintrag erstellen."
+        );
       }
     },
     async update(ctx) {
@@ -49,7 +51,9 @@ module.exports = createCoreController(
     },
     async find(ctx) {
       var entry = await this.getEntry(ctx, true);
-      return entry.length > 0 ? entry[0] : ctx.badRequest(`User has no entry`);
+      return entry.length > 0
+        ? entry[0]
+        : ctx.badRequest(`Benutzer hat keinen Eintrag`);
     },
     async transferData(ctx) {
       const user = await this.checkUserAvailable(ctx.params.id);
@@ -59,7 +63,7 @@ module.exports = createCoreController(
         return dataAndCount;
       } else {
         return ctx.unauthorized(
-          "You can't transfer data to yourself. And/Or user you are transferring to doesn't exist."
+          "Sie können keine Daten an sich selbst übertragen. Und/oder der Benutzer, zu dem Sie übertragen, existiert nicht."
         );
       }
     },

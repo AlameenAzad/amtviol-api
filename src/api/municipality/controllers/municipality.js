@@ -76,10 +76,10 @@ module.exports = createCoreController(
           populate: { user_details: true },
         }
       );
-      if (entries.length == 0) return ctx.badRequest("No municipality found");
+      if (entries.length == 0) return ctx.badRequest("Keine Gemeinde gefunden");
       else if (entries[0].user_details.length > 0)
         return ctx.unauthorized(
-          "Can't delete. There are users linked to this municipality."
+          "Kann nicht löschen. Es gibt Benutzer, die mit dieser Gemeinde verbunden sind."
         );
       else return super.delete(ctx);
     },

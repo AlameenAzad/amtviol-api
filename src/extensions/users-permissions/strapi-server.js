@@ -125,7 +125,9 @@ module.exports = (plugin, env) => {
       ctx.state.user.id != ctx.request.params.id &&
       ctx.state.user.role.type != "admin"
     ) {
-      return ctx.badRequest("You can't delete an account other than your own.");
+      return ctx.badRequest(
+        "Sie können kein anderes Konto als Ihr eigenes löschen."
+      );
     }
     let res = await strapi
       .controller("api::user-detail.user-detail")
@@ -138,7 +140,7 @@ module.exports = (plugin, env) => {
       res.checklist.length > 0
     )
       return ctx.badRequest(
-        "There is data linked to this account. Transfer this data first."
+        "Mit diesem Konto sind Daten verknüpft. Übertragen Sie diese Daten zuerst."
       );
     else {
       await strapi.query("api::user-detail.user-detail").delete({

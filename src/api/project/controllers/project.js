@@ -144,7 +144,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     });
     if (entry.length == 0)
       return ctx.unauthorized(
-        "You are not allowed to view this project details"
+        "Sie sind nicht berechtigt, diese Projektdetails anzuzeigen"
       );
 
     entry = entry[0];
@@ -188,7 +188,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     });
     if (entry.length == 0)
       return ctx.unauthorized(
-        "You are not allowed to edit this project details"
+        "Sie sind nicht berechtigt, diese Projektdetails zu bearbeiten"
       );
     else return await super.update(ctx);
   },
@@ -204,7 +204,9 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       },
     });
     if (entry.length == 0)
-      return ctx.unauthorized("You are not allowed to delete this project");
+      return ctx.unauthorized(
+        "Sie sind nicht berechtigt, dieses Projekt zu löschen"
+      );
     else return await super.delete(ctx);
   },
   async getRequests(entry) {

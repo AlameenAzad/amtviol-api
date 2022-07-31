@@ -35,7 +35,9 @@ module.exports = createCoreController(
           },
         });
       if (exist)
-        return ctx.badRequest("You already have this item in your watchlist.");
+        return ctx.badRequest(
+          "Sie haben diesen Artikel bereits in Ihrer Merkliste."
+        );
       else return await super.create(ctx);
     },
     async find(ctx) {
@@ -120,9 +122,7 @@ module.exports = createCoreController(
         }
       );
       if (entry.length == 0)
-        return ctx.unauthorized(
-          "You are not allowed to delete this watchlist."
-        );
+        return ctx.unauthorized("Sie dürfen diese Merkliste nicht löschen.");
       else return await super.delete(ctx);
     },
     async checkIfExists(ctx, filters) {
