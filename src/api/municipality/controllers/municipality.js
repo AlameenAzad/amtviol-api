@@ -15,17 +15,21 @@ module.exports = createCoreController(
         fields: ["title", "location"],
         populate: {
           projects: {
-            fields: ["title"],
+            fields: ["title", "visibility"],
             populate: {
               owner: { fields: ["username"] },
               categories: { fields: ["title"] },
+              editors: { fields: ["username"] },
+              readers: { fields: ["username"] },
             },
           },
           checklists: {
-            fields: ["title"],
+            fields: ["title", "visibility"],
             populate: {
               owner: { fields: ["username"] },
               categories: { fields: ["title"] },
+              editors: { fields: ["username"] },
+              readers: { fields: ["username"] },
             },
           },
           user_details: true,
