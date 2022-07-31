@@ -71,6 +71,8 @@ module.exports = createCoreController(
               populate: {
                 owner: { fields: ["username"] },
                 categories: { fields: ["title"] },
+                editors: { fields: ["username"] },
+                readers: { fields: ["username"] },
               },
             },
             funding: {
@@ -78,6 +80,8 @@ module.exports = createCoreController(
               populate: {
                 owner: { fields: ["username"] },
                 categories: { fields: ["title"] },
+                editors: { fields: ["username"] },
+                readers: { fields: ["username"] },
               },
             },
             checklist: {
@@ -85,6 +89,8 @@ module.exports = createCoreController(
               populate: {
                 owner: { fields: ["username"] },
                 categories: { fields: ["title"] },
+                editors: { fields: ["username"] },
+                readers: { fields: ["username"] },
               },
             },
           },
