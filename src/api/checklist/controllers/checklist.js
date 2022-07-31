@@ -120,7 +120,7 @@ module.exports = createCoreController(
         "api::checklist.checklist",
         {
           populate: {
-            owner: { fields: ["username"] },
+            owner: { fields: ["username"], populate: { user_detail: "*" } },
             editors: { fields: ["username"] },
             readers: { fields: ["username"] },
             categories: { fields: ["title"] },
@@ -181,7 +181,7 @@ module.exports = createCoreController(
       entry = entry[0];
       var contactInfo = await strapi
         .controller("api::user-detail.user-detail")
-        .getContactPersonInfo(ctx, entry.owner.id);
+        .getContactPersonInfo(ctx, entry.owner.user_detail.id);
       contactInfo.location = entry.info.location;
       entry.info = contactInfo;
       if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);

@@ -126,7 +126,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     }
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
-        owner: { fields: ["username"] },
+        owner: { fields: ["username"], populate: { user_detail: "*" } },
         editors: { fields: ["username"] },
         readers: { fields: ["username"] },
         categories: { fields: ["title"] },
@@ -150,7 +150,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     entry = entry[0];
     var contactInfo = await strapi
       .controller("api::user-detail.user-detail")
-      .getContactPersonInfo(ctx, entry.owner.id);
+      .getContactPersonInfo(ctx, entry.owner.user_detail.id);
     contactInfo.location = entry.info.location;
     entry.info = contactInfo;
     // if (entry.visibility == "only for me" || entry.visibility == "listed only")
