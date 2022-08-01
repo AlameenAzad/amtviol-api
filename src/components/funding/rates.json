@@ -8,10 +8,10 @@
   "options": {},
   "attributes": {
     "content": {
-      "type": "string"
+      "type": "text"
     },
     "amount": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

@@ -1,24 +1,25 @@
 {
   "collectionName": "components_funding_infos",
   "info": {
-    "displayName": "info"
+    "displayName": "info",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "contactName": {
-      "type": "string"
+      "type": "text"
     },
     "phone": {
-      "type": "string"
+      "type": "text"
     },
     "email": {
-      "type": "string"
+      "type": "text"
     },
     "streetNo": {
-      "type": "string"
+      "type": "text"
     },
     "postalCode": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

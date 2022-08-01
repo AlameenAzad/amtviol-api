@@ -1,12 +1,13 @@
 {
   "collectionName": "components_checklist_check_databases",
   "info": {
-    "displayName": "checkDatabase"
+    "displayName": "checkDatabase",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "text"
     },
     "text": {
       "type": "text"
@@ -15,14 +16,15 @@
       "type": "boolean"
     },
     "file": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "tasks": {
       "type": "json"

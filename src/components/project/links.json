@@ -2,15 +2,16 @@
   "collectionName": "components_project_links",
   "info": {
     "displayName": "links",
-    "icon": "external-link-alt"
+    "icon": "external-link-alt",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "text"
     },
     "link": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

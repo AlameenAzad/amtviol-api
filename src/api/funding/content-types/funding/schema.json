@@ -145,7 +145,7 @@
       "inversedBy": "fundings"
     },
     "ownContribution": {
-      "type": "string"
+      "type": "text"
     },
     "archived": {
       "type": "boolean",

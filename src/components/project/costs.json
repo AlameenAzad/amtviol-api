@@ -8,10 +8,10 @@
   "options": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "text"
     },
     "price": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

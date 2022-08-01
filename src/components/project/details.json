@@ -16,7 +16,7 @@
       "required": true
     },
     "valuesAndBenefits": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "partner": {

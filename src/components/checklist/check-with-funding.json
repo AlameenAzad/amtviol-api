@@ -1,25 +1,27 @@
 {
   "collectionName": "components_checklist_check_with_fundings",
   "info": {
-    "displayName": "checkWithFunding"
+    "displayName": "checkWithFunding",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "text"
     },
     "text": {
       "type": "text"
     },
     "file": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "active": {
       "type": "boolean"

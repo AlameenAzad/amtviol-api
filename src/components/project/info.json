@@ -8,7 +8,7 @@
   "options": {},
   "attributes": {
     "location": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
