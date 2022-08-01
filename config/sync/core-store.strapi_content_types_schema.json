@@ -2019,7 +2019,7 @@
           "inversedBy": "fundings"
         },
         "ownContribution": {
-          "type": "string"
+          "type": "text"
         },
         "archived": {
           "type": "boolean",
@@ -2205,7 +2205,7 @@
             "inversedBy": "fundings"
           },
           "ownContribution": {
-            "type": "string"
+            "type": "text"
           },
           "archived": {
             "type": "boolean",
@@ -2559,7 +2559,7 @@
       "pluginOptions": {},
       "attributes": {
         "title": {
-          "type": "string",
+          "type": "text",
           "required": true,
           "unique": true
         },
@@ -2714,7 +2714,7 @@
         "pluginOptions": {},
         "attributes": {
           "title": {
-            "type": "string",
+            "type": "text",
             "required": true,
             "unique": true
           },
