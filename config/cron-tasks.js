@@ -84,8 +84,8 @@ module.exports = {
               to: user.email,
               from: process.env.EMAIL_AUTH,
               replyTo: process.env.EMAIL_AUTH,
-              subject: `The funding ${funding.title} is about to expire`,
-              html: `As an Admin you are being notified that in 30 days the funding "${funding.title}" will expire.`,
+              subject: `Die Fördermittel ${funding.title} läuft demnächst aus`,
+              html: `Als Administrator werden Sie darüber informiert, dass in 30 Tagen die Fördermittel "${funding.title}" ausläuft.`,
             });
           }
         }
@@ -100,8 +100,8 @@ module.exports = {
               to: user.email,
               from: process.env.EMAIL_AUTH,
               replyTo: process.env.EMAIL_AUTH,
-              subject: `The funding ${funding.title} is about to expire`,
-              html: `As a User you are being notified that in 180 days the funding "${funding.title}" will expire. For your project "${project.title}"`,
+              subject: `Die Fördermittel ${funding.title} läuft demnächst aus`,
+              html: `Als Nutzer werden Sie darüber informiert, dass in 180 Tagen die Fördermittel "${funding.title}" abläuft. Für Ihr Projekt "${project.title}"`,
             });
           }
         }

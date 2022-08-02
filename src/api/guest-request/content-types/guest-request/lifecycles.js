@@ -22,8 +22,8 @@ module.exports = {
           to: user.email,
           from: process.env.EMAIL_AUTH,
           replyTo: process.env.EMAIL_AUTH,
-          subject: `A new request to join the platoform`,
-          html: `${params.data.email} is requesting to join the platoform.`,
+          subject: `Ein neuer Antrag auf Teilnahme an der Plattform`,
+          html: `${params.data.email} bittet darum, der Plattform beizutreten.`,
         });
       }
     }

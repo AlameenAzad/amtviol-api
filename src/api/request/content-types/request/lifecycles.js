@@ -33,8 +33,8 @@ module.exports = {
         to: document.owner.email,
         from: process.env.EMAIL_AUTH,
         replyTo: process.env.EMAIL_AUTH,
-        subject: `New request to ${params.data.type} ${type}: ${document.title}`,
-        html: `${userRequesting.fullName} is requesting to ${params.data.type} your ${type}: ${document.title} `,
+        subject: `Neuer Antrag an ${params.data.type} ${type}: ${document.title}`,
+        html: `${userRequesting.fullName} bittet um ${params.data.type} Ihr ${type}: ${document.title} `,
       });
     }
   },

@@ -89,7 +89,7 @@ module.exports = (plugin, env) => {
       to: ctx.request.body.email,
       from: process.env.EMAIL_AUTH,
       replyTo: process.env.EMAIL_AUTH,
-      subject: "Welcome to Amt-Viol",
+      subject: "Willkommen bei förderscouting-plattform",
       html:
         ctx.request.body.message +
         "<br/><p>" +

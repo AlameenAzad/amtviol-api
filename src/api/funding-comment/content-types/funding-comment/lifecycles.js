@@ -33,8 +33,8 @@ module.exports = {
           to: user.email,
           from: process.env.EMAIL_AUTH,
           replyTo: process.env.EMAIL_AUTH,
-          subject: `A new comment added to a funding`,
-          html: `${userRequesting.fullName} has added the followign comment to funding: ${document.title} <br /><br /> Comment:<br />${params.data.comment}.`,
+          subject: `Ein neuer Kommentar zu einer Fördermittel hinzugefügt`,
+          html: `${userRequesting.fullName} hat den folgenden Kommentar zur Fördermittel hinzugefügt: ${document.title} <br /><br /> Kommentar:<br />${params.data.comment}.`,
         });
       }
     }
