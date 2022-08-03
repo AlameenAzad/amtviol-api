@@ -13,8 +13,8 @@ module.exports = ({ env }) => ({
         // ... any custom nodemailer options
       },
       settings: {
-        defaultFrom: "Alameen.Azad@kruscheCompany.com",
-        defaultReplyTo: "Alameen.Azad@kruscheCompany.com",
+        defaultFrom: env("DEF_FROM", "Alameen.Azad@kruscheCompany.com"),
+        defaultReplyTo: env("DEF_REPLYTO", "Alameen.Azad@kruscheCompany.com"),
       },
     },
   },
