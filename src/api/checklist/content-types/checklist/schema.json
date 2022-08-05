@@ -14,7 +14,8 @@
   "attributes": {
     "title": {
       "type": "text",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "ideaProvider": {
       "type": "enumeration",

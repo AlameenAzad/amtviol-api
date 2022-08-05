@@ -1578,7 +1578,8 @@
       "attributes": {
         "title": {
           "type": "text",
-          "required": true
+          "required": true,
+          "unique": true
         },
         "ideaProvider": {
           "type": "enumeration",
@@ -1740,7 +1741,8 @@
         "attributes": {
           "title": {
             "type": "text",
-            "required": true
+            "required": true,
+            "unique": true
           },
           "ideaProvider": {
             "type": "enumeration",
@@ -2882,7 +2884,8 @@
           "type": "enumeration",
           "enum": [
             "edit",
-            "view"
+            "view",
+            "duplicate"
           ],
           "required": true
         },
@@ -2954,7 +2957,8 @@
             "type": "enumeration",
             "enum": [
               "edit",
-              "view"
+              "view",
+              "duplicate"
             ],
             "required": true
           }

@@ -40,7 +40,8 @@
       "type": "enumeration",
       "enum": [
         "edit",
-        "view"
+        "view",
+        "duplicate"
       ],
       "required": true
     }
