@@ -107,7 +107,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       try {
         await strapi
           .controller("api::project.project")
-          .duplicateProject(ctx, request);
+          .duplicateProjectFromRequest(ctx, request);
       } catch (e) {
         console.log(e);
       }
@@ -126,7 +126,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       try {
         await strapi
           .controller("api::checklist.checklist")
-          .duplicateChecklist(ctx, request);
+          .duplicateChecklistFromRequest(ctx, request);
       } catch (e) {
         console.log(e);
       }

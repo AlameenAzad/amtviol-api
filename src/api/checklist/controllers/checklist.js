@@ -318,16 +318,39 @@ module.exports = createCoreController(
       );
       return entries;
     },
-    async duplicateChecklist(ctx, payload) {
+    async duplicateChecklistFromRequest(ctx, payload) {
       var ctxlikeObj = {
         state: JSON.parse(JSON.stringify(ctx.state)),
         params: JSON.parse(JSON.stringify(ctx.params)),
       };
       ctxlikeObj.params.id = payload.checklist.id;
       var checklist = await this.findOne(ctxlikeObj);
-      // console.log(checklist);
+      payload.checklist = checklist;
+      await this.duplicateChecklist(payload);
+    },
+    async duplicateChecklistIfVisibilityAll(ctx) {
+      var userInfo = await strapi
+        .controller("api::user-detail.user-detail")
+        .find(ctx);
+      var payload = {
+        user: {
+          id: ctx.state.user.id,
+          user_detail: userInfo,
+        },
+      };
+      var checklist = await this.findOne(ctx);
+      payload.checklist = checklist;
+      if (checklist.visibility == "all users")
+        return await this.duplicateChecklist(payload);
+      else
+        return ctx.unauthorized(
+          "Sie können diese Durchführungs-Checkliste nicht duplizieren"
+        );
+    },
+    async duplicateChecklist(payload) {
+      var checklist = payload.checklist;
       checklist.title =
-        `[Duplikat][${payload.user.username}] ` + checklist.title;
+        `[Duplikat][${payload.user.user_detail.fullName}] ` + checklist.title;
       checklist.published = false;
       checklist.visibility = "only for me";
       checklist.archived = false;

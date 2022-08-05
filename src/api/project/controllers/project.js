@@ -300,14 +300,37 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     );
     return entries;
   },
-  async duplicateProject(ctx, payload) {
+  async duplicateProjectFromRequest(ctx, payload) {
     var ctxlikeObj = {
       state: JSON.parse(JSON.stringify(ctx.state)),
       params: JSON.parse(JSON.stringify(ctx.params)),
     };
     ctxlikeObj.params.id = payload.project.id;
     var project = await this.findOne(ctxlikeObj);
-    project.title = `[Duplikat][${payload.user.username}] ` + project.title;
+    payload.project = project;
+    await this.duplicateProject(payload);
+  },
+  async duplicateProjectIfVisibilityAll(ctx) {
+    var userInfo = await strapi
+      .controller("api::user-detail.user-detail")
+      .find(ctx);
+    var payload = {
+      user: {
+        id: ctx.state.user.id,
+        user_detail: userInfo,
+      },
+    };
+    var project = await this.findOne(ctx);
+    payload.project = project;
+    if (project.visibility == "all users")
+      return await this.duplicateProject(payload);
+    else
+      return ctx.unauthorized("Sie können diese Projektidee nicht duplizieren");
+  },
+  async duplicateProject(payload) {
+    var project = payload.project;
+    project.title =
+      `[Duplikat][${payload.user.user_detail.fullName}] ` + project.title;
     project.published = false;
     project.visibility = "only for me";
     project.archived = false;
@@ -330,8 +353,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         data: project,
       });
     } catch (e) {
-      console.log("e", e);
-      console.log("eror", e.details.errors);
+      return e;
     }
   },
   async filterObject(obj, keys, except) {
