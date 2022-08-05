@@ -273,7 +273,15 @@ module.exports = createCoreController(
         {
           fields: ["title"],
           populate: {
-            owner: { fields: ["username"] },
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
+                },
+              },
+            },
             categories: { fields: ["title"] },
             editors: { fields: ["username"] },
             readers: { fields: ["username"] },
