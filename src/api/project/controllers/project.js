@@ -293,8 +293,12 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     return entries;
   },
   async duplicateProject(ctx, payload) {
-    ctx.params.id = payload.project.id;
-    var project = await this.findOne(ctx);
+    var ctxlikeObj = {
+      state: JSON.parse(JSON.stringify(ctx.state)),
+      params: JSON.parse(JSON.stringify(ctx.params)),
+    };
+    ctxlikeObj.params.id = payload.project.id;
+    var project = await this.findOne(ctxlikeObj);
     project.title = `[Duplikat][${payload.user.username}] ` + project.title;
     project.published = false;
     project.visibility = "only for me";

@@ -77,8 +77,8 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
         ctx.request.body.data.approved == true
       )
         this.acceptChecklist(ctx, request[0]);
-      // const response = await super.delete(ctx);
-      // return response;
+      const response = await super.delete(ctx);
+      return response;
     } else
       return ctx.unauthorized(
         `Sie sind nicht berechtigt, diese Anfrage anzunehmen.`
@@ -107,7 +107,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       try {
         await strapi
           .controller("api::project.project")
-          .duplicateProject(JSON.parse(JSON.stringify(ctx)), request);
+          .duplicateProject(ctx, request);
       } catch (e) {
         console.log(e);
       }

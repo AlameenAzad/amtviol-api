@@ -312,8 +312,8 @@ module.exports = createCoreController(
     },
     async duplicateChecklist(ctx, payload) {
       var ctxlikeObj = {
-        state: ctx.state,
-        params: ctx.params,
+        state: JSON.parse(JSON.stringify(ctx.state)),
+        params: JSON.parse(JSON.stringify(ctx.params)),
       };
       ctxlikeObj.params.id = payload.checklist.id;
       var checklist = await this.findOne(ctxlikeObj);
