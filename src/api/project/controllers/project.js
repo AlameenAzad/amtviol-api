@@ -60,7 +60,15 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
           ],
         },
         populate: {
-          owner: { fields: ["username"] },
+          owner: {
+            fields: ["username"],
+            populate: {
+              user_detail: {
+                fields: ["fullName"],
+                populate: { municipality: { fields: ["title"] } },
+              },
+            },
+          },
           categories: { fields: ["title"] },
           editors: { fields: ["username"] },
           readers: { fields: ["username"] },
@@ -283,5 +291,54 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       }
     );
     return entries;
+  },
+  async duplicateProject(ctx, payload) {
+    ctx.params.id = payload.project.id;
+    var project = await this.findOne(ctx);
+    project.title = `[Duplikat][${payload.user.username}] ` + project.title;
+    project.published = false;
+    project.visibility = "only for me";
+    project.archived = false;
+    project.owner = payload.user.id;
+    project.municipality = payload.user.user_detail.municipality.id;
+    var keys = [
+      "createdAt",
+      "updatedAt",
+      "editors",
+      "readers",
+      "media",
+      "files",
+      "id",
+      "requests",
+    ];
+    var except = ["categories", "tags", "fundingGuideline"];
+    var project = await this.filterObject(project, keys, except);
+    try {
+      return await strapi.entityService.create("api::project.project", {
+        data: project,
+      });
+    } catch (e) {
+      console.log("e", e);
+      console.log("eror", e.details.errors);
+    }
+  },
+  async filterObject(obj, keys, except) {
+    for (var i in obj) {
+      if (!obj.hasOwnProperty(i) || except.includes(i)) continue;
+      if (
+        obj[i] != null &&
+        typeof obj[i] == "object" &&
+        !Array.isArray(obj[i])
+      ) {
+        await this.filterObject(obj[i], keys, except);
+      } else if (keys.includes(i) || obj[i] == null) {
+        delete obj[i];
+      } else if (Array.isArray(obj[i])) {
+        for (const ele of obj[i]) {
+          await this.filterObject(ele, keys, except);
+        }
+      }
+    }
+    return obj;
   },
 }));

@@ -20,7 +20,15 @@ module.exports = createCoreController(
         {
           fields: ["title", "visibility", "published", "ideaProvider"],
           populate: {
-            owner: { fields: ["username"] },
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
+                },
+              },
+            },
             categories: { fields: ["title"] },
             tags: { fields: ["title"] },
             editors: { fields: ["username"] },
@@ -301,6 +309,45 @@ module.exports = createCoreController(
         }
       );
       return entries;
+    },
+    async duplicateChecklist(ctx, payload) {
+      var ctxlikeObj = {
+        state: ctx.state,
+        params: ctx.params,
+      };
+      ctxlikeObj.params.id = payload.checklist.id;
+      var checklist = await this.findOne(ctxlikeObj);
+      // console.log(checklist);
+      checklist.title =
+        `[Duplikat][${payload.user.username}] ` + checklist.title;
+      checklist.published = false;
+      checklist.visibility = "only for me";
+      checklist.archived = false;
+      checklist.owner = payload.user.id;
+      checklist.municipality = payload.user.user_detail.municipality.id;
+      var keys = [
+        "createdAt",
+        "updatedAt",
+        "editors",
+        "readers",
+        "media",
+        "files",
+        "file",
+        "id",
+        "requests",
+      ];
+      var except = ["categories", "tags", "fundings", "project"];
+      checklist = await strapi
+        .controller("api::project.project")
+        .filterObject(checklist, keys, except);
+      try {
+        return await strapi.entityService.create("api::checklist.checklist", {
+          data: checklist,
+        });
+      } catch (e) {
+        console.log("e", e);
+        console.log("eror", e.details.errors);
+      }
     },
   })
 );

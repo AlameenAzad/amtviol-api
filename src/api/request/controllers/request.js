@@ -21,6 +21,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
     } else return await super.create(ctx);
   },
   async update(ctx) {
+    console.log(ctx.params.id);
     const request = await strapi.entityService.findMany(
       "api::request.request",
       {
@@ -47,7 +48,15 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
           ],
         },
         populate: {
-          user: { fields: "username" },
+          user: {
+            fields: "username",
+            populate: {
+              user_detail: {
+                fields: ["fullName"],
+                populate: { municipality: { fields: ["title"] } },
+              },
+            },
+          },
           funding: { fields: ["title"] },
           project: { fields: ["title"] },
           checklist: { fields: ["title"] },
@@ -57,25 +66,25 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
     // return request;
     if (request.length > 0) {
       if (request[0].funding != null && ctx.request.body.data.approved == true)
-        this.acceptFunding(request[0]);
+        this.acceptFunding(ctx, request[0]);
       else if (
         request[0].project != null &&
         ctx.request.body.data.approved == true
       )
-        this.acceptProject(request[0]);
+        this.acceptProject(ctx, request[0]);
       else if (
         request[0].checklist != null &&
         ctx.request.body.data.approved == true
       )
-        this.acceptChecklist(request[0]);
-      const response = await super.delete(ctx);
-      return response;
+        this.acceptChecklist(ctx, request[0]);
+      // const response = await super.delete(ctx);
+      // return response;
     } else
       return ctx.unauthorized(
         `Sie sind nicht berechtigt, diese Anfrage anzunehmen.`
       );
   },
-  async acceptFunding(request) {
+  async acceptFunding(ctx, request) {
     if (request.type == "edit")
       await strapi.db.connection.context.raw(
         `INSERT INTO fundings_editors_links VALUES (${request.funding.id}, ${request.user.id});`
@@ -85,7 +94,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
         `INSERT INTO fundings_readers_links VALUES (${request.funding.id}, ${request.user.id});`
       );
   },
-  async acceptProject(request) {
+  async acceptProject(ctx, request) {
     if (request.type == "edit")
       await strapi.db.connection.context.raw(
         `INSERT INTO projects_editors_links VALUES (${request.project.id}, ${request.user.id});`
@@ -94,8 +103,17 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       await strapi.db.connection.context.raw(
         `INSERT INTO projects_readers_links VALUES (${request.project.id}, ${request.user.id});`
       );
+    else if (request.type == "duplicate") {
+      try {
+        await strapi
+          .controller("api::project.project")
+          .duplicateProject(JSON.parse(JSON.stringify(ctx)), request);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   },
-  async acceptChecklist(request) {
+  async acceptChecklist(ctx, request) {
     if (request.type == "edit")
       await strapi.db.connection.context.raw(
         `INSERT INTO checklists_editors_links VALUES (${request.checklist.id}, ${request.user.id});`
@@ -104,5 +122,14 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
       await strapi.db.connection.context.raw(
         `INSERT INTO checklists_readers_links VALUES (${request.checklist.id}, ${request.user.id});`
       );
+    else if (request.type == "duplicate") {
+      try {
+        await strapi
+          .controller("api::checklist.checklist")
+          .duplicateChecklist(ctx, request);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   },
 }));
