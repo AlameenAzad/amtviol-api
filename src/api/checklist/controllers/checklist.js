@@ -326,7 +326,7 @@ module.exports = createCoreController(
       ctxlikeObj.params.id = payload.checklist.id;
       var checklist = await this.findOne(ctxlikeObj);
       payload.checklist = checklist;
-      await this.duplicateChecklist(payload);
+      await this.duplicateChecklist(ctx, payload);
     },
     async duplicateChecklistIfVisibilityAll(ctx) {
       var userInfo = await strapi
@@ -341,13 +341,13 @@ module.exports = createCoreController(
       var checklist = await this.findOne(ctx);
       payload.checklist = checklist;
       if (checklist.visibility == "all users")
-        return await this.duplicateChecklist(payload);
+        return await this.duplicateChecklist(ctx, payload);
       else
         return ctx.unauthorized(
           "Sie können diese Durchführungs-Checkliste nicht duplizieren"
         );
     },
-    async duplicateChecklist(payload) {
+    async duplicateChecklist(ctx, payload) {
       var checklist = payload.checklist;
       checklist.title =
         `[Duplikat][${payload.user.user_detail.fullName}] ` + checklist.title;
@@ -376,8 +376,7 @@ module.exports = createCoreController(
           data: checklist,
         });
       } catch (e) {
-        console.log("e", e);
-        console.log("eror", e.details.errors);
+        return ctx.badRequest(e);
       }
     },
   })
