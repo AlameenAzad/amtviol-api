@@ -8,7 +8,6 @@ module.exports = {
         fields: ["title"],
       }
     );
-    console.log(document);
     const userRequesting = await strapi
       .controller("api::user-detail.user-detail")
       .find({ state: { user: { id: params.data.owner } } });

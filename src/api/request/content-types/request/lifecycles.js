@@ -25,7 +25,6 @@ module.exports = {
       }
     );
     if (document.owner.user_detail.notifications.email.dataRequests == true) {
-      console.log(document.owner.user_detail.notifications);
       const userRequesting = await strapi
         .controller("api::user-detail.user-detail")
         .find({ state: { user: { id: params.data.user.id } } });

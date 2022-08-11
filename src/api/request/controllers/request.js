@@ -21,7 +21,6 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
     } else return await super.create(ctx);
   },
   async update(ctx) {
-    console.log(ctx.params.id);
     const request = await strapi.entityService.findMany(
       "api::request.request",
       {
@@ -109,7 +108,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
           .controller("api::project.project")
           .duplicateProjectFromRequest(ctx, request);
       } catch (e) {
-        console.log(e);
+        return ctx.badRequest(e);
       }
     }
   },
@@ -128,7 +127,7 @@ module.exports = createCoreController("api::request.request", ({ strapi }) => ({
           .controller("api::checklist.checklist")
           .duplicateChecklistFromRequest(ctx, request);
       } catch (e) {
-        console.log(e);
+        return ctx.badRequest(e);
       }
     }
   },
