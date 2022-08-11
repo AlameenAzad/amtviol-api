@@ -169,7 +169,8 @@
           "published",
           "readers",
           "media",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []
@@ -301,7 +302,8 @@
           "published",
           "readers",
           "media",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []
@@ -427,7 +429,8 @@
           "published",
           "readers",
           "media",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []
@@ -741,7 +744,8 @@
           "municipality",
           "files",
           "fundingGuideline",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []
@@ -782,7 +786,8 @@
           "municipality",
           "files",
           "fundingGuideline",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []
@@ -817,7 +822,8 @@
           "municipality",
           "files",
           "fundingGuideline",
-          "archived"
+          "archived",
+          "dupFrom"
         ]
       },
       "conditions": []

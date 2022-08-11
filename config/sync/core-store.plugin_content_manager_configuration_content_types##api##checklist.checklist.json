@@ -322,6 +322,21 @@
           "sortable": true
         }
       },
+      "dupFrom": {
+        "edit": {
+          "label": "dupFrom",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "dupFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -442,7 +457,8 @@
         "municipality",
         "owner",
         "fundings",
-        "readers"
+        "readers",
+        "dupFrom"
       ]
     }
   },

@@ -126,6 +126,11 @@
       "type": "boolean",
       "default": false,
       "private": true
+    },
+    "dupFrom": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
     }
   }
 }

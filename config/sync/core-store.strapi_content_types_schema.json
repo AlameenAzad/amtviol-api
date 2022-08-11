@@ -1699,6 +1699,11 @@
           "default": false,
           "private": true
         },
+        "dupFrom": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::checklist.checklist"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1861,6 +1866,11 @@
             "type": "boolean",
             "default": false,
             "private": true
+          },
+          "dupFrom": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::checklist.checklist"
           }
         },
         "kind": "collectionType"
@@ -2675,6 +2685,11 @@
           "default": false,
           "private": true
         },
+        "dupFrom": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::project.project"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2829,6 +2844,11 @@
             "type": "boolean",
             "default": false,
             "private": true
+          },
+          "dupFrom": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::project.project"
           }
         },
         "kind": "collectionType"

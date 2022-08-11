@@ -25,7 +25,7 @@
       "action": "api::checklist.checklist.delete"
     },
     {
-      "action": "api::checklist.checklist.duplicateChecklistIfVisibilityAll"
+      "action": "api::checklist.checklist.duplicateChecklistDirectly"
     },
     {
       "action": "api::checklist.checklist.find"
@@ -94,7 +94,7 @@
       "action": "api::project.project.delete"
     },
     {
-      "action": "api::project.project.duplicateProjectIfVisibilityAll"
+      "action": "api::project.project.duplicateProjectDirectly"
     },
     {
       "action": "api::project.project.find"
