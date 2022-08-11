@@ -187,6 +187,12 @@ module.exports = createCoreController(
           "Sie sind nicht berechtigt, die Details dieser Checkliste anzuzeigen"
         );
       entry = entry[0];
+      const count = await strapi.db.query("api::checklist.checklist").count({
+        where: {
+          dupFrom: entry.id,
+        },
+      });
+      entry.duplications = count;
       var contactInfo = await strapi
         .controller("api::user-detail.user-detail")
         .getContactPersonInfo(ctx, entry.owner.user_detail.id);
@@ -328,7 +334,8 @@ module.exports = createCoreController(
       payload.checklist = checklist;
       await this.duplicateChecklist(ctx, payload);
     },
-    async duplicateChecklistIfVisibilityAll(ctx) {
+    //dups a checklist if visibility is set to "all users" or is owner
+    async duplicateChecklistDirectly(ctx) {
       var userInfo = await strapi
         .controller("api::user-detail.user-detail")
         .find(ctx);
@@ -340,7 +347,10 @@ module.exports = createCoreController(
       };
       var checklist = await this.findOne(ctx);
       payload.checklist = checklist;
-      if (checklist.visibility == "all users")
+      if (
+        checklist.visibility == "all users" ||
+        checklist.owner.id == ctx.state.user.id
+      )
         return await this.duplicateChecklist(ctx, payload);
       else
         return ctx.unauthorized(
@@ -349,6 +359,7 @@ module.exports = createCoreController(
     },
     async duplicateChecklist(ctx, payload) {
       var checklist = payload.checklist;
+      var checklistID = payload.checklist.id;
       checklist.title =
         `[Duplikat][${payload.user.user_detail.fullName}] ` + checklist.title;
       checklist.published = false;
@@ -371,6 +382,7 @@ module.exports = createCoreController(
       checklist = await strapi
         .controller("api::project.project")
         .filterObject(checklist, keys, except);
+      checklist.dupFrom = { id: checklistID };
       try {
         return await strapi.entityService.create("api::checklist.checklist", {
           data: checklist,
@@ -378,6 +390,17 @@ module.exports = createCoreController(
       } catch (e) {
         return ctx.badRequest(e);
       }
+    },
+    async totalDuplications() {
+      return await strapi.db.query("api::checklist.checklist").count({
+        where: {
+          dupFrom: {
+            id: {
+              $notNull: true,
+            },
+          },
+        },
+      });
     },
   })
 );

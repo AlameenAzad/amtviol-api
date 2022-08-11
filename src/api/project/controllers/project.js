@@ -154,8 +154,13 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       return ctx.unauthorized(
         "Sie sind nicht berechtigt, diese Projektdetails anzuzeigen"
       );
-
     entry = entry[0];
+    const count = await strapi.db.query("api::project.project").count({
+      where: {
+        dupFrom: entry.id,
+      },
+    });
+    entry.duplications = count;
     var contactInfo = await strapi
       .controller("api::user-detail.user-detail")
       .getContactPersonInfo(ctx, entry.owner.user_detail.id);
@@ -310,7 +315,8 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     payload.project = project;
     await this.duplicateProject(ctx, payload);
   },
-  async duplicateProjectIfVisibilityAll(ctx) {
+  //dups a project if visibility is set to "all users" or is owner
+  async duplicateProjectDirectly(ctx) {
     var userInfo = await strapi
       .controller("api::user-detail.user-detail")
       .find(ctx);
@@ -322,13 +328,17 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     };
     var project = await this.findOne(ctx);
     payload.project = project;
-    if (project.visibility == "all users")
+    if (
+      project.visibility == "all users" ||
+      project.owner.id == ctx.state.user.id
+    )
       return await this.duplicateProject(ctx, payload);
     else
       return ctx.unauthorized("Sie können diese Projektidee nicht duplizieren");
   },
   async duplicateProject(ctx, payload) {
     var project = payload.project;
+    var projectID = payload.project.id;
     project.title =
       `[Duplikat][${payload.user.user_detail.fullName}] ` + project.title;
     project.published = false;
@@ -348,6 +358,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     ];
     var except = ["categories", "tags", "fundingGuideline"];
     var project = await this.filterObject(project, keys, except);
+    project.dupFrom = { id: projectID };
     try {
       return await strapi.entityService.create("api::project.project", {
         data: project,
@@ -355,6 +366,17 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     } catch (e) {
       return ctx.badRequest(e);
     }
+  },
+  async totalDuplications() {
+    return await strapi.db.query("api::project.project").count({
+      where: {
+        dupFrom: {
+          id: {
+            $notNull: true,
+          },
+        },
+      },
+    });
   },
   async filterObject(obj, keys, except) {
     for (var i in obj) {

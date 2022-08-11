@@ -72,7 +72,6 @@ module.exports = createCoreController(
       }
     },
     async countAndGetTransferableData(ctx) {
-      console.log(ctx.request);
       const fromId =
         ctx.request != undefined && ctx.request.query.hasOwnProperty("fromId")
           ? ctx.request.query.fromId
@@ -291,6 +290,12 @@ module.exports = createCoreController(
       return { fundings, projects, checklists };
     },
     async statsAndArchive(ctx) {
+      const projectTotalDups = await strapi
+        .controller("api::project.project")
+        .totalDuplications();
+      const checklistTotalDups = await strapi
+        .controller("api::checklist.checklist")
+        .totalDuplications();
       let stats = {
         fundings: await strapi.controller("api::funding.funding").count(),
         archivedFundings: await strapi
@@ -306,6 +311,9 @@ module.exports = createCoreController(
         municipalities: await strapi
           .controller("api::municipality.municipality")
           .count(),
+        totalDups: projectTotalDups + checklistTotalDups,
+        projectTotalDups,
+        checklistTotalDups,
       };
       let table = {
         projects: await strapi

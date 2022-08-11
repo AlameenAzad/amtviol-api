@@ -4,7 +4,7 @@ module.exports = {
       // Path defined with a URL parameter
       method: "POST",
       path: "/checklist/duplicate/:id",
-      handler: "checklist.duplicateChecklistIfVisibilityAll",
+      handler: "checklist.duplicateChecklistDirectly",
     },
   ],
 };
