@@ -306,6 +306,9 @@ module.exports = createCoreController(
           .controller("api::project.project")
           .countArchived(),
         checklists: await strapi.controller("api::checklist.checklist").count(),
+        archivedChecklists: await strapi
+          .controller("api::checklist.checklist")
+          .countArchived(),
         users: await strapi.db.query("plugin::users-permissions.user").count(),
         watchlists: await strapi.controller("api::watchlist.watchlist").count(),
         municipalities: await strapi
@@ -433,6 +436,32 @@ module.exports = createCoreController(
         .controller("api::checklist.checklist")
         .publicFind();
       return { projects, fundings, checklists };
+    },
+    async updateFileCaption(ctx) {
+      const { id } = ctx.params;
+      const { caption, docId, type } = ctx.request.body;
+      if (!["funding", "project", "checklist"].includes(type))
+        return ctx.badRequest("Invalid type.");
+      ctx.params.id = docId;
+      const hasEditRole = await strapi
+        .controller(`api::${type}.${type}`)
+        .hasEditRole(ctx);
+      if (hasEditRole) {
+        const fileData = await strapi.plugins["upload"].services.upload.findOne(
+          id
+        );
+        return await strapi.plugins["upload"].services.upload.updateFileInfo(
+          id,
+          {
+            name: fileData.name,
+            alternativeText: fileData.alternativeText,
+            caption,
+          }
+        );
+      } else
+        return ctx.unauthorized(
+          "Sie sind nicht berechtigt, diese Aktion durchzuführen"
+        );
     },
   })
 );

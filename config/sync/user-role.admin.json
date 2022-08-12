@@ -145,6 +145,9 @@
       "action": "api::user-detail.user-detail.notification"
     },
     {
+      "action": "api::user-detail.user-detail.publicData"
+    },
+    {
       "action": "api::user-detail.user-detail.statsAndArchive"
     },
     {
@@ -152,6 +155,9 @@
     },
     {
       "action": "api::user-detail.user-detail.update"
+    },
+    {
+      "action": "api::user-detail.user-detail.updateFileCaption"
     },
     {
       "action": "api::watchlist.watchlist.create"

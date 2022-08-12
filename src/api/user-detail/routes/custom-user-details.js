@@ -30,5 +30,11 @@ module.exports = {
       path: "/public/data",
       handler: "user-detail.publicData",
     },
+    {
+      // Path defined with a URL parameter
+      method: "PUT",
+      path: "/upload/caption/:id",
+      handler: "user-detail.updateFileCaption",
+    },
   ],
 };
