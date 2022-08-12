@@ -339,4 +339,13 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     );
     return entries;
   },
+  async hasEditRole(ctx) {
+    const funding = await this.findOne(ctx);
+    if (
+      funding.editors.includes(ctx.state.user.id) ||
+      funding.owner.id == ctx.state.user.id
+    )
+      return true;
+    else return false;
+  },
 }));

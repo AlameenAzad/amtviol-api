@@ -300,6 +300,13 @@ module.exports = createCoreController(
       );
       return entries;
     },
+    async countArchived() {
+      return await strapi.db.query("api::checklist.checklist").count({
+        where: {
+          archived: true,
+        },
+      });
+    },
     async publicFind() {
       const entries = await strapi.entityService.findMany(
         "api::checklist.checklist",
@@ -401,6 +408,15 @@ module.exports = createCoreController(
           },
         },
       });
+    },
+    async hasEditRole(ctx) {
+      const checklist = await this.findOne(ctx);
+      if (
+        checklist.editors.includes(ctx.state.user.id) ||
+        checklist.owner.id == ctx.state.user.id
+      )
+        return true;
+      else return false;
     },
   })
 );

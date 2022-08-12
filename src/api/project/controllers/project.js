@@ -397,4 +397,13 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     }
     return obj;
   },
+  async hasEditRole(ctx) {
+    const project = await this.findOne(ctx);
+    if (
+      project.editors.includes(ctx.state.user.id) ||
+      project.owner.id == ctx.state.user.id
+    )
+      return true;
+    else return false;
+  },
 }));
