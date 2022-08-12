@@ -67,7 +67,13 @@ module.exports = createCoreController(
           populate: {
             owner: { fields: ["username"] },
             project: {
-              fields: ["title", "visibility"],
+              fields: [
+                "title",
+                "visibility",
+                "published",
+                "plannedStart",
+                "plannedEnd",
+              ],
               populate: {
                 owner: { fields: ["username"] },
                 categories: { fields: ["title"] },
