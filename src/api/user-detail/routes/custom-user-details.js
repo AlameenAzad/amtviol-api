@@ -29,6 +29,9 @@ module.exports = {
       method: "GET",
       path: "/public/data",
       handler: "user-detail.publicData",
+      config: {
+        middlewares: ["plugin::users-permissions.rateLimit"],
+      },
     },
     {
       // Path defined with a URL parameter
