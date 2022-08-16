@@ -56,11 +56,26 @@ module.exports = createCoreController(
         : ctx.badRequest(`Benutzer hat keinen Eintrag`);
     },
     async transferData(ctx) {
-      const user = await this.checkUserAvailable(ctx.params.id);
+      const fromId =
+        ctx.request != undefined && ctx.request.query.hasOwnProperty("fromId")
+          ? ctx.request.query.fromId
+          : ctx.state.user.id;
+      const toUser = await this.checkUserAvailable(ctx.params.id);
+      const fromUser = await this.checkUserAvailable(fromId);
+      if (
+        toUser &&
+        fromUser &&
+        toUser.user_detail.municipality.id !=
+          fromUser.user_detail.municipality.id
+      ) {
+        return ctx.unauthorized(
+          "Sie können keine Daten an eine andere Verwaltung als Ihre eigene übertragen"
+        );
+      }
       if (
         ctx.state.user.role.type == "admin" ||
         ctx.state.user.id != ctx.params.id ||
-        user != null
+        toUser != null
       ) {
         const dataAndCount = await this.countAndGetTransferableData(ctx); // for owner transfer
         await this.transferDataToUser(ctx, dataAndCount);
@@ -167,6 +182,9 @@ module.exports = createCoreController(
         id,
         {
           fields: ["username"],
+          populate: {
+            user_detail: { populate: { municipality: { fields: ["title"] } } },
+          },
         }
       );
 
