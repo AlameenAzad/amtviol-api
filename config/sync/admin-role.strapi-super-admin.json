@@ -437,6 +437,48 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::data-concent.data-concent",
+      "properties": {
+        "fields": [
+          "cKey",
+          "consent",
+          "user"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::data-concent.data-concent",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::data-concent.data-concent",
+      "properties": {
+        "fields": [
+          "cKey",
+          "consent",
+          "user"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::data-concent.data-concent",
+      "properties": {
+        "fields": [
+          "cKey",
+          "consent",
+          "user"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::funding-comment.funding-comment",
       "properties": {
         "fields": [
@@ -1224,7 +1266,8 @@
           "fundingReader",
           "watchlists",
           "checklistReader",
-          "fundingEditor"
+          "fundingEditor",
+          "data_concents"
         ]
       },
       "conditions": []
@@ -1256,7 +1299,8 @@
           "fundingReader",
           "watchlists",
           "checklistReader",
-          "fundingEditor"
+          "fundingEditor",
+          "data_concents"
         ]
       },
       "conditions": []
@@ -1282,7 +1326,8 @@
           "fundingReader",
           "watchlists",
           "checklistReader",
-          "fundingEditor"
+          "fundingEditor",
+          "data_concents"
         ]
       },
       "conditions": []

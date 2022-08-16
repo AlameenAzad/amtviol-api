@@ -267,6 +267,21 @@
           "sortable": false
         }
       },
+      "data_concents": {
+        "edit": {
+          "label": "data_concents",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "data_concents",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -340,7 +355,8 @@
         "checklistEditor",
         "fundingReader",
         "checklistReader",
-        "fundingEditor"
+        "fundingEditor",
+        "data_concents"
       ]
     }
   },

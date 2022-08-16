@@ -1282,6 +1282,12 @@
           "target": "api::funding.funding",
           "mappedBy": "editors"
         },
+        "data_concents": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::data-concent.data-concent",
+          "mappedBy": "user"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1437,6 +1443,12 @@
             "relation": "manyToMany",
             "target": "api::funding.funding",
             "mappedBy": "editors"
+          },
+          "data_concents": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::data-concent.data-concent",
+            "mappedBy": "user"
           }
         },
         "kind": "collectionType"
@@ -1881,6 +1893,100 @@
       "uid": "api::checklist.checklist",
       "apiName": "checklist",
       "globalId": "Checklist",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::data-concent.data-concent": {
+      "kind": "collectionType",
+      "collectionName": "data_concents",
+      "info": {
+        "singularName": "data-concent",
+        "pluralName": "data-concents",
+        "displayName": "dataConcent",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "cKey": {
+          "type": "text",
+          "required": true,
+          "unique": true
+        },
+        "consent": {
+          "type": "json"
+        },
+        "user": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "plugin::users-permissions.user",
+          "inversedBy": "data_concents"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "data_concents",
+        "info": {
+          "singularName": "data-concent",
+          "pluralName": "data-concents",
+          "displayName": "dataConcent",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "cKey": {
+            "type": "text",
+            "required": true,
+            "unique": true
+          },
+          "consent": {
+            "type": "json"
+          },
+          "user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "data_concents"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "data-concent",
+      "connection": "default",
+      "uid": "api::data-concent.data-concent",
+      "apiName": "data-concent",
+      "globalId": "DataConcent",
       "actions": {},
       "lifecycles": {}
     },

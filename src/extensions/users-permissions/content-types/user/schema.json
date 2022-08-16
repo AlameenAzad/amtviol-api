@@ -112,6 +112,12 @@
       "relation": "manyToMany",
       "target": "api::funding.funding",
       "mappedBy": "editors"
+    },
+    "data_concents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::data-concent.data-concent",
+      "mappedBy": "user"
     }
   }
 }

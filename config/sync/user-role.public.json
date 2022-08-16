@@ -4,6 +4,15 @@
   "type": "public",
   "permissions": [
     {
+      "action": "api::data-concent.data-concent.findOne"
+    },
+    {
+      "action": "api::data-concent.data-concent.generateKey"
+    },
+    {
+      "action": "api::data-concent.data-concent.update"
+    },
+    {
       "action": "api::guest-request.guest-request.create"
     },
     {
