@@ -9,12 +9,12 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController(
   "api::data-concent.data-concent",
   ({ strapi }) => ({
-    async findOne(ctx) {
+    async findKey(ctx) {
       return await strapi.entityService.findMany(
         "api::data-concent.data-concent",
         {
           filters: {
-            cKey: ctx.request.params.id,
+            cKey: ctx.request.body.data.key,
           },
         }
       );

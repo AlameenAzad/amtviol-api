@@ -4,7 +4,7 @@
   "type": "public",
   "permissions": [
     {
-      "action": "api::data-concent.data-concent.findOne"
+      "action": "api::data-concent.data-concent.findKey"
     },
     {
       "action": "api::data-concent.data-concent.generateKey"

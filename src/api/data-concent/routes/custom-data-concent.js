@@ -9,5 +9,14 @@ module.exports = {
         middlewares: ["plugin::users-permissions.rateLimit"],
       },
     },
+    {
+      // Path defined with a URL parameter
+      method: "POST",
+      path: "/concent/findKey",
+      handler: "data-concent.findKey",
+      config: {
+        middlewares: ["plugin::users-permissions.rateLimit"],
+      },
+    },
   ],
 };
