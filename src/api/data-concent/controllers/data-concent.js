@@ -10,7 +10,6 @@ module.exports = createCoreController(
   "api::data-concent.data-concent",
   ({ strapi }) => ({
     async findOne(ctx) {
-      console.log(ctx.request.params.id);
       return await strapi.entityService.findMany(
         "api::data-concent.data-concent",
         {
@@ -47,7 +46,6 @@ module.exports = createCoreController(
     async generateKey(ctx) {
       const bcrypt = require("bcryptjs");
       var key = await this.generateRandomKey(30);
-      console.log(ctx.request.headers["user-agent"]);
       key += ctx.request.headers["user-agent"];
       const hashedKey = await bcrypt.hash(key, 10);
       ctx.request.body.data = {
