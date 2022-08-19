@@ -24,4 +24,15 @@ module.exports = ({ env }) => ({
       prefix: "/api/",
     },
   },
+  "config-sync": {
+    enabled: true,
+    config: {
+      syncDir: "config/sync/",
+      minify: true,
+      excludedConfig: [
+        "core-store.plugin_users-permissions_grant",
+        "core-store.plugin_users-permissions_email",
+      ],
+    },
+  },
 });
