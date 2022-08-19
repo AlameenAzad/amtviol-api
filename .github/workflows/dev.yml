@@ -9,9 +9,10 @@ jobs:
     runs-on:
       - self-hosted
       - dev
+    defaults:
+      run:
+        working-directory: /mnt/HC_Volume_18048612/api-clone/amtviold-api
     steps:
-      - name: switch to backend directory
-        run: cd /mnt/HC_Volume_18048612/api-clone/amtviold-api
       - name: reset repo to HEAD and git pull
         run: git reset --hard && git pull
       - name: Install Dependencies
