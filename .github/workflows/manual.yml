@@ -1,0 +1,24 @@
+name: DEV DEPLOYMENT
+
+on:
+  push:
+    branches: ["dev"]
+
+jobs:
+  build:
+    runs-on:
+      - self-hosted
+      - dev
+    steps:
+      - name: switch to backend directory
+        run: cd /mnt/HC_Volume_18048612/api-clone/amtviold-api
+      - name: reset repo to HEAD and git pull
+        run: git reset --hard && git pull
+      - name: Install Dependencies
+        run: yarn
+      - name: Build dashboard in production
+        run: NODE_ENV=production yarn build
+      - name: import latest config sync
+        run: yarn cs import --yes
+      - name: restart service
+        run: pm2 restart server
