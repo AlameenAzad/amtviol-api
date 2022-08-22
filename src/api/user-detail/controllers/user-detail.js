@@ -219,16 +219,15 @@ module.exports = createCoreController(
       return entry == null;
     },
     async dataOverview(ctx) {
-      return await strapi.entityService.findOne("api::test2.test2");
-      // if (ctx.state.user.role.type == "admin")
-      //   return await this.adminOverview(ctx);
-      // let projects = await strapi.controller("api::project.project").find(ctx);
-      // let fundings = await strapi.controller("api::funding.funding").find(ctx);
-      // let checklists = await strapi
-      //   .controller("api::checklist.checklist")
-      //   .find(ctx);
+      if (ctx.state.user.role.type == "admin")
+        return await this.adminOverview(ctx);
+      let projects = await strapi.controller("api::project.project").find(ctx);
+      let fundings = await strapi.controller("api::funding.funding").find(ctx);
+      let checklists = await strapi
+        .controller("api::checklist.checklist")
+        .find(ctx);
 
-      // return { fundings, projects, checklists };
+      return { fundings, projects, checklists };
     },
     async adminOverview(ctx) {
       let projects = await strapi.entityService.findMany(
