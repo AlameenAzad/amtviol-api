@@ -65,5 +65,31 @@ module.exports = createCoreController(
       const randomString = randomArray.join("");
       return randomString;
     },
+    //This function will recieve errors from Sentry webhooks and will send them to Slack
+    //I didn't want to create new content types :D sorry but this seems a good place for it
+    async relayErrorsToSlack(ctx) {
+      const axios = require("axios");
+      const body = ctx.request.body;
+      var slackMsg = {
+        attachments: [
+          {
+            pretext: `<${body["url"]}|Exception>\r\nproject: ${body["project_slug"]}\r\nenvironment: ${body["event"]["environment"]}\r\ndetail: ${body["event"]["metadata"]["filename"]} ${body["event"]["metadata"]["function"]}`,
+            color: "#D00000",
+            fields: [
+              {
+                title: `${body["event"]["title"]}`,
+                value: `${body["culprit"]}`,
+              },
+            ],
+          },
+        ],
+      };
+      var slackReply = await axios.post(
+        "https://hooks.slack.com/services/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",
+        slackMsg
+      );
+      console.log(slackReply.data);
+      return "all good";
+    },
   })
 );

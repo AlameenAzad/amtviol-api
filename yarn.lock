@@ -1801,6 +1801,13 @@
     "@strapi/utils" "4.2.3"
     lodash "4.17.21"
 
+"@strapi/plugin-sentry@^4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-sentry/-/plugin-sentry-4.3.4.tgz#4bd297c96b1839c25291214c296dbf5ed9bbd773"
+  integrity sha512-MKNfVWR2iPRea+22cWr88/h6gHPBbKl3l8e7C0ErApz6nXJwcw3AiXHA9Q79nhd6KU7q2yeyL5hS+fnUq7S9Dw==
+  dependencies:
+    "@sentry/node" "6.19.6"
+
 "@strapi/plugin-upload@4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-upload/-/plugin-upload-4.2.3.tgz#a45d430cf3211104ab446368c8446f8c0f347130"
