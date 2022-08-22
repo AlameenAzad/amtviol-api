@@ -14,7 +14,7 @@ jobs:
         working-directory: /mnt/HC_Volume_18048759/amtviol-api
     steps:
       - name: reset repo to HEAD and git pull
-        run: git reset --hard && git pull
+        run: git reset --hard && git pull origin stage
       - name: Install Dependencies
         run: yarn
       - name: Build dashboard in production
