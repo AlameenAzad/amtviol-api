@@ -14,7 +14,7 @@ jobs:
         working-directory: /mnt/HC_Volume_18048612/api-clone/amtviold-api
     steps:
       - name: reset repo to HEAD and git pull
-        run: git reset --hard && git pull
+        run: git checkout dev && git reset --hard && git pull
       - name: Install Dependencies
         run: yarn
       - name: Build dashboard in production
