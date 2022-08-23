@@ -18,5 +18,11 @@ module.exports = {
         middlewares: ["plugin::users-permissions.rateLimit"],
       },
     },
+    {
+      // Path defined with a URL parameter
+      method: "POST",
+      path: "/sentry/error/:authz",
+      handler: "data-concent.relayErrorsToSlack",
+    },
   ],
 };
