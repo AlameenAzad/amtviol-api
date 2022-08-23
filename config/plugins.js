@@ -32,6 +32,7 @@ module.exports = ({ env }) => ({
       excludedConfig: [
         "core-store.plugin_users-permissions_grant",
         "core-store.plugin_users-permissions_email",
+        "core-store.plugin_users-permissions_advanced",
       ],
     },
   },
