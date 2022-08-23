@@ -30,8 +30,8 @@ module.exports = {
       if (user.user_detail.notifications.email.userJoinRequest == true) {
         strapi.plugins["email"].services.email.send({
           to: user.email,
-          from: process.env.EMAIL_AUTH,
-          replyTo: process.env.EMAIL_AUTH,
+          from: process.env.DEF_FROM,
+          replyTo: process.env.DEF_FROM,
           subject: `Ein neuer Kommentar zu einer Fördermittel hinzugefügt`,
           html: `${userRequesting.fullName} hat den folgenden Kommentar zur Fördermittel hinzugefügt: ${document.title} <br /><br /> Kommentar:<br />${params.data.comment}.`,
         });

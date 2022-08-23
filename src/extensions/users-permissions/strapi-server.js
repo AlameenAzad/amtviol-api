@@ -87,8 +87,8 @@ module.exports = (plugin, env) => {
   async function sendPwdInEmail(ctx, resetPasswordToken) {
     await strapi.plugins["email"].services.email.send({
       to: ctx.request.body.email,
-      from: process.env.EMAIL_AUTH,
-      replyTo: process.env.EMAIL_AUTH,
+      from: process.env.DEF_FROM,
+      replyTo: process.env.DEF_FROM,
       subject: "Willkommen bei förderscouting-plattform",
       html:
         ctx.request.body.message +
