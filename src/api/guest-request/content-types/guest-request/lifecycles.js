@@ -20,8 +20,8 @@ module.exports = {
       if (user.user_detail.notifications.email.userJoinRequest == true) {
         strapi.plugins["email"].services.email.send({
           to: user.email,
-          from: process.env.EMAIL_AUTH,
-          replyTo: process.env.EMAIL_AUTH,
+          from: process.env.DEF_FROM,
+          replyTo: process.env.DEF_FROM,
           subject: `Ein neuer Antrag auf Teilnahme an der Plattform`,
           html: `${params.data.email} bittet darum, der Plattform beizutreten.`,
         });
