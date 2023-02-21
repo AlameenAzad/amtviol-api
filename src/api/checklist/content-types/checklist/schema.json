@@ -71,11 +71,10 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "fundings": {
+    "funding": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::funding.funding",
-      "mappedBy": "checklist"
+      "relation": "oneToOne",
+      "target": "api::funding.funding"
     },
     "initialContact": {
       "displayName": "initialContact",
