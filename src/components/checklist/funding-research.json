@@ -1,7 +1,8 @@
 {
   "collectionName": "components_checklist_funding_researches",
   "info": {
-    "displayName": "fundingResearch"
+    "displayName": "fundingResearch",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -34,6 +35,11 @@
       "type": "component",
       "repeatable": false,
       "component": "checklist.check-guildlines"
+    },
+    "selectFunding": {
+      "type": "component",
+      "repeatable": false,
+      "component": "funding.select-funding"
     }
   }
 }
