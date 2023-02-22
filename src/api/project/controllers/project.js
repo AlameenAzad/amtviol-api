@@ -146,6 +146,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
         media: "*",
         files: "*",
         fundingGuideline: { fields: ["title"] },
+        checklists: { fields: ["title"] },
         municipality: { fields: ["title", "location"] },
       },
       filters,
