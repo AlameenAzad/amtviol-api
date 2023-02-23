@@ -131,6 +131,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::project.project"
+    },
+    "checklists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::checklist.checklist"
     }
   }
 }

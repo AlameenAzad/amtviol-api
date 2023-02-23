@@ -126,12 +126,6 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "fundingReader"
     },
-    "checklist": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::checklist.checklist",
-      "inversedBy": "fundings"
-    },
     "projects": {
       "type": "relation",
       "relation": "manyToMany",
