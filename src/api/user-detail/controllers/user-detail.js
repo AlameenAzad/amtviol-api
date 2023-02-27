@@ -283,7 +283,7 @@ module.exports = createCoreController(
       let checklists = await strapi.entityService.findMany(
         "api::checklist.checklist",
         {
-          fields: ["title"],
+          fields: ["title", "createdAt"],
           populate: {
             owner: {
               fields: ["username"],
