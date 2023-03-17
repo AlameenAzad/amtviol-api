@@ -30,8 +30,8 @@ module.exports = {
         .find({ state: { user: { id: params.data.user.id } } });
       await strapi.plugins["email"].services.email.send({
         to: document.owner.email,
-        from: process.env.EMAIL_AUTH,
-        replyTo: process.env.EMAIL_AUTH,
+        from: process.env.DEF_FROM,
+        replyTo: process.env.DEF_FROM,
         subject: `Neuer Antrag an ${params.data.type} ${type}: ${document.title}`,
         html: `${userRequesting.fullName} bittet um ${params.data.type} Ihr ${type}: ${document.title} `,
       });

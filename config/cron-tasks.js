@@ -82,8 +82,8 @@ module.exports = {
           if (user.user_detail.notifications.email.fundingExpiry == true) {
             await strapi.plugins["email"].services.email.send({
               to: user.email,
-              from: process.env.EMAIL_AUTH,
-              replyTo: process.env.EMAIL_AUTH,
+              from: process.env.DEF_FROM,
+              replyTo: process.env.DEF_FROM,
               subject: `Die Fördermittel ${funding.title} läuft demnächst aus`,
               html: `Als Administrator werden Sie darüber informiert, dass in 30 Tagen die Fördermittel "${funding.title}" ausläuft.`,
             });
@@ -98,8 +98,8 @@ module.exports = {
           if (user.user_detail.notifications.email.fundingExpiry == true) {
             await strapi.plugins["email"].services.email.send({
               to: user.email,
-              from: process.env.EMAIL_AUTH,
-              replyTo: process.env.EMAIL_AUTH,
+              from: process.env.DEF_FROM,
+              replyTo: process.env.DEF_FROM,
               subject: `Die Fördermittel ${funding.title} läuft demnächst aus`,
               html: `Als Nutzer werden Sie darüber informiert, dass in 180 Tagen die Fördermittel "${funding.title}" abläuft. Für Ihr Projekt "${project.title}"`,
             });

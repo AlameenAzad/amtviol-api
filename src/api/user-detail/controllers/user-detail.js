@@ -233,7 +233,7 @@ module.exports = createCoreController(
       let projects = await strapi.entityService.findMany(
         "api::project.project",
         {
-          fields: ["title", "plannedStart", "plannedEnd"],
+          fields: ["title", "plannedStart", "plannedEnd", "createdAt"],
           populate: {
             owner: {
               fields: ["username"],
@@ -258,7 +258,7 @@ module.exports = createCoreController(
       let fundings = await strapi.entityService.findMany(
         "api::funding.funding",
         {
-          fields: ["title", "plannedStart", "plannedEnd"],
+          fields: ["title", "plannedStart", "plannedEnd", "createdAt"],
           populate: {
             owner: {
               fields: ["username"],
@@ -283,7 +283,7 @@ module.exports = createCoreController(
       let checklists = await strapi.entityService.findMany(
         "api::checklist.checklist",
         {
-          fields: ["title"],
+          fields: ["title", "createdAt"],
           populate: {
             owner: {
               fields: ["username"],

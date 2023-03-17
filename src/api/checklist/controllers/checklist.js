@@ -135,7 +135,7 @@ module.exports = createCoreController(
             media: "*",
             tags: { fields: ["title"] },
             info: "*",
-            fundings: { fields: ["title"] },
+            funding: { fields: ["title"] },
             municipality: { fields: ["title", "location"] },
             project: { fields: ["title"] },
             initialContact: {
@@ -157,6 +157,7 @@ module.exports = createCoreController(
                 checkForFunding: { populate: "*" },
                 checkWithFunding: { populate: "*" },
                 checkGuildlines: { populate: "*" },
+                selectFunding: { populate: "*" },
               },
             },
             preparationOfProject: {
