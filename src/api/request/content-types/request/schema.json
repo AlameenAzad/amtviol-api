@@ -44,6 +44,14 @@
         "duplicate"
       ],
       "required": true
+    },
+    "guest": {
+      "type": "boolean",
+      "default": false
+    },
+    "leaderApproved": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

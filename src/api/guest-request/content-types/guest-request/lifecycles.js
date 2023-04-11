@@ -27,5 +27,43 @@ module.exports = {
         });
       }
     }
+
+    //find the municipality leader based on the municipality of the user who requested to join the platform and send an email
+    const leader = await strapi.entityService.findMany(
+      "plugin::users-permissions.user",
+      {
+        fields: ["username", "email"],
+        populate: {
+          role: { fields: ["type"] },
+          user_detail: {
+            populate: {
+              notifications: { populate: { email: "*" } },
+              municipality: true,
+            },
+          },
+        },
+        filters: {
+          role: { type: "leader" },
+          user_detail: {
+            municipality: {
+              id: params.data.municipality.id,
+            },
+          },
+        },
+      }
+    );
+
+    if (
+      leader &&
+      leader[0].user_detail.notifications.email.userJoinRequest == true
+    ) {
+      strapi.plugins["email"].services.email.send({
+        to: leader[0].email,
+        from: process.env.DEF_FROM,
+        replyTo: process.env.DEF_FROM,
+        subject: `Ein neuer Antrag auf Teilnahme an der Plattform`,
+        html: `${params.data.email} bittet darum, der Plattform beizutreten.`,
+      });
+    }
   },
 };
