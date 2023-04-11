@@ -227,6 +227,25 @@ module.exports = createCoreController(
         .controller("api::checklist.checklist")
         .find(ctx);
 
+      // let projects = await strapi.entityService.findMany(
+      //   "api::project.project",
+      //   {
+      //     populate: "*",
+      //   }
+      // );
+      // let fundings = await strapi.entityService.findMany(
+      //   "api::funding.funding",
+      //   {
+      //     populate: "*",
+      //   }
+      // );
+      // let checklists = await strapi.entityService.findMany(
+      //   "api::checklist.checklist",
+      //   {
+      //     populate: "*",
+      //   }
+      // );
+
       return { fundings, projects, checklists };
     },
     async adminOverview(ctx) {
@@ -352,60 +371,118 @@ module.exports = createCoreController(
     async notification(ctx) {
       const userDetails = await this.find(ctx);
       const userSettings = userDetails.notifications.app;
-      if (userSettings.dataRequests == true)
-        var requests = await strapi.entityService.findMany(
-          "api::request.request",
-          {
-            fields: ["approved", "type", "created_at"],
-            filters: {
-              approved: false,
-              $or: [
-                {
-                  project: {
-                    owner: ctx.state.user.id,
-                  },
+      if (userSettings.dataRequests == true) {
+        if (ctx.state.user.role.type == "leader") {
+          var requests = await strapi.entityService.findMany(
+            "api::request.request",
+            {
+              fields: ["approved", "type", "created_at"],
+              filters: {
+                approved: false,
+                guest: true,
+                leaderApproved: false,
+              },
+              populate: {
+                user: { fields: "username" },
+                funding: {
+                  fields: ["title"],
+                  populate: { owner: { fields: ["username"] } },
                 },
-                {
-                  project: {
-                    editors: ctx.state.user.id,
-                  },
+                project: {
+                  fields: ["title"],
+                  populate: { owner: { fields: ["username"] } },
                 },
-                {
-                  funding: {
-                    owner: ctx.state.user.id,
-                  },
+                checklist: {
+                  fields: ["title"],
+                  populate: { owner: { fields: ["username"] } },
                 },
-                {
-                  funding: {
-                    editors: ctx.state.user.id,
-                  },
-                },
-                {
-                  checklist: {
-                    owner: ctx.state.user.id,
-                  },
-                },
-                {
-                  checklist: {
-                    editors: ctx.state.user.id,
-                  },
-                },
+              },
+            }
+          );
+        } else {
+          var requests = await strapi.entityService.findMany(
+            "api::request.request",
+            {
+              fields: [
+                "approved",
+                "type",
+                "created_at",
+                "guest",
+                "leaderApproved",
               ],
-            },
-            populate: {
-              user: { fields: "username" },
-              funding: { fields: ["title"] },
-              project: { fields: ["title"] },
-              checklist: { fields: ["title"] },
-            },
-          }
-        );
-      if (ctx.state.user.role.type == "admin") {
+              filters: {
+                approved: false,
+                $or: [
+                  {
+                    project: {
+                      owner: ctx.state.user.id,
+                    },
+                  },
+                  {
+                    project: {
+                      editors: ctx.state.user.id,
+                    },
+                  },
+                  {
+                    funding: {
+                      owner: ctx.state.user.id,
+                    },
+                  },
+                  {
+                    funding: {
+                      editors: ctx.state.user.id,
+                    },
+                  },
+                  {
+                    checklist: {
+                      owner: ctx.state.user.id,
+                    },
+                  },
+                  {
+                    checklist: {
+                      editors: ctx.state.user.id,
+                    },
+                  },
+                ],
+                $or: [
+                  {
+                    guest: true,
+                  },
+                ],
+                $and: [
+                  {
+                    leaderApproved: true,
+                  },
+                ],
+              },
+              populate: {
+                user: { fields: "username" },
+                funding: { fields: ["title"] },
+                project: { fields: ["title"] },
+                checklist: { fields: ["title"] },
+              },
+            }
+          );
+        }
+      }
+      if (
+        ctx.state.user.role.type == "admin" ||
+        ctx.state.user.role.type == "leader"
+      ) {
         if (userSettings.userJoinRequest == true)
           var guest = await strapi.entityService.findMany(
-            "api::guest-request.guest-request"
+            "api::guest-request.guest-request",
+            {
+              populate: {
+                municipality: { fields: ["title", "id"] },
+                categories: { fields: ["title", "id"] },
+              },
+            }
           );
-        if (userSettings.fundingComments == true)
+        if (
+          userSettings.fundingComments == true &&
+          ctx.state.user.role.type == "admin"
+        )
           var fundingComments = await strapi.entityService.findMany(
             "api::funding-comment.funding-comment",
             {
@@ -453,7 +530,10 @@ module.exports = createCoreController(
       var checklists = await strapi
         .controller("api::checklist.checklist")
         .publicFind();
-      return { projects, fundings, checklists };
+      var municipalities = await strapi
+        .controller("api::municipality.municipality")
+        .publicFind();
+      return { projects, fundings, checklists, municipalities };
     },
     async updateFileCaption(ctx) {
       const { id } = ctx.params;

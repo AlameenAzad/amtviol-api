@@ -8,84 +8,175 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::project.project", ({ strapi }) => ({
   async find(ctx) {
-    const entries = await strapi.entityService.findMany(
-      "api::project.project",
-      {
-        fields: [
-          "title",
-          "visibility",
-          "published",
-          "plannedStart",
-          "plannedEnd",
-        ],
-        filters: {
-          $or: [
-            {
-              owner: { id: ctx.state.user.id },
-            },
-            {
-              editors: { id: ctx.state.user.id },
-            },
-            {
-              readers: { id: ctx.state.user.id },
-            },
-            {
-              visibility: "listed only",
-            },
-            {
-              visibility: "all users",
-            },
+    if (ctx.state.user.role.type != "guest") {
+      const entries = await strapi.entityService.findMany(
+        "api::project.project",
+        {
+          fields: [
+            "title",
+            "visibility",
+            "published",
+            "plannedStart",
+            "plannedEnd",
           ],
-          $and: [
-            {
-              $or: [
-                {
-                  published: true,
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+            ],
+          },
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
                 },
-                {
-                  $and: [
-                    {
-                      published: false,
-                    },
-                    {
-                      owner: { id: ctx.state.user.id },
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              archived: false,
-            },
-          ],
-        },
-        populate: {
-          owner: {
-            fields: ["username"],
-            populate: {
-              user_detail: {
-                fields: ["fullName"],
-                populate: { municipality: { fields: ["title"] } },
               },
             },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+            municipality: { fields: ["title", "id"] },
           },
-          categories: { fields: ["title"] },
-          editors: { fields: ["username"] },
-          readers: { fields: ["username"] },
-          tags: { fields: ["title"] },
-        },
-      }
-    );
-    // Used to be for prioritizing visibility over roles
-    // var projects = entries.filter((project) => {
-    //   if (
-    //     project.visibility == "only for me" &&
-    //     project.owner.id == ctx.state.user.id
-    //   )
-    //     return project;
-    //   else if (project.visibility != "only for me") return project;
-    // });
-    return entries;
+        }
+      );
+      // Used to be for prioritizing visibility over roles
+      // var projects = entries.filter((project) => {
+      //   if (
+      //     project.visibility == "only for me" &&
+      //     project.owner.id == ctx.state.user.id
+      //   )
+      //     return project;
+      //   else if (project.visibility != "only for me") return project;
+      // });
+      return entries;
+    } else {
+      // find the current user municipality in user-detail
+      var userMunicipality = await strapi.entityService.findMany(
+        "api::user-detail.user-detail",
+        {
+          filters: {
+            user: { id: ctx.state.user.id },
+          },
+          populate: {
+            municipality: { fields: ["title", "id"] },
+          },
+        }
+      );
+      userMunicipality = userMunicipality[0].municipality.id;
+      const entries = await strapi.entityService.findMany(
+        "api::project.project",
+        {
+          fields: [
+            "title",
+            "visibility",
+            "published",
+            "plannedStart",
+            "plannedEnd",
+          ],
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+              {
+                municipality: { id: userMunicipality },
+              },
+            ],
+          },
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
+                },
+              },
+            },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+            municipality: { fields: ["title", "id"] },
+          },
+        }
+      );
+
+      return entries;
+    }
   },
   async findOne(ctx) {
     let filters = {
@@ -132,6 +223,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       delete filters.$or;
       delete filters.$and;
     }
+
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
         owner: { fields: ["username"], populate: { user_detail: "*" } },

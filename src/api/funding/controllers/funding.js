@@ -8,75 +8,165 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
   async find(ctx) {
-    const entries = await strapi.entityService.findMany(
-      "api::funding.funding",
-      {
-        fields: [
-          "title",
-          "visibility",
-          "published",
-          "plannedStart",
-          "plannedEnd",
-        ],
-        populate: {
-          owner: {
-            fields: ["username"],
-            populate: {
-              user_detail: {
-                fields: ["fullName"],
-                populate: { municipality: { fields: ["title"] } },
+    if (ctx.state.user.role.type != "guest") {
+      const entries = await strapi.entityService.findMany(
+        "api::funding.funding",
+        {
+          fields: [
+            "title",
+            "visibility",
+            "published",
+            "plannedStart",
+            "plannedEnd",
+          ],
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
+                },
               },
             },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+            municipality: { fields: ["title", "id"] },
           },
-          categories: { fields: ["title"] },
-          editors: { fields: ["username"] },
-          readers: { fields: ["username"] },
-          tags: { fields: ["title"] },
-        },
-        filters: {
-          $or: [
-            {
-              owner: { id: ctx.state.user.id },
-            },
-            {
-              editors: { id: ctx.state.user.id },
-            },
-            {
-              readers: { id: ctx.state.user.id },
-            },
-            {
-              visibility: "listed only",
-            },
-            {
-              visibility: "all users",
-            },
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+            ],
+          },
+        }
+      );
+      return entries;
+    } else {
+      // find the current user municipality in user-detail
+      var userMunicipality = await strapi.entityService.findMany(
+        "api::user-detail.user-detail",
+        {
+          filters: {
+            user: { id: ctx.state.user.id },
+          },
+          populate: {
+            municipality: { fields: ["title", "id"] },
+          },
+        }
+      );
+      userMunicipality = userMunicipality[0].municipality.id;
+      const entries = await strapi.entityService.findMany(
+        "api::funding.funding",
+        {
+          fields: [
+            "title",
+            "visibility",
+            "published",
+            "plannedStart",
+            "plannedEnd",
           ],
-          $and: [
-            {
-              $or: [
-                {
-                  published: true,
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: { municipality: { fields: ["title"] } },
                 },
-                {
-                  $and: [
-                    {
-                      published: false,
-                    },
-                    {
-                      owner: { id: ctx.state.user.id },
-                    },
-                  ],
-                },
-              ],
+              },
             },
-            {
-              archived: false,
-            },
-          ],
-        },
-      }
-    );
-    return entries;
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+            municipality: { fields: ["title", "id"] },
+          },
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+              {
+                municipality: { id: userMunicipality },
+              },
+            ],
+          },
+        }
+      );
+      return entries;
+    }
   },
   async findOne(ctx) {
     let filters = {
