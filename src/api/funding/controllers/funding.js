@@ -158,9 +158,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
               {
                 archived: false,
               },
-              {
-                municipality: { id: userMunicipality },
-              },
             ],
           },
         }
