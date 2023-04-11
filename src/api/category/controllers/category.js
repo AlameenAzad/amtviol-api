@@ -10,6 +10,13 @@ module.exports = createCoreController(
   "api::category.category",
   ({ strapi }) => ({
     async find(ctx) {
+      if (!ctx.state.user) {
+        const entries = await strapi.entityService.findMany(
+          "api::category.category",
+          filterObj
+        );
+        return entries;
+      }
       const role = ctx.state.user.role.type;
       var filterObj = {
         fields: ["title"],
