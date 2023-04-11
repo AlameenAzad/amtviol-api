@@ -53,6 +53,12 @@
       "relation": "oneToMany",
       "target": "api::funding.funding",
       "mappedBy": "municipality"
+    },
+    "guest_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::guest-request.guest-request",
+      "mappedBy": "municipality"
     }
   }
 }

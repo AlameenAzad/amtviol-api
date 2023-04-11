@@ -43,12 +43,40 @@ module.exports = (plugin, env) => {
 
     ctx.body = users.map((user) => sanitizeOutput(user));
   };
+
   plugin.controllers.user.create = async (ctx) => {
+    var roles = new Object();
+    roles.admin = 3;
+    roles.user = 1;
+    roles.guest = 4;
+    roles.leader = 5;
+
     ctx.request.body.password = generatePassword();
     try {
       await strapi.controller("plugin::users-permissions.auth").register(ctx);
       const resetPasswordToken = crypto.randomBytes(64).toString("hex");
       await sendPwdInEmail(ctx, resetPasswordToken);
+
+      const leaderExists = await strapi.db
+        .query("plugin::users-permissions.user")
+        .findOne({
+          populate: {
+            role: true,
+            user_detail: true,
+          },
+          where: {
+            role: { id: roles.leader },
+            user_detail: {
+              municipality: ctx.request.body.municipality,
+            },
+          },
+        });
+
+      if (leaderExists)
+        return ctx.badRequest(
+          "Es kann nur eine*n Koordinator*in pro Verwaltung geben."
+        );
+
       var user_detail = await strapi.entityService.create(
         "api::user-detail.user-detail",
         {
@@ -56,6 +84,8 @@ module.exports = (plugin, env) => {
             invite: true,
             municipality: ctx.request.body.municipality,
             fullName: ctx.request.body.username,
+            location: ctx.request.body.location,
+            categories: ctx.request.body.categories,
             notifications: {
               email: {},
               app: {},
@@ -73,6 +103,7 @@ module.exports = (plugin, env) => {
       return ctx.badRequest(error.message, error.details);
     }
   };
+
   function generatePassword() {
     //generate random secure password at least 8 characters long
     var length = 16,
@@ -99,26 +130,107 @@ module.exports = (plugin, env) => {
     });
   }
   plugin.controllers.user.update = async (ctx) => {
-    if (ctx.request.body.data.role == "admin")
-      ctx.request.body.data.role = { id: 3 };
-    if (ctx.request.body.data.role == "user")
-      ctx.request.body.data.role = { id: 1 };
-    const user = await strapi
-      .service("plugin::users-permissions.user")
-      .edit(ctx.params.id, ctx.request.body.data);
-    const payload = ctx;
-    payload.state.user.id = ctx.params.id;
-    payload.request.body.admin = true;
-    const userDetail = await strapi
-      .controller("api::user-detail.user-detail")
-      .getEntry(payload, false);
-    const entry = await strapi.db.query("api::user-detail.user-detail").update({
-      where: { id: userDetail[0].id },
-      data: {
-        municipality: ctx.request.body.data.municipality.id,
-      },
-    });
-    return entry;
+    var roles = new Object();
+    roles.admin = 3;
+    roles.user = 1;
+    roles.guest = 4;
+    roles.leader = 5;
+
+    ctx.request.body.data.role = { id: roles[ctx.request.body.data.role] };
+    var role = ctx.request.body.data.role.id;
+
+    const leaderExists = await strapi.db
+      .query("plugin::users-permissions.user")
+      .findOne({
+        populate: {
+          role: true,
+          user_detail: true,
+        },
+        where: {
+          role: { id: roles.leader },
+          user_detail: { municipality: ctx.request.body.data.municipality.id },
+        },
+      });
+
+    //If updating user is leader
+    if (leaderExists && leaderExists.email == ctx.request.body.data.email) {
+      console.log("leaderExists");
+      const user = await strapi
+        .service("plugin::users-permissions.user")
+        .edit(ctx.params.id, ctx.request.body.data);
+      const payload = ctx;
+      payload.state.user.id = ctx.params.id;
+      payload.request.body.admin = true;
+      const userDetail = await strapi
+        .controller("api::user-detail.user-detail")
+        .getEntry(payload, false);
+      const entry = await strapi.db
+        .query("api::user-detail.user-detail")
+        .update({
+          where: { id: userDetail[0].id },
+          data: {
+            municipality: ctx.request.body.data.municipality.id,
+          },
+        });
+      return entry;
+    } else {
+      //If there is no leader for this municipality
+      if (!leaderExists) {
+        const user = await strapi
+          .service("plugin::users-permissions.user")
+          .edit(ctx.params.id, ctx.request.body.data);
+        const payload = ctx;
+        payload.state.user.id = ctx.params.id;
+        payload.request.body.admin = true;
+        const userDetail = await strapi
+          .controller("api::user-detail.user-detail")
+          .getEntry(payload, false);
+        const entry = await strapi.db
+          .query("api::user-detail.user-detail")
+          .update({
+            where: { id: userDetail[0].id },
+            data: {
+              municipality: ctx.request.body.data.municipality.id,
+            },
+          });
+        return entry;
+      } else {
+        //If there is a leader for this municipality and updating user is not leader
+        if (
+          leaderExists &&
+          leaderExists.email != ctx.request.body.data.email &&
+          role != 5
+        ) {
+          const user = await strapi
+            .service("plugin::users-permissions.user")
+            .edit(ctx.params.id, ctx.request.body.data);
+          const payload = ctx;
+          payload.state.user.id = ctx.params.id;
+          payload.request.body.admin = true;
+          const userDetail = await strapi
+            .controller("api::user-detail.user-detail")
+            .getEntry(payload, false);
+          const entry = await strapi.db
+            .query("api::user-detail.user-detail")
+            .update({
+              where: { id: userDetail[0].id },
+              data: {
+                municipality: ctx.request.body.data.municipality.id,
+              },
+            });
+          return entry;
+        } else {
+          return ctx.badRequest(
+            "Es kann nur eine*n Koordinator*in pro Verwaltung geben."
+          );
+        }
+      }
+    }
+
+    // if (ctx.request.body.data.role == "admin")
+    //   ctx.request.body.data.role = { id: 3 };
+    // if (ctx.request.body.data.role == "user")
+    //   ctx.request.body.data.role = { id: 1 };
   };
   plugin.controllers.user.destroy = async (ctx) => {
     if (

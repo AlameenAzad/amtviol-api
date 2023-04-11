@@ -4,7 +4,8 @@
   "info": {
     "singularName": "guest-request",
     "pluralName": "guest-requests",
-    "displayName": "guestRequest"
+    "displayName": "guestRequest",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -13,6 +14,24 @@
   "attributes": {
     "email": {
       "type": "email"
+    },
+    "location": {
+      "type": "string",
+      "required": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "municipality": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::municipality.municipality",
+      "inversedBy": "guest_requests"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }
