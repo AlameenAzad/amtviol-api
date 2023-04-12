@@ -59,30 +59,41 @@ module.exports = (plugin, env) => {
 
     ctx.request.body.password = generatePassword();
     try {
-      await strapi.controller("plugin::users-permissions.auth").register(ctx);
-      const resetPasswordToken = crypto.randomBytes(64).toString("hex");
-      await sendPwdInEmail(ctx, resetPasswordToken);
-
-      const leaderExists = await strapi.db
-        .query("plugin::users-permissions.user")
-        .findOne({
-          populate: {
-            role: true,
-            user_detail: true,
-          },
-          where: {
-            role: { id: roles.leader },
+      const leaderExists = await strapi.entityService.findMany(
+        "plugin::users-permissions.user",
+        {
+          fields: ["username", "email"],
+          filters: {
+            role: { type: "leader" },
             user_detail: {
               municipality: ctx.request.body.municipality,
             },
           },
-        });
+          populate: {
+            role: { fields: ["type"] },
+            user_detail: {
+              populate: {
+                notifications: { populate: { email: "*" } },
+                municipality: true,
+              },
+            },
+          },
+        }
+      );
 
-      if (leaderExists)
+      if (
+        leaderExists &&
+        leaderExists.length > 0 &&
+        ctx.request.body.role.id == roles.leader
+      ) {
         return ctx.badRequest(
           "Es kann nur eine*n Koordinator*in pro Verwaltung geben."
         );
+      }
 
+      await strapi.controller("plugin::users-permissions.auth").register(ctx);
+      const resetPasswordToken = crypto.randomBytes(64).toString("hex");
+      await sendPwdInEmail(ctx, resetPasswordToken);
       var user_detail = await strapi.entityService.create(
         "api::user-detail.user-detail",
         {
@@ -100,7 +111,11 @@ module.exports = (plugin, env) => {
         }
       );
       var qdata = { resetPasswordToken, user_detail };
-      if (ctx.request.body.role == "admin") qdata.role = { id: 3 };
+      // if (ctx.request.body.role == "admin") qdata.role = { id: 3 };
+      if (ctx.request.body.role == "Admin") qdata.role = { id: roles.admin };
+      if (ctx.request.body.role == "user") qdata.role = { id: roles.user };
+      if (ctx.request.body.role == "Guest") qdata.role = { id: roles.guest };
+      if (ctx.request.body.role == "Leader") qdata.role = { id: roles.leader };
       await strapi.query("plugin::users-permissions.user").update({
         where: { email: ctx.request.body.email },
         data: qdata,
@@ -149,6 +164,7 @@ module.exports = (plugin, env) => {
     roles.leader = rolesDB.find((x) => x.name == "Leader").id;
 
     ctx.request.body.data.role = { id: roles[ctx.request.body.data.role] };
+
     var role = ctx.request.body.data.role.id;
 
     const leaderExists = await strapi.db
@@ -211,7 +227,7 @@ module.exports = (plugin, env) => {
         if (
           leaderExists &&
           leaderExists.email != ctx.request.body.data.email &&
-          role != 5
+          role != roles.leader
         ) {
           const user = await strapi
             .service("plugin::users-permissions.user")
