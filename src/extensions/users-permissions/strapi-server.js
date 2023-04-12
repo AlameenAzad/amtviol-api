@@ -45,11 +45,17 @@ module.exports = (plugin, env) => {
   };
 
   plugin.controllers.user.create = async (ctx) => {
+    const rolesDB = await strapi.db
+      .query("plugin::users-permissions.role")
+      .findMany({
+        fields: ["name", "id"],
+      });
+
     var roles = new Object();
-    roles.admin = 3;
-    roles.user = 1;
-    roles.guest = 4;
-    roles.leader = 5;
+    roles.admin = rolesDB.find((x) => x.name == "Admin").id;
+    roles.user = rolesDB.find((x) => x.name == "user").id;
+    roles.guest = rolesDB.find((x) => x.name == "Guest").id;
+    roles.leader = rolesDB.find((x) => x.name == "Leader").id;
 
     ctx.request.body.password = generatePassword();
     try {
@@ -130,11 +136,17 @@ module.exports = (plugin, env) => {
     });
   }
   plugin.controllers.user.update = async (ctx) => {
+    const rolesDB = await strapi.db
+      .query("plugin::users-permissions.role")
+      .findMany({
+        fields: ["name", "id"],
+      });
+
     var roles = new Object();
-    roles.admin = 3;
-    roles.user = 1;
-    roles.guest = 4;
-    roles.leader = 5;
+    roles.admin = rolesDB.find((x) => x.name == "Admin").id;
+    roles.user = rolesDB.find((x) => x.name == "user").id;
+    roles.guest = rolesDB.find((x) => x.name == "Guest").id;
+    roles.leader = rolesDB.find((x) => x.name == "Leader").id;
 
     ctx.request.body.data.role = { id: roles[ctx.request.body.data.role] };
     var role = ctx.request.body.data.role.id;

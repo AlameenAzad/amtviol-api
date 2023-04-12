@@ -81,8 +81,8 @@ module.exports = createCoreController(
         );
         return entries;
       } else {
-        // find the current user municipality in user-detail
-        var userMunicipality = await strapi.entityService.findMany(
+        // find the current user location in user-detail
+        var userLocation = await strapi.entityService.findMany(
           "api::user-detail.user-detail",
           {
             filters: {
@@ -93,7 +93,7 @@ module.exports = createCoreController(
             },
           }
         );
-        userMunicipality = userMunicipality[0].municipality.id;
+        userLocation = userLocation[0].location;
 
         const entries = await strapi.entityService.findMany(
           "api::checklist.checklist",
@@ -105,7 +105,9 @@ module.exports = createCoreController(
                 populate: {
                   user_detail: {
                     fields: ["fullName"],
-                    populate: { municipality: { fields: ["title"] } },
+                    populate: {
+                      municipality: { fields: ["title"] },
+                    },
                   },
                 },
               },
@@ -114,6 +116,7 @@ module.exports = createCoreController(
               editors: { fields: ["username"] },
               readers: { fields: ["username"] },
               municipality: { fields: ["title", "id"] },
+              info: "*",
             },
             filters: {
               $or: [
@@ -155,7 +158,9 @@ module.exports = createCoreController(
                   archived: false,
                 },
                 {
-                  municipality: { id: userMunicipality },
+                  info: {
+                    location: userLocation,
+                  },
                 },
               ],
             },

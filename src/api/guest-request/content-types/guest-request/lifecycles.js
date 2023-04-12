@@ -33,6 +33,14 @@ module.exports = {
       "plugin::users-permissions.user",
       {
         fields: ["username", "email"],
+        filters: {
+          role: { type: "leader" },
+          user_detail: {
+            municipality: {
+              id: params.data.municipality.id,
+            },
+          },
+        },
         populate: {
           role: { fields: ["type"] },
           user_detail: {
@@ -42,19 +50,12 @@ module.exports = {
             },
           },
         },
-        filters: {
-          role: { type: "leader" },
-          user_detail: {
-            municipality: {
-              id: params.data.municipality.id,
-            },
-          },
-        },
       }
     );
 
     if (
       leader &&
+      leader.length > 0 &&
       leader[0].user_detail.notifications.email.userJoinRequest == true
     ) {
       strapi.plugins["email"].services.email.send({
