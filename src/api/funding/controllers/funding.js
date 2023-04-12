@@ -80,19 +80,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       );
       return entries;
     } else {
-      // find the current user municipality in user-detail
-      var userMunicipality = await strapi.entityService.findMany(
-        "api::user-detail.user-detail",
-        {
-          filters: {
-            user: { id: ctx.state.user.id },
-          },
-          populate: {
-            municipality: { fields: ["title", "id"] },
-          },
-        }
-      );
-      userMunicipality = userMunicipality[0].municipality.id;
       const entries = await strapi.entityService.findMany(
         "api::funding.funding",
         {
