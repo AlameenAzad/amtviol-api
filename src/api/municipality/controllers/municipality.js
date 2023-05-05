@@ -150,6 +150,15 @@ module.exports = createCoreController(
       });
       return entries;
     },
+    async publicFind() {
+      const entries = await strapi.entityService.findMany(
+        "api::municipality.municipality",
+        {
+          fields: ["id", "title"],
+        }
+      );
+      return entries;
+    },
     async delete(ctx) {
       const { id } = ctx.params;
       const entries = await strapi.entityService.findMany(
