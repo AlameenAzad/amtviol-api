@@ -473,6 +473,11 @@ module.exports = createCoreController(
           var guest = await strapi.entityService.findMany(
             "api::guest-request.guest-request",
             {
+              filters: {
+                municipality: {
+                  id: userDetails.municipality.id,
+                }
+              },
               populate: {
                 municipality: { fields: ["title", "id"] },
                 categories: { fields: ["title", "id"] },
