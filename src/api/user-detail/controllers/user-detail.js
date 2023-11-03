@@ -399,7 +399,7 @@ module.exports = createCoreController(
               },
             }
           );
-        } else {
+        } else if(ctx.state.user.role.type != "guest") {
           var requests = await strapi.entityService.findMany(
             "api::request.request",
             {
@@ -446,14 +446,18 @@ module.exports = createCoreController(
                 ],
                 $or: [
                   {
-                    guest: true,
+                    $and: [
+                      { guest: true },
+                      { leaderApproved: true }
+                    ]
                   },
-                ],
-                $and: [
                   {
-                    leaderApproved: true,
-                  },
-                ],
+                    $and: [
+                      { guest: false },
+                      { leaderApproved: false }
+                    ]
+                  }
+                ]
               },
               populate: {
                 user: { fields: "username" },
