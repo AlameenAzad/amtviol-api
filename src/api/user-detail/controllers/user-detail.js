@@ -412,52 +412,58 @@ module.exports = createCoreController(
               ],
               filters: {
                 approved: false,
-                $or: [
+                $and: [
                   {
-                    project: {
-                      owner: ctx.state.user.id,
+                  $or: [
+                    {
+                      project: {
+                        owner: ctx.state.user.id,
+                      },
                     },
-                  },
-                  {
-                    project: {
-                      editors: ctx.state.user.id,
+                    {
+                      project: {
+                        editors: ctx.state.user.id,
+                      },
                     },
-                  },
-                  {
-                    funding: {
-                      owner: ctx.state.user.id,
+                    {
+                      funding: {
+                        owner: ctx.state.user.id,
+                      },
                     },
-                  },
-                  {
-                    funding: {
-                      editors: ctx.state.user.id,
+                    {
+                      funding: {
+                        editors: ctx.state.user.id,
+                      },
                     },
-                  },
-                  {
-                    checklist: {
-                      owner: ctx.state.user.id,
+                    {
+                      checklist: {
+                        owner: ctx.state.user.id,
+                      },
                     },
-                  },
-                  {
-                    checklist: {
-                      editors: ctx.state.user.id,
+                    {
+                      checklist: {
+                        editors: ctx.state.user.id,
+                      },
                     },
-                  },
+                  ],
+                },
+                {
+                  $or: [
+                    {
+                      $and: [
+                        { guest: true },
+                        { leaderApproved: true }
+                      ]
+                    },
+                    {
+                      $and: [
+                        { guest: false },
+                        { leaderApproved: false }
+                      ]
+                    }
+                  ]
+                }
                 ],
-                $or: [
-                  {
-                    $and: [
-                      { guest: true },
-                      { leaderApproved: true }
-                    ]
-                  },
-                  {
-                    $and: [
-                      { guest: false },
-                      { leaderApproved: false }
-                    ]
-                  }
-                ]
               },
               populate: {
                 user: { fields: "username" },
