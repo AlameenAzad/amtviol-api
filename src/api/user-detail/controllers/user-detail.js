@@ -221,11 +221,149 @@ module.exports = createCoreController(
     async dataOverview(ctx) {
       if (ctx.state.user.role.type == "admin")
         return await this.adminOverview(ctx);
-      let projects = await strapi.controller("api::project.project").find(ctx);
+      // let projects = await strapi.controller("api::project.project").find(ctx);
+      let projects = await strapi.entityService.findMany(
+        "api::project.project",
+        {
+          fields: [
+            "title",
+            "visibility",
+            "published",
+            "plannedStart",
+            "plannedEnd",
+          ],
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+            ],
+          },
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName", "location"],
+                  populate: {
+                    municipality: { fields: ["title"] },
+                  },
+                },
+              },
+            },
+            categories: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            tags: { fields: ["title"] },
+            municipality: { fields: ["title", "id"] },
+            info: "*",
+          },
+        }
+      );
       let fundings = await strapi.controller("api::funding.funding").find(ctx);
-      let checklists = await strapi
-        .controller("api::checklist.checklist")
-        .find(ctx);
+      // let checklists = await strapi
+      //   .controller("api::checklist.checklist")
+      //   .find(ctx);
+      const checklists = await strapi.entityService.findMany(
+        "api::checklist.checklist",
+        {
+          fields: ["title", "visibility", "published", "ideaProvider"],
+          populate: {
+            owner: {
+              fields: ["username"],
+              populate: {
+                user_detail: {
+                  fields: ["fullName"],
+                  populate: {
+                    municipality: { fields: ["title"] },
+                  },
+                },
+              },
+            },
+            categories: { fields: ["title"] },
+            tags: { fields: ["title"] },
+            editors: { fields: ["username"] },
+            readers: { fields: ["username"] },
+            municipality: { fields: ["title", "id"] },
+            info: "*",
+          },
+          filters: {
+            $or: [
+              {
+                owner: { id: ctx.state.user.id },
+              },
+              {
+                editors: { id: ctx.state.user.id },
+              },
+              {
+                readers: { id: ctx.state.user.id },
+              },
+              {
+                visibility: "listed only",
+              },
+              {
+                visibility: "all users",
+              },
+            ],
+            $and: [
+              {
+                $or: [
+                  {
+                    published: true,
+                  },
+                  {
+                    $and: [
+                      {
+                        published: false,
+                      },
+                      {
+                        owner: { id: ctx.state.user.id },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                archived: false,
+              },
+            ],
+          },
+        }
+      );
 
       // let projects = await strapi.entityService.findMany(
       //   "api::project.project",
