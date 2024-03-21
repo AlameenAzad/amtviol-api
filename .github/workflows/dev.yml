@@ -11,6 +11,7 @@ jobs:
       - dev
     defaults:
       run:
+        shell: bash
         working-directory: /mnt/HC_Volume_18048612/api-clone/amtviold-api
     steps:
       - name: reset repo to HEAD and git pull
