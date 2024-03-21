@@ -14,6 +14,11 @@ jobs:
         shell: bash
         working-directory: /mnt/HC_Volume_18048612/api-clone/amtviold-api
     steps:
+      - name: use NVM
+        run: | 
+          NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
       - name: reset repo to HEAD and git pull
         run: git checkout dev && git reset --hard && git pull
       - name: Try to use NVM
