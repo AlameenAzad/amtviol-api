@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: reset repo to HEAD and git pull
         run: git checkout dev && git reset --hard && git pull
+      - name: Try to use NVM
+        run: nvm use default
       - name: Install Dependencies
         run: yarn
       - name: Build dashboard in production
