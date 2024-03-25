@@ -33,7 +33,6 @@ export interface ChecklistCaptureIdea extends Schema.Component {
     file: Attribute.Media;
     sortPosition: Attribute.Integer &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.DefaultTo<0>;
     active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
     tasks: Attribute.JSON;
@@ -229,6 +228,7 @@ export interface ChecklistInitialContact extends Schema.Component {
   collectionName: 'components_checklist_initial_contacts';
   info: {
     displayName: 'initialContact';
+    description: '';
   };
   attributes: {
     start: Attribute.Date;
