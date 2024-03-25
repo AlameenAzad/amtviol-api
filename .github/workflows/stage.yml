@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: reset repo to HEAD and git pull
         run: git checkout stage && git reset --hard && git pull
-      - name: Install Dependencies
-        run: yarn
       - name: Build dashboard in production
         run: NODE_ENV=production yarn build
       - name: import latest config sync
