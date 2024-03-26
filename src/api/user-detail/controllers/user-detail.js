@@ -66,7 +66,7 @@ module.exports = createCoreController(
         toUser &&
         fromUser &&
         toUser.user_detail.municipality.id !=
-          fromUser.user_detail.municipality.id
+        fromUser.user_detail.municipality.id
       ) {
         return ctx.unauthorized(
           "Sie können keine Daten an eine andere Verwaltung als Ihre eigene übertragen"
@@ -165,7 +165,7 @@ module.exports = createCoreController(
           if (key == "watchlist")
             var watchlistExist = await this.checkUserHasWatchlist(ctx, item);
           if (key == "watchlist" && !watchlistExist) continue;
-          var res = await strapi.db.query("api::" + key + "." + key).update({
+          await strapi.db.query("api::" + key + "." + key).update({
             where: { id: item.id },
             data: {
               owner: {
@@ -537,7 +537,7 @@ module.exports = createCoreController(
               },
             }
           );
-        } else if(ctx.state.user.role.type != "guest") {
+        } else if (ctx.state.user.role.type != "guest") {
           var requests = await strapi.entityService.findMany(
             "api::request.request",
             {
@@ -552,55 +552,55 @@ module.exports = createCoreController(
                 approved: false,
                 $and: [
                   {
-                  $or: [
-                    {
-                      project: {
-                        owner: ctx.state.user.id,
+                    $or: [
+                      {
+                        project: {
+                          owner: ctx.state.user.id,
+                        },
                       },
-                    },
-                    {
-                      project: {
-                        editors: ctx.state.user.id,
+                      {
+                        project: {
+                          editors: ctx.state.user.id,
+                        },
                       },
-                    },
-                    {
-                      funding: {
-                        owner: ctx.state.user.id,
+                      {
+                        funding: {
+                          owner: ctx.state.user.id,
+                        },
                       },
-                    },
-                    {
-                      funding: {
-                        editors: ctx.state.user.id,
+                      {
+                        funding: {
+                          editors: ctx.state.user.id,
+                        },
                       },
-                    },
-                    {
-                      checklist: {
-                        owner: ctx.state.user.id,
+                      {
+                        checklist: {
+                          owner: ctx.state.user.id,
+                        },
                       },
-                    },
-                    {
-                      checklist: {
-                        editors: ctx.state.user.id,
+                      {
+                        checklist: {
+                          editors: ctx.state.user.id,
+                        },
                       },
-                    },
-                  ],
-                },
-                {
-                  $or: [
-                    {
-                      $and: [
-                        { guest: true },
-                        { leaderApproved: true }
-                      ]
-                    },
-                    {
-                      $and: [
-                        { guest: false },
-                        { leaderApproved: false }
-                      ]
-                    }
-                  ]
-                }
+                    ],
+                  },
+                  {
+                    $or: [
+                      {
+                        $and: [
+                          { guest: true },
+                          { leaderApproved: true }
+                        ]
+                      },
+                      {
+                        $and: [
+                          { guest: false },
+                          { leaderApproved: false }
+                        ]
+                      }
+                    ]
+                  }
                 ],
               },
               populate: {
@@ -714,5 +714,36 @@ module.exports = createCoreController(
           "Sie sind nicht berechtigt, diese Aktion durchzuführen"
         );
     },
+    async changeOwnership(ctx) {
+      const { type, id, newOwnerId } = ctx.request.body;
+
+      if (!["funding", "project", "checklist"].includes(type))
+        return ctx.badRequest("Invalid type.");
+
+      const document = await strapi.db.query(`api::${type}.${type}`).findOne({
+        select: ["id"],
+        where: {
+          $and: [
+            { id },
+            {
+              owner: { id: ctx.state.user.id }
+            }
+          ]
+        },
+      });
+
+      const newOwner = await strapi.entityService.findOne("plugin::users-permissions.user", newOwnerId, {
+        fields: ["id"]
+      });
+
+      if (document == null || newOwner == null)
+        return ctx.notFound("Projekt oder neuer Besitzer nicht gefunden");
+
+      return await strapi.entityService.update(`api::${type}.${type}`, id, {
+        data: {
+          owner: newOwner.id
+        },
+      });
+    }
   })
 );
