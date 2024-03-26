@@ -6,6 +6,11 @@ module.exports = {
       handler: "user-detail.transferData",
     },
     {
+      method: "POST",
+      path: "/change/document/ownership/",
+      handler: "user-detail.changeOwnership",
+    },
+    {
       method: "GET",
       path: "/user/overview",
       handler: "user-detail.dataOverview",
