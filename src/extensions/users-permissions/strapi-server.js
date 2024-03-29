@@ -328,16 +328,18 @@ module.exports = (plugin, env) => {
   }
   async function _getUserMunicipalityId(ctx) {
     const userDetails = await strapi.entityService.findOne(
-      "api::user-detail.user-detail",
+      "plugin::users-permissions.user",
       ctx.state.user.id,
       {
         fields: ["id"],
         populate: {
-          municipality: { fields: ["id"] }
-        },
+          user_detail: {
+            populate: { municipality: { fields: ["id"] } },
+          },
+        }
       }
     );
-    return userDetails.municipality.id;
+    return userDetails.user_detail.municipality.id;
   }
   return plugin;
 };
