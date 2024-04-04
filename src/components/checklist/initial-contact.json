@@ -21,6 +21,9 @@
       "type": "component",
       "repeatable": false,
       "component": "checklist.capture-contect"
+    },
+    "responsiblePerson": {
+      "type": "string"
     }
   }
 }
