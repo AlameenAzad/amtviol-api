@@ -78,15 +78,6 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
           },
         }
       );
-      // Used to be for prioritizing visibility over roles
-      // var projects = entries.filter((project) => {
-      //   if (
-      //     project.visibility == "only for me" &&
-      //     project.owner.id == ctx.state.user.id
-      //   )
-      //     return project;
-      //   else if (project.visibility != "only for me") return project;
-      // });
       return entries;
     } else {
       // find the current user location in user-detail
@@ -223,8 +214,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       id: ctx.params.id,
     };
     if (ctx.state.user.role.type == "admin") {
-      delete filters.$or;
-      delete filters.$and;
+      filters = { id: ctx.params.id }
     }
 
     var entry = await strapi.entityService.findMany("api::project.project", {
@@ -262,12 +252,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       .getContactPersonInfo(ctx, entry.owner.user_detail.id);
     contactInfo.location = entry.info.location;
     entry.info = contactInfo;
-    // if (entry.visibility == "only for me" || entry.visibility == "listed only")
     if (entry.owner.id == ctx.state.user.id) return this.getRequests(entry);
-    // else
-    //   return ctx.unauthorized(
-    //     "You are not allowed to view this project due to visibility option"
-    //   );
     else return entry;
   },
   async create(ctx) {
@@ -288,7 +273,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       ],
       id: ctx.params.id,
     };
-    if (ctx.state.user.role.type == "admin") delete filters.$or;
+    if (ctx.state.user.role.type == "admin") filters = { id: ctx.params.id };
     var entry = await strapi.entityService.findMany("api::project.project", {
       populate: {
         owner: { fields: ["username"] },

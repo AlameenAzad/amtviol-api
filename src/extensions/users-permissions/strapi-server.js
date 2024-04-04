@@ -27,6 +27,8 @@ module.exports = (plugin, env) => {
   };
 
   plugin.controllers.user.find = async (ctx) => {
+
+    const userMunicipalityId = await _getUserMunicipalityId(ctx);
     const users = await strapi.entityService.findMany(
       "plugin::users-permissions.user",
       {
@@ -38,10 +40,36 @@ module.exports = (plugin, env) => {
             populate: { municipality: { fields: ["title", "location"] } },
           },
         },
+        sort: {
+          user_detail: {
+            fullName: "asc",
+          }
+        }
       }
     );
 
-    ctx.body = users.map((user) => sanitizeOutput(user));
+    const sortedUsers = users.sort((a, b) => {
+      const aMunicipality = a.user_detail.municipality.id;
+      const bMunicipality = b.user_detail.municipality.id;
+      const aUsername = a.username.toLowerCase();
+      const bUsername = b.username.toLowerCase();
+
+      if (aMunicipality === userMunicipalityId && bMunicipality !== userMunicipalityId) {
+        return -1; // Move a to a lower index
+      } else if (aMunicipality !== userMunicipalityId && bMunicipality === userMunicipalityId) {
+        return 1; // Move b to a lower index
+      } else {
+        // If municipalities are the same or both are not equal to userMunicipalityId, sort by username
+        if (aMunicipality === bMunicipality) {
+          // If municipalities are the same, sort by username
+          if (aUsername < bUsername) return -1;
+          if (aUsername > bUsername) return 1;
+        }
+        return 0; // If both municipality IDs and usernames are the same or not applicable, maintain the current order
+      }
+    });
+
+    ctx.body = sortedUsers.map((user) => sanitizeOutput(user));
   };
 
   plugin.controllers.user.create = async (ctx) => {
@@ -124,32 +152,6 @@ module.exports = (plugin, env) => {
       return ctx.badRequest(error.message, error.details);
     }
   };
-
-  function generatePassword() {
-    //generate random secure password at least 8 characters long
-    var length = 16,
-      charset =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(_+-=[]{}<>/?",
-      retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
-  async function sendPwdInEmail(ctx, resetPasswordToken) {
-    await strapi.plugins["email"].services.email.send({
-      to: ctx.request.body.email,
-      from: process.env.DEF_FROM,
-      replyTo: process.env.DEF_FROM,
-      subject: "Willkommen bei förderscouting-plattform",
-      html:
-        ctx.request.body.message +
-        "<br/><p>" +
-        process.env.RESET_PWD_PAGE +
-        resetPasswordToken +
-        "</p>",
-    });
-  }
   plugin.controllers.user.update = async (ctx) => {
     const rolesDB = await strapi.db
       .query("plugin::users-permissions.role")
@@ -298,5 +300,46 @@ module.exports = (plugin, env) => {
         .delete({ where: { id: ctx.request.params.id } });
     }
   };
+
+  function generatePassword() {
+    //generate random secure password at least 8 characters long
+    var length = 16,
+      charset =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(_+-=[]{}<>/?",
+      retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+  }
+  async function sendPwdInEmail(ctx, resetPasswordToken) {
+    await strapi.plugins["email"].services.email.send({
+      to: ctx.request.body.email,
+      from: process.env.DEF_FROM,
+      replyTo: process.env.DEF_FROM,
+      subject: "Willkommen bei förderscouting-plattform",
+      html:
+        ctx.request.body.message +
+        "<br/><p>" +
+        process.env.RESET_PWD_PAGE +
+        resetPasswordToken +
+        "</p>",
+    });
+  }
+  async function _getUserMunicipalityId(ctx) {
+    const userDetails = await strapi.entityService.findOne(
+      "plugin::users-permissions.user",
+      ctx.state.user.id,
+      {
+        fields: ["id"],
+        populate: {
+          user_detail: {
+            populate: { municipality: { fields: ["id"] } },
+          },
+        }
+      }
+    );
+    return userDetails.user_detail.municipality.id;
+  }
   return plugin;
 };
