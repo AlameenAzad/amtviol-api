@@ -1,7 +1,8 @@
 {
   "collectionName": "components_checklist_initial_contacts",
   "info": {
-    "displayName": "initialContact"
+    "displayName": "initialContact",
+    "description": ""
   },
   "options": {},
   "attributes": {

@@ -30,7 +30,7 @@
     },
     "sortPosition": {
       "type": "integer",
-      "unique": true,
+      "unique": false,
       "default": 0,
       "required": true
     },

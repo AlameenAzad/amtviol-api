@@ -6,4 +6,9 @@ module.exports = ({ env }) => ({
     salt: env("API_TOKEN_SALT", "1dc8a1bbad00ab8215dbd1df112b7ad4"),
   },
   watchIgnoreFiles: ["**/config/sync/**"],
+  transfer: {
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT'),
+    },
+  },
 });
