@@ -42,7 +42,8 @@
       "component": "funding.select-funding"
     },
     "responsiblePerson": {
-      "type": "string"
+      "type": "string",
+      "default": " "
     }
   }
 }

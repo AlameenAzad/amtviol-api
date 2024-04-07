@@ -37,7 +37,8 @@
       "component": "checklist.check-planning"
     },
     "responsiblePerson": {
-      "type": "string"
+      "type": "string",
+      "default": " "
     }
   }
 }

@@ -23,7 +23,8 @@
       "component": "checklist.capture-contect"
     },
     "responsiblePerson": {
-      "type": "string"
+      "type": "string",
+      "default": "  "
     }
   }
 }
