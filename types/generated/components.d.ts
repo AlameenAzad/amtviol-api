@@ -205,7 +205,7 @@ export interface ChecklistFinalExamination extends Schema.Component {
     end: Attribute.Date;
     revision: Attribute.Component<'checklist.revision'>;
     signatures: Attribute.Component<'checklist.signatures'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<' '>;
   };
 }
 
@@ -223,7 +223,7 @@ export interface ChecklistFundingResearch extends Schema.Component {
     checkWithFunding: Attribute.Component<'checklist.check-with-funding'>;
     checkGuildlines: Attribute.Component<'checklist.check-guildlines'>;
     selectFunding: Attribute.Component<'funding.select-funding'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<' '>;
   };
 }
 
@@ -238,7 +238,7 @@ export interface ChecklistInitialContact extends Schema.Component {
     end: Attribute.Date;
     captureIdea: Attribute.Component<'checklist.capture-idea'>;
     caputreContect: Attribute.Component<'checklist.capture-contect'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<'  '>;
   };
 }
 
@@ -267,7 +267,7 @@ export interface ChecklistLegitimation extends Schema.Component {
     start: Attribute.Date;
     end: Attribute.Date;
     template: Attribute.Component<'checklist.template'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<' '>;
   };
 }
 
@@ -284,7 +284,7 @@ export interface ChecklistPreparationOfProject extends Schema.Component {
     checkCooperations: Attribute.Component<'checklist.check-cooperations'>;
     checkSimilarProejcts: Attribute.Component<'checklist.check-similar-proejcts'>;
     checkPlanning: Attribute.Component<'checklist.check-planning'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<' '>;
   };
 }
 
@@ -300,7 +300,7 @@ export interface ChecklistPreparation extends Schema.Component {
     inspection: Attribute.Component<'checklist.inspection'>;
     captureRequirements: Attribute.Component<'checklist.capture-requirements'>;
     captureNeeds: Attribute.Component<'checklist.capture-needs'>;
-    responsiblePerson: Attribute.String;
+    responsiblePerson: Attribute.String & Attribute.DefaultTo<' '>;
   };
 }
 

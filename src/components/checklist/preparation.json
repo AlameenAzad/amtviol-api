@@ -31,7 +31,8 @@
       "component": "checklist.capture-needs"
     },
     "responsiblePerson": {
-      "type": "string"
+      "type": "string",
+      "default": " "
     }
   }
 }
