@@ -25,7 +25,8 @@
       "component": "checklist.signatures"
     },
     "responsiblePerson": {
-      "type": "string"
+      "type": "string",
+      "default": " "
     }
   }
 }
