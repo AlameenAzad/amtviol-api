@@ -339,7 +339,7 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     }
     let newOptions = null
     if (withArchived == "true") {
-      newOptions = { fields: ["title"] }
+      newOptions = { fields: ["title", "archived"] }
       newOptions.filters = getFundingFilters;
       newOptions.filters.$and.push({
         $or: [
