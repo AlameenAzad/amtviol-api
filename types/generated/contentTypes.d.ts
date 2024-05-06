@@ -862,11 +862,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::funding.funding'
     >;
-    read_notifications: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::read-notification.read-notification'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1400,12 +1395,6 @@ export interface ApiReadNotificationReadNotification
       'api::read-notification.read-notification',
       'manyToOne',
       'api::request.request'
-    > &
-      Attribute.Private;
-    category: Attribute.Relation<
-      'api::read-notification.read-notification',
-      'manyToOne',
-      'api::category.category'
     > &
       Attribute.Private;
     createdAt: Attribute.DateTime;
