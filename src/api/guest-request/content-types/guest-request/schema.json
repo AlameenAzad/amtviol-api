@@ -32,6 +32,13 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"
+    },
+    "read_notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::read-notification.read-notification",
+      "private": true,
+      "mappedBy": "guest_request"
     }
   }
 }

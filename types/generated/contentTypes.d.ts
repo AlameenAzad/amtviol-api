@@ -862,6 +862,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::funding.funding'
     >;
+    read_notifications: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::read-notification.read-notification'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1089,6 +1094,12 @@ export interface ApiFundingFunding extends Schema.CollectionType {
       'oneToMany',
       'api::funding-comment.funding-comment'
     >;
+    read_notifications: Attribute.Relation<
+      'api::funding.funding',
+      'oneToMany',
+      'api::read-notification.read-notification'
+    > &
+      Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1112,6 +1123,7 @@ export interface ApiFundingCommentFundingComment extends Schema.CollectionType {
     singularName: 'funding-comment';
     pluralName: 'funding-comments';
     displayName: 'fundingComment';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1128,6 +1140,12 @@ export interface ApiFundingCommentFundingComment extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    read_notifications: Attribute.Relation<
+      'api::funding-comment.funding-comment',
+      'oneToMany',
+      'api::read-notification.read-notification'
+    > &
+      Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1170,6 +1188,12 @@ export interface ApiGuestRequestGuestRequest extends Schema.CollectionType {
       'oneToMany',
       'api::category.category'
     >;
+    read_notifications: Attribute.Relation<
+      'api::guest-request.guest-request',
+      'oneToMany',
+      'api::read-notification.read-notification'
+    > &
+      Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1336,6 +1360,71 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
 }
 
+export interface ApiReadNotificationReadNotification
+  extends Schema.CollectionType {
+  collectionName: 'read_notifications';
+  info: {
+    singularName: 'read-notification';
+    pluralName: 'read-notifications';
+    displayName: 'read notification';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    funding_expiry: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'manyToOne',
+      'api::funding.funding'
+    > &
+      Attribute.Private;
+    funding_comment: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'manyToOne',
+      'api::funding-comment.funding-comment'
+    > &
+      Attribute.Private;
+    guest_request: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'manyToOne',
+      'api::guest-request.guest-request'
+    > &
+      Attribute.Private;
+    request: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'manyToOne',
+      'api::request.request'
+    > &
+      Attribute.Private;
+    category: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'manyToOne',
+      'api::category.category'
+    > &
+      Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::read-notification.read-notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRequestRequest extends Schema.CollectionType {
   collectionName: 'requests';
   info: {
@@ -1373,6 +1462,12 @@ export interface ApiRequestRequest extends Schema.CollectionType {
       Attribute.Required;
     guest: Attribute.Boolean & Attribute.DefaultTo<false>;
     leaderApproved: Attribute.Boolean & Attribute.DefaultTo<false>;
+    read_notifications: Attribute.Relation<
+      'api::request.request',
+      'oneToMany',
+      'api::read-notification.read-notification'
+    > &
+      Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1553,6 +1648,7 @@ declare module '@strapi/types' {
       'api::guest-request.guest-request': ApiGuestRequestGuestRequest;
       'api::municipality.municipality': ApiMunicipalityMunicipality;
       'api::project.project': ApiProjectProject;
+      'api::read-notification.read-notification': ApiReadNotificationReadNotification;
       'api::request.request': ApiRequestRequest;
       'api::tag.tag': ApiTagTag;
       'api::user-detail.user-detail': ApiUserDetailUserDetail;

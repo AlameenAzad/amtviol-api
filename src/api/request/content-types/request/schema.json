@@ -52,6 +52,13 @@
     "leaderApproved": {
       "type": "boolean",
       "default": false
+    },
+    "read_notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::read-notification.read-notification",
+      "private": true,
+      "mappedBy": "request"
     }
   }
 }
