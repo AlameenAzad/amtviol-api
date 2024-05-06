@@ -209,6 +209,18 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     forAdmins.setDate(forAdmins.getDate() + 30);
 
     var filters = {
+      read_notifications: {
+        $or: [
+          {
+            user: {
+              $not: ctx.state.user.id,
+            },
+          },
+          {
+            user: null,
+          },
+        ],
+      },
       $and: [
         { plannedEnd: { $lte: forUsers.toISOString().split("T")[0] } },
         { plannedEnd: { $gte: today.toISOString().split("T")[0] } },
@@ -309,7 +321,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
             },
           ],
         },
-
       ],
     };
     const options = {
@@ -336,23 +347,20 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
         tags: { fields: ["title"] },
         municipality: { fields: ["title", "id"] },
       },
-    }
-    let newOptions = null
+    };
+    let newOptions = null;
     if (withArchived == "true") {
-      newOptions = { fields: ["title"] }
+      newOptions = { fields: ["title"] };
       newOptions.filters = getFundingFilters;
       newOptions.filters.$and.push({
-        $or: [
-          { archived: false },
-          { archived: true }
-        ]
+        $or: [{ archived: false }, { archived: true }],
       });
     } else {
       options.filters = getFundingFilters;
       options.filters.$and.push({
-        archived: false
+        archived: false,
       });
     }
     return newOptions || options;
-  }
+  },
 }));
