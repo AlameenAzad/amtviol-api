@@ -66,7 +66,7 @@ module.exports = createCoreController(
         toUser &&
         fromUser &&
         toUser.user_detail.municipality.id !=
-        fromUser.user_detail.municipality.id
+          fromUser.user_detail.municipality.id
       ) {
         return ctx.unauthorized(
           "Sie können keine Daten an eine andere Verwaltung als Ihre eigene übertragen"
@@ -515,16 +515,10 @@ module.exports = createCoreController(
       }
       if (["admin", "leader"].includes(type)) {
         if (userSettings.userJoinRequest) {
-          var guest = await this._getGuestsRequests(type, userDetails);
+          var guest = await this._getGuestsRequests(ctx, type, userDetails);
         }
-        if (
-          userSettings.fundingComments &&
-          type == "admin"
-        ) {
-          var fundingComments = await this._getFundingComments(
-            type,
-            userDetails
-          );
+        if (userSettings.fundingComments && type == "admin") {
+          var fundingComments = await this._getFundingComments(ctx);
         }
       }
       if (userSettings.fundingExpiry)
@@ -594,7 +588,7 @@ module.exports = createCoreController(
           "Sie sind nicht berechtigt, diese Aktion durchzuführen"
         );
     },
-    async _getFundingComments() {
+    async _getFundingComments(ctx) {
       return strapi.entityService.findMany(
         "api::funding-comment.funding-comment",
         {
@@ -603,23 +597,49 @@ module.exports = createCoreController(
             funding: { fields: ["title"] },
             owner: { fields: ["username"] },
           },
+          filters: {
+            read_notifications: {
+              $or: [
+                {
+                  user: {
+                    $not: ctx.state.user.id,
+                  },
+                },
+                {
+                  user: null,
+                },
+              ],
+            },
+          },
         }
       );
     },
-    async _getGuestsRequests(type, userDetails) {
-      const filters = {
-        municipality: {
-          id: userDetails.municipality.id,
-        },
-      };
+
+    async _getGuestsRequests(ctx, type, userDetails) {
       const options = {
         populate: {
           municipality: { fields: ["title", "id"] },
           categories: { fields: ["title", "id"] },
         },
+        filters: {
+          read_notifications: {
+            $or: [
+              {
+                user: {
+                  $not: ctx.state.user.id,
+                },
+              },
+              {
+                user: null,
+              },
+            ],
+          },
+        },
       };
       if (type == "leader") {
-        options.filters = filters;
+        options.filters.municipality = {
+          id: userDetails.municipality.id,
+        };
       }
 
       return strapi.entityService.findMany(
@@ -631,6 +651,18 @@ module.exports = createCoreController(
       const fields = ["approved", "type", "created_at"];
       const filters = {
         approved: false,
+        read_notifications: {
+          $or: [
+            {
+              user: {
+                $not: ctx.state.user.id,
+              },
+            },
+            {
+              user: null,
+            },
+          ],
+        },
       };
       const populate = {
         user: { fields: "username" },
@@ -713,22 +745,26 @@ module.exports = createCoreController(
           $and: [
             { id },
             {
-              owner: { id: ctx.state.user.id }
-            }
-          ]
+              owner: { id: ctx.state.user.id },
+            },
+          ],
         },
       });
 
-      const newOwner = await strapi.entityService.findOne("plugin::users-permissions.user", newOwnerId, {
-        fields: ["id"]
-      });
+      const newOwner = await strapi.entityService.findOne(
+        "plugin::users-permissions.user",
+        newOwnerId,
+        {
+          fields: ["id"],
+        }
+      );
 
       if (document == null || newOwner == null)
         return ctx.notFound("Projekt oder neuer Besitzer nicht gefunden");
 
       return await strapi.entityService.update(`api::${type}.${type}`, id, {
         data: {
-          owner: newOwner.id
+          owner: newOwner.id,
         },
       });
     },
