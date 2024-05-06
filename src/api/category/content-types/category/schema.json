@@ -35,12 +35,6 @@
       "relation": "manyToMany",
       "target": "api::funding.funding",
       "mappedBy": "categories"
-    },
-    "read_notifications": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::read-notification.read-notification",
-      "mappedBy": "category"
     }
   }
 }

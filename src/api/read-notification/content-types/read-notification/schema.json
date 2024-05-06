@@ -44,13 +44,6 @@
       "target": "api::request.request",
       "private": true,
       "inversedBy": "read_notifications"
-    },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "private": true,
-      "inversedBy": "read_notifications"
     }
   }
 }
