@@ -1206,6 +1206,40 @@ export interface ApiGuestRequestGuestRequest extends Schema.CollectionType {
   };
 }
 
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
+  info: {
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'location';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    municipality: Attribute.Relation<
+      'api::location.location',
+      'manyToOne',
+      'api::municipality.municipality'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMunicipalityMunicipality extends Schema.CollectionType {
   collectionName: 'municipalities';
   info: {
@@ -1245,6 +1279,11 @@ export interface ApiMunicipalityMunicipality extends Schema.CollectionType {
       'api::municipality.municipality',
       'oneToMany',
       'api::guest-request.guest-request'
+    >;
+    locations: Attribute.Relation<
+      'api::municipality.municipality',
+      'oneToMany',
+      'api::location.location'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1635,6 +1674,7 @@ declare module '@strapi/types' {
       'api::funding.funding': ApiFundingFunding;
       'api::funding-comment.funding-comment': ApiFundingCommentFundingComment;
       'api::guest-request.guest-request': ApiGuestRequestGuestRequest;
+      'api::location.location': ApiLocationLocation;
       'api::municipality.municipality': ApiMunicipalityMunicipality;
       'api::project.project': ApiProjectProject;
       'api::read-notification.read-notification': ApiReadNotificationReadNotification;
