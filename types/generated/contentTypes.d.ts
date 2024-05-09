@@ -1006,6 +1006,41 @@ export interface ApiDataConcentDataConcent extends Schema.CollectionType {
   };
 }
 
+export interface ApiEmailingCenterEmailingCenter extends Schema.CollectionType {
+  collectionName: 'emailing_centers';
+  info: {
+    singularName: 'emailing-center';
+    pluralName: 'emailing-centers';
+    displayName: 'emailing center';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    subject: Attribute.String & Attribute.Required;
+    group: Attribute.String & Attribute.Required;
+    status: Attribute.Boolean;
+    attachments: Attribute.Media;
+    body: Attribute.RichText & Attribute.Required;
+    response: Attribute.JSON & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::emailing-center.emailing-center',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::emailing-center.emailing-center',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFundingFunding extends Schema.CollectionType {
   collectionName: 'fundings';
   info: {
@@ -1632,6 +1667,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::checklist.checklist': ApiChecklistChecklist;
       'api::data-concent.data-concent': ApiDataConcentDataConcent;
+      'api::emailing-center.emailing-center': ApiEmailingCenterEmailingCenter;
       'api::funding.funding': ApiFundingFunding;
       'api::funding-comment.funding-comment': ApiFundingCommentFundingComment;
       'api::guest-request.guest-request': ApiGuestRequestGuestRequest;
