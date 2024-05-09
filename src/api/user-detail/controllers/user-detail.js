@@ -66,7 +66,7 @@ module.exports = createCoreController(
         toUser &&
         fromUser &&
         toUser.user_detail.municipality.id !=
-        fromUser.user_detail.municipality.id
+          fromUser.user_detail.municipality.id
       ) {
         return ctx.unauthorized(
           "Sie können keine Daten an eine andere Verwaltung als Ihre eigene übertragen"
@@ -509,145 +509,19 @@ module.exports = createCoreController(
     async notification(ctx) {
       const userDetails = await this.find(ctx);
       const userSettings = userDetails.notifications.app;
-      if (userSettings.dataRequests == true) {
-        if (ctx.state.user.role.type == "leader") {
-          var requests = await strapi.entityService.findMany(
-            "api::request.request",
-            {
-              fields: ["approved", "type", "created_at"],
-              filters: {
-                approved: false,
-                guest: true,
-                leaderApproved: false,
-              },
-              populate: {
-                user: { fields: "username" },
-                funding: {
-                  fields: ["title"],
-                  populate: { owner: { fields: ["username"] } },
-                },
-                project: {
-                  fields: ["title"],
-                  populate: { owner: { fields: ["username"] } },
-                },
-                checklist: {
-                  fields: ["title"],
-                  populate: { owner: { fields: ["username"] } },
-                },
-              },
-            }
-          );
-        } else if (ctx.state.user.role.type != "guest") {
-          var requests = await strapi.entityService.findMany(
-            "api::request.request",
-            {
-              fields: [
-                "approved",
-                "type",
-                "created_at",
-                "guest",
-                "leaderApproved",
-              ],
-              filters: {
-                approved: false,
-                $and: [
-                  {
-                    $or: [
-                      {
-                        project: {
-                          owner: ctx.state.user.id,
-                        },
-                      },
-                      {
-                        project: {
-                          editors: ctx.state.user.id,
-                        },
-                      },
-                      {
-                        funding: {
-                          owner: ctx.state.user.id,
-                        },
-                      },
-                      {
-                        funding: {
-                          editors: ctx.state.user.id,
-                        },
-                      },
-                      {
-                        checklist: {
-                          owner: ctx.state.user.id,
-                        },
-                      },
-                      {
-                        checklist: {
-                          editors: ctx.state.user.id,
-                        },
-                      },
-                    ],
-                  },
-                  {
-                    $or: [
-                      {
-                        $and: [
-                          { guest: true },
-                          { leaderApproved: true }
-                        ]
-                      },
-                      {
-                        $and: [
-                          { guest: false },
-                          { leaderApproved: false }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-              },
-              populate: {
-                user: { fields: "username" },
-                funding: { fields: ["title"] },
-                project: { fields: ["title"] },
-                checklist: { fields: ["title"] },
-              },
-            }
-          );
+      const type = ctx.state.user.role.type;
+      if (userSettings.dataRequests && type != "guest") {
+        var requests = await this._getRequests(ctx);
+      }
+      if (["admin", "leader"].includes(type)) {
+        if (userSettings.userJoinRequest) {
+          var guest = await this._getGuestsRequests(ctx, type, userDetails);
+        }
+        if (userSettings.fundingComments && type == "admin") {
+          var fundingComments = await this._getFundingComments(ctx);
         }
       }
-      if (
-        ctx.state.user.role.type == "admin" ||
-        ctx.state.user.role.type == "leader"
-      ) {
-        if (userSettings.userJoinRequest == true)
-          var guest = await strapi.entityService.findMany(
-            "api::guest-request.guest-request",
-            {
-              filters: {
-                municipality: {
-                  id: userDetails.municipality.id,
-                }
-              },
-              populate: {
-                municipality: { fields: ["title", "id"] },
-                categories: { fields: ["title", "id"] },
-              },
-            }
-          );
-        if (
-          userSettings.fundingComments == true &&
-          ctx.state.user.role.type == "admin"
-        )
-          var fundingComments = await strapi.entityService.findMany(
-            "api::funding-comment.funding-comment",
-            {
-              fields: ["comment", "created_at"],
-              populate: {
-                funding: { fields: ["title"] },
-                owner: { fields: ["username"] },
-              },
-            }
-          );
-      }
-      if (userSettings.fundingExpiry == true)
+      if (userSettings.fundingExpiry)
         var fundingExpirey = await strapi
           .controller("api::funding.funding")
           .getFundingExpirey(ctx);
@@ -714,6 +588,151 @@ module.exports = createCoreController(
           "Sie sind nicht berechtigt, diese Aktion durchzuführen"
         );
     },
+    async _getFundingComments(ctx) {
+      return strapi.entityService.findMany(
+        "api::funding-comment.funding-comment",
+        {
+          fields: ["comment", "created_at"],
+          populate: {
+            funding: { fields: ["title"] },
+            owner: { fields: ["username"] },
+          },
+          filters: {
+            read_notifications: {
+              $or: [
+                {
+                  user: {
+                    $not: ctx.state.user.id,
+                  },
+                },
+                {
+                  user: null,
+                },
+              ],
+            },
+          },
+        }
+      );
+    },
+
+    async _getGuestsRequests(ctx, type, userDetails) {
+      const options = {
+        populate: {
+          municipality: { fields: ["title", "id"] },
+          categories: { fields: ["title", "id"] },
+        },
+        filters: {
+          read_notifications: {
+            $or: [
+              {
+                user: {
+                  $not: ctx.state.user.id,
+                },
+              },
+              {
+                user: null,
+              },
+            ],
+          },
+        },
+      };
+      if (type == "leader") {
+        options.filters.municipality = {
+          id: userDetails.municipality.id,
+        };
+      }
+
+      return strapi.entityService.findMany(
+        "api::guest-request.guest-request",
+        options
+      );
+    },
+    async _getRequests(ctx) {
+      const fields = ["approved", "type", "created_at"];
+      const filters = {
+        approved: false,
+        read_notifications: {
+          $or: [
+            {
+              user: {
+                $not: ctx.state.user.id,
+              },
+            },
+            {
+              user: null,
+            },
+          ],
+        },
+      };
+      const populate = {
+        user: { fields: "username" },
+        funding: { fields: ["title"] },
+        project: { fields: ["title"] },
+        checklist: { fields: ["title"] },
+      };
+
+      if (ctx.state.user.role === "leader") {
+        filters.guest = true;
+        filters.leaderApproved = false;
+        populate.funding.populate = { owner: { fields: ["username"] } };
+        populate.project.populate = { owner: { fields: ["username"] } };
+        populate.checklist.populate = { owner: { fields: ["username"] } };
+      } else {
+        fields.push("guest", "leaderApproved");
+        filters.$and = [
+          {
+            $or: [
+              {
+                project: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                project: {
+                  editors: ctx.state.user.id,
+                },
+              },
+              {
+                funding: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                funding: {
+                  editors: ctx.state.user.id,
+                },
+              },
+              {
+                checklist: {
+                  owner: ctx.state.user.id,
+                },
+              },
+              {
+                checklist: {
+                  editors: ctx.state.user.id,
+                },
+              },
+            ],
+          },
+          {
+            $or: [
+              {
+                $and: [{ guest: true }, { leaderApproved: true }],
+              },
+              {
+                $and: [{ guest: false }, { leaderApproved: false }],
+              },
+            ],
+          },
+        ];
+      }
+
+      return await strapi.entityService.findMany("api::request.request", {
+        filters,
+        fields,
+        populate,
+      });
+    },
     async changeOwnership(ctx) {
       const { type, id, newOwnerId } = ctx.request.body;
 
@@ -726,24 +745,28 @@ module.exports = createCoreController(
           $and: [
             { id },
             {
-              owner: { id: ctx.state.user.id }
-            }
-          ]
+              owner: { id: ctx.state.user.id },
+            },
+          ],
         },
       });
 
-      const newOwner = await strapi.entityService.findOne("plugin::users-permissions.user", newOwnerId, {
-        fields: ["id"]
-      });
+      const newOwner = await strapi.entityService.findOne(
+        "plugin::users-permissions.user",
+        newOwnerId,
+        {
+          fields: ["id"],
+        }
+      );
 
       if (document == null || newOwner == null)
         return ctx.notFound("Projekt oder neuer Besitzer nicht gefunden");
 
       return await strapi.entityService.update(`api::${type}.${type}`, id, {
         data: {
-          owner: newOwner.id
+          owner: newOwner.id,
         },
       });
-    }
+    },
   })
 );
