@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "351a9681-b793-4c09-b293-aa4ffa8a9375",
+		"_postman_id": "a8540a03-b558-451b-a885-5cb175f4db84",
 		"name": "amtviolAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1867525"
 	},
 	"item": [
 		{
@@ -41,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testproject682\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"visibility\":\"only for me\",\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": 1231\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": 89754\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        },\r\n        \"fundingGuideline\":[\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ]\r\n        \r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"testp2685\",\r\n        \"plannedStart\": \"2022-04-02\",\r\n        \"plannedEnd\": \"2022-04-16\",\r\n        \"published\": true,\r\n        \"visibility\":\"all users\",\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"location\": \"test\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"content\": \"adasda\",\r\n            \"goals\": \"sdfsdf\",\r\n            \"valuesAndBenefits\": \"sdfsdf\",\r\n            \"partner\": \"asdasd\",\r\n            \"investive\": true,\r\n            \"status\": \"Development\"\r\n        },\r\n        \"estimatedCosts\": [\r\n            {\r\n                \"name\": \"blocks\",\r\n                \"price\": \"1231\"\r\n            },\r\n            {\r\n                \"name\": \"cement\",\r\n                \"price\": \"89754\"\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"pdf\",\r\n                \"link\": \"www.example.com\"\r\n            },\r\n            {\r\n                \"title\": \"doc\",\r\n                \"link\": \"www.example.com\"\r\n            }\r\n        ],\r\n        \"municipality\": {\r\n            \"id\": 1\r\n        },\r\n        \"categories\": {\r\n            \"id\": 1\r\n        },\r\n        \"tags\": {\r\n            \"id\": 1\r\n        }\r\n        \r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,7 +69,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/projects/4",
+							"raw": "localhost:1337/api/projects/1",
 							"host": [
 								"localhost"
 							],
@@ -76,7 +77,7 @@
 							"path": [
 								"api",
 								"projects",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -126,6 +127,27 @@
 								"api",
 								"projects",
 								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "duplicate project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/project/duplicate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"project",
+								"duplicate",
+								"1"
 							]
 						}
 					},
@@ -207,7 +229,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"identifier\": \"admin@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"identifier\": \"alameen.azad@kruschecompany.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -455,7 +477,7 @@
 							"query": [
 								{
 									"key": null,
-									"value": null,
+									"value": "",
 									"description": "roles Admin = 4, User = 1",
 									"disabled": true
 								}
@@ -470,7 +492,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/user/transfer/88?data=Funding",
+							"raw": "localhost:1337/api/user/transfer/24?data=Funding&fromId=8",
 							"host": [
 								"localhost"
 							],
@@ -479,12 +501,16 @@
 								"api",
 								"user",
 								"transfer",
-								"88"
+								"24"
 							],
 							"query": [
 								{
 									"key": "data",
 									"value": "Funding"
+								},
+								{
+									"key": "fromId",
+									"value": "8"
 								}
 							]
 						}
@@ -547,6 +573,81 @@
 								"api",
 								"user",
 								"overview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "public data table",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/public/data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"public",
+								"data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Ownership",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"project\", //\"funding\", \"project\", \"checklist\"\n    \"id\": 69,\n    \"newOwnerId\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/change/document/ownership/",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"change",
+								"document",
+								"ownership",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/users-permissions/roles",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users-permissions",
+								"roles"
 							]
 						}
 					},
@@ -773,7 +874,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\":{\r\n        \"project\":4\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\":{\r\n        \"checklist\":2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -853,7 +954,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:1337/api/requests/1",
+							"raw": "localhost:1337/api/requests/44",
 							"host": [
 								"localhost"
 							],
@@ -861,7 +962,7 @@
 							"path": [
 								"api",
 								"requests",
-								"1"
+								"44"
 							]
 						}
 					},
@@ -874,7 +975,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"user\": {\r\n            \"id\": 1\r\n        },\r\n        \"project\": {\r\n            \"id\": 3\r\n        },\r\n        \"type\": \"edit\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"user\": {\r\n            \"id\": 9\r\n        },\r\n        \"checklist\": {\r\n            \"id\": 10\r\n        },\r\n        \"type\": \"duplicate\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -907,7 +1008,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/fundings",
+							"raw": "localhost:1337/api/fundings?withArchived=false",
 							"host": [
 								"localhost"
 							],
@@ -915,6 +1016,12 @@
 							"path": [
 								"api",
 								"fundings"
+							],
+							"query": [
+								{
+									"key": "withArchived",
+									"value": "false"
+								}
 							]
 						}
 					},
@@ -926,7 +1033,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/fundings/54",
+							"raw": "localhost:1337/api/fundings/2",
 							"host": [
 								"localhost"
 							],
@@ -934,7 +1041,7 @@
 							"path": [
 								"api",
 								"fundings",
-								"54"
+								"2"
 							]
 						}
 					},
@@ -947,7 +1054,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"2\",\r\n        \"provider\": \"tees55t2\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": 132123123,\r\n        \"accumulability\": true,\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": 22\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"municipality\":{\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"2\",\r\n        \"provider\": \"tees55t2\",\r\n        \"visibility\": \"only for me\",\r\n        \"ownContribution\": \"132123123\",\r\n        \"accumulability\": true,\r\n        \"plannedStart\": \"2022-04-03\",\r\n        \"plannedEnd\": \"2022-04-30\",\r\n        \"assessment\": \"test\",\r\n        \"notes\": \"test\",\r\n        \"published\": true,\r\n        \"editors\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ],\r\n        \"categories\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"tags\": [\r\n            {\r\n                \"id\": 3\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\"\r\n        },\r\n        \"details\": {\r\n            \"goal\": \"test\",\r\n            \"funded\": \"test\",\r\n            \"notFunded\": \"test\",\r\n            \"willBeFunded\": \"test\",\r\n            \"condition\": \"test\"\r\n        },\r\n        \"rates\": [\r\n            {\r\n                \"content\": \"test\",\r\n                \"amount\": \"22\"\r\n            }\r\n        ],\r\n        \"links\": [\r\n            {\r\n                \"title\": \"asdasd\",\r\n                \"link\": \"2323\"\r\n            }\r\n        ],\r\n        \"fundingsLinkedTo\": [\r\n            {\r\n                \"id\": 2\r\n            }\r\n        ],\r\n        \"municipality\":{\r\n            \"id\": 1\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1084,7 +1191,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1337/api/checklists/4",
+							"raw": "localhost:1337/api/checklists/10",
 							"host": [
 								"localhost"
 							],
@@ -1092,7 +1199,7 @@
 							"path": [
 								"api",
 								"checklists",
-								"4"
+								"10"
 							],
 							"query": [
 								{
@@ -1112,7 +1219,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"new\",\r\n        \"ideaProvider\": \"volunteering\",\r\n        \"visibility\": \"only for me\",\r\n        \"createdAt\": \"2022-06-19T09:40:37.428Z\",\r\n        \"updatedAt\": \"2022-06-19T10:57:20.787Z\",\r\n        \"published\": true,\r\n        \"editors\": [],\r\n        \"readers\": [],\r\n        \"categories\": [],\r\n        \"tags\": [],\r\n        \"info\": {\r\n            \"contactName\": \"test\",\r\n            \"phone\": \"54646541\",\r\n            \"email\": \"test@test.com\",\r\n            \"streetNo\": \"test\",\r\n            \"postalCode\": \"0099745\",\r\n            \"location\": \"test\"\r\n        },\r\n        \"fundings\": [],\r\n        \"municipality\": null,\r\n        \"project\": null,\r\n        \"initialContact\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-03\",\r\n            \"captureIdea\": {\r\n                \"name\": \"asdasd\",\r\n                \"text\": \"asasd\",\r\n                \"sortPosition\": 1,\r\n                \"active\": false,\r\n                \"tasks\": null,\r\n                \"project\": {\r\n                \"id\": 4\r\n                }\r\n            },\r\n            \"caputreContect\": {\r\n                \"name\": \"asd\",\r\n                \"text\": \"asdads\",\r\n                \"active\": true,\r\n                \"tasks\": null,\r\n                \"sortPosition\": 1\r\n            }\r\n        },\r\n        \"preparation\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-22\",\r\n            \"inspection\": {\r\n                \"name\": \"test\",\r\n                \"text\": \"setset\",\r\n                \"tasks\": null,\r\n                \"active\": true\r\n            },\r\n            \"captureRequirements\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"captureNeeds\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"fundingResearch\": {\r\n            \"start\": \"2022-06-01\",\r\n            \"end\": \"2022-06-28\",\r\n            \"checkDatabase\": {\r\n                \"name\": \"estset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"checkForFunding\": {\r\n                \"name\": \"setse\",\r\n                \"text\": \"tsetset\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            },\r\n            \"checkWithFunding\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setsetset\",\r\n                \"active\": null,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            },\r\n            \"checkGuildlines\": {\r\n                \"name\": \"testet\",\r\n                \"text\": \"setsetset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"preparationOfProject\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-07-01\",\r\n            \"checkContent\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 3,\r\n                \"tasks\": null\r\n            },\r\n            \"checkCooperations\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": true,\r\n                \"sortPosition\": 5,\r\n                \"tasks\": null\r\n            },\r\n            \"checkSimilarProejcts\": {\r\n                \"name\": \"setset\",\r\n                \"text\": \"setset\",\r\n                \"active\": null,\r\n                \"sortPosition\": 1,\r\n                \"tasks\": null\r\n            },\r\n            \"checkPlanning\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdfs\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"legitimation\": {\r\n            \"start\": \"2022-06-02\",\r\n            \"end\": \"2022-06-22\",\r\n            \"template\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdfdf\",\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        },\r\n        \"finalExamination\": {\r\n            \"start\": \"2022-06-14\",\r\n            \"end\": \"2022-06-24\",\r\n            \"revision\": {\r\n                \"name\": \"sdfsdf\",\r\n                \"text\": \"sdfsdf\",\r\n                \"active\": true,\r\n                \"sortPosition\": 2,\r\n                \"tasks\": null\r\n            },\r\n            \"signatures\": {\r\n                \"name\": \"zxczxc\",\r\n                \"text\": \"zxvxcvcv\",\r\n                \"sortPosition\": 7,\r\n                \"active\": true,\r\n                \"tasks\": null\r\n            }\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"title\": \"Checklist title \",\r\n    \"ideaProvider\": \"volunteering\",\r\n    \"project\": {\r\n      \"id\": 1,\r\n      \"title\": \"New Project Idea July 18\"\r\n    },\r\n    \"visibility\": \"all users\",\r\n    \"info\": {\r\n      \"contactName\": \"Bilend Mohammedd\",\r\n      \"phone\": \"07735559696\",\r\n      \"email\": \"bilendmohammed@gmail.com\",\r\n      \"streetNo\": \"Pak City\",\r\n      \"postalCode\": \"46001\"\r\n    },\r\n    \"municipality\": {\r\n      \"id\": 1\r\n    },\r\n    \"editors\": [],\r\n    \"categories\": [{\r\n      \"id\": 1\r\n    }],\r\n    \"tags\": [{\r\n      \"id\": 1\r\n    }],\r\n    \"published\": true,\r\n    \"owner\": {\r\n      \"id\": 1\r\n    },\r\n    \"initialContact\": {\r\n      \"start\": \"2022-08-14\",\r\n      \"end\": \"2022-08-17\",\r\n      \"captureIdea\": {\r\n        \"objectName\": \"captureIdea\",\r\n        \"objectTitle\": \"Erfassung der Projektidee (Themen, Inhalte)\",\r\n        \"desc\": \"Wie kann eine potenzielle Projektidee vor einem Erstgespräch ermittelt werden?\",\r\n        \"name\": \"asdasdasd\",\r\n        \"text\": \"asdasdasasd\",\r\n        \"sortPosition\": 1,\r\n        \"active\": true,\r\n        \"project\": {\r\n          \"id\": 4,\r\n          \"title\": \"New Project Idea July 18\"\r\n        },\r\n        \"objectId\": 1,\r\n        \"tasks\": [{\r\n          \"name\": \"Projektidee-Quellen Nutzen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": true,\r\n          \"children\": [{\r\n            \"name\": \"Projektidee aus bestehenden kommunalen Entwicklungskonzept entnommen \",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1,\r\n            \"info\": [\"Sind Entwicklungskonzepte noch gültig?\"]\r\n          }, {\r\n            \"name\": \"Projektidee aus Antrag der Politik entnommen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": true,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Projektidee aus lokalem Arbeitskreis entnommen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": true,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Projektidee im Erstgespräch (Einzelgemeinde oder Zusammenschluss) entwickelt\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Projektidee aus Vernetzungsgespräch mit anderen Kommunen oder Institutionen (z.B. Hochschulen, Privatwirtschaft, Vereine) entnommen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5,\r\n            \"info\": [\"Umgang mit Projektideen von Seiten des nicht-politischen Ehrenamtes klären?\"]\r\n          }, {\r\n            \"name\": \"Projektidee durch externe Dienstleister/ Produktanbieter in Beratungsgespräch eingebracht\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Veröffentlichung von Förderprogrammen als Basis für Projektidee\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }]\r\n        }, {\r\n          \"name\": \"Allgemeine Rahmenbedingungen ermitteln\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": true,\r\n          \"children\": [{\r\n            \"name\": \"Ziel und Nutzen der Projektidee definieren\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Bedarfe der Bürger*innen ermitteln (z.B. über Abfrage über der Homepage)\",\r\n            \"sortPosition\": 2,\r\n            \"active\": true,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Projektinitiator festlegen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": true,\r\n            \"objectId\": 3,\r\n            \"info\": [\"Wer ist inhaltlicher Ansprechpartner für die Projektkoordination?\"]\r\n          }, {\r\n            \"name\": \"Finanzielle Rahmenbedingungen im Bauamt und der Kämmerei prüfen (u.a. Kostenschätzung und Liquidität der Kommune\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }]\r\n      },\r\n      \"caputreContect\": {\r\n        \"objectName\": \"caputreContect\",\r\n        \"objectTitle\": \"Erfassung Kontext (Themen, Inhalte, Mehrwert, Nutzen)\",\r\n        \"desc\": \"Wie kann der Kontext einer Projektidee im Erstgespräch skizziert und im Nachgang konkretisiert werden?\",\r\n        \"name\": \"asdasd\",\r\n        \"text\": \"123123\",\r\n        \"active\": true,\r\n        \"sortPosition\": 2,\r\n        \"objectId\": 2,\r\n        \"info\": [\"Könnte die Idee genehmigungspflichtig sein?\", \"Sind die Eigentumsverhältnisse geklärt?\", \"Könnte es weitere Hürden und Hindernisse geben?\"],\r\n        \"tasks\": [{\r\n          \"name\": \"Erste Einschätzungen zu den allgemeinen Rahmenbedingungen dokumentieren\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": true,\r\n          \"children\": [{\r\n            \"name\": \"Offene Abfrage der kommunalen Rahmenbedingungen im Erstgespräch dokumentieren\",\r\n            \"sortPosition\": 1,\r\n            \"active\": true,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Bestehende Dokumente (Konzepte, Planungen, Strategien) analysieren\",\r\n            \"sortPosition\": 2,\r\n            \"active\": true,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Diskussion zu weiteren wichtigen Gesprächspartnern führen und dokumentieren\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Produktrecherche, Kostenplanung und Wirtschaftlichkeitsprüfung skizzieren\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }, {\r\n          \"name\": \"Input von weiteren Akteur*innen ermitteln und dokumentieren (z.B. Fachbereiche der Verwaltung, existierende Projektideen/ Referenzprojekte)\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": true,\r\n          \"children\": [{\r\n            \"name\": \"Best-Practice-Beispiele zu existierende Projektideen/ Referenzprojekte finden und mit kommunalen Rahmenbedingungen abgleichen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Input wichtiger Akteure im Nachgang über Workshopformat dokumentieren\",\r\n            \"sortPosition\": 2,\r\n            \"active\": true,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Input wichtiger Akteure im Nachgang über Interviewformat dokumentieren\",\r\n            \"sortPosition\": 3,\r\n            \"active\": true,\r\n            \"objectId\": 3\r\n          }]\r\n        }]\r\n      }\r\n    },\r\n    \"preparation\": {\r\n      \"inspection\": {\r\n        \"objectName\": \"inspection\",\r\n        \"objectTitle\": \"Ggf. Begehung (Abschätzung Projektumfang)\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"sortPosition\": 1,\r\n        \"objectId\": 1,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"info\": [\"Sind Gutachten/Vorstudien nötig?\", \"Müssen externe Dienstleister beauftragt werden?\"],\r\n        \"tasks\": [{\r\n          \"name\": \"Begehung zielgerichtet vorbereiten\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Alle relevanten Akteure (z.B. Bauamt, externe Akteure) zur Begehung einladen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Allgemeine Blickwinkel der Fachabteilungen der Verwaltung einholen (Kämmerei, Bauamt, etc.)\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Investitionskosten anhand von Projektideen/ Referenzprojekten grob ermitteln\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Erweiterten Prüfauftrag an die Verwaltung (kein endgültiger Beschluss) mit Entscheider*innen abstimmen und veranlassen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Bedarfe der Bürger*innen einfließen lassen, bspw. über Mängel-Melder (digital, Telefon, Bürgerservice, Bürgermeister etc.), Workshops, Entwicklungskonzepte\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Kurzinfos zu potenziellen Fördermöglichkeiten vorbereiten\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }]\r\n        }, {\r\n          \"name\": \"Weitere Rahmenbedingungen beim Vor-Ort-Termin sondieren\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Besprechung durchführen samt Dokumentation des Gesprächsverlauf, Anfertigung einer Planskizze etc.\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Besprechung im Büro anhand von Projektideen-Skizze, Bildern, Karten und Planskizzen etc.\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Finanzielle Spielräume mit der Kämmerei anhand der Projektideen-Skizze und den Kurzinfos zu Fördermöglichkeiten besprechen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }]\r\n        }]\r\n      },\r\n      \"captureRequirements\": {\r\n        \"objectName\": \"captureRequirements\",\r\n        \"objectTitle\": \"Erfassung Anforderungen (Projektumfang)\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Wie können Anforderungen erfasst werden?\",\r\n        \"sortPosition\": 2,\r\n        \"objectId\": 2,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Projektentwicklung partizipativ gestalten und konkretisieren\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Arbeitsgruppe einrichten\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Strukturiertes Brainstorming mit entsprechenden Fragestellungen und geeigneter Methodik durchführen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Offenes Brainstorming mit entsprechenden Fragestellungen durchführen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Ideen werden auch aus der Bürgerschaft mit entsprechenden Fragestellungen und geeigneter Methodik mitgenommen– nicht nur Politik\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Genehmigung bei der Kommunalaufsicht prüfen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }]\r\n        }, {\r\n          \"name\": \"Projektsteckbrief für die weiteren Schritte dokumentieren\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Bedarfsanalyse aus den vorherigen Schritten dokumentieren (Phase 0)\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Recherche zu Projektideen/ Referenzprojekten samt Abstimmung mit Kommune dokumentieren\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Fragebogen-Abfrage durchführen (Zielgruppen)\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Interview-Abfrage durchführen (Kooperationspartner)\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Genehmigungen prüfen, ggf. schon einholen und dokumentieren (Zeitvorlauf, Voranfragen, Gutachten)\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }]\r\n        }]\r\n      },\r\n      \"captureNeeds\": {\r\n        \"objectName\": \"captureNeeds\",\r\n        \"objectTitle\": \"Erfassung Bedarfe/Ziele\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Wie können Ziele und Bedarfe erfasst werden?\",\r\n        \"sortPosition\": 3,\r\n        \"objectId\": 3,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Erwartungen an das Projekt definieren\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Alle Beteiligten auf einen Nenner bringen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Erwartungshaltung transparent machen und konsolidieren\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2,\r\n            \"info\": [\"Mit welchen Methoden-Formaten kann man das am besten machen?\"]\r\n          }, {\r\n            \"name\": \"Offenes Sammlung von Zielen (und Zwischenzielen) und Bedarfen in einer Gruppendiskussion\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Fragebogen-Abfrage (Zielgruppen)\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }, {\r\n          \"name\": \"Ressourcen der Akteure bündeln\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Kommunikation und Absprache im eigenen Haus koordinieren\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Zeitschiene abstimmen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Ressourcen und Aufgaben zielgerichtet verteilen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Kommunikation mit Bürger*innen (Homepage, Gemeindebrief, Presse) ermöglichen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Strukturierte Sammlung von Zielen und Bedarfen in einer Gruppendiskussion\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Interview-Abfrage durchführen (Kooperationspartner)\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Recherche zu Projekten mit ähnlichen Zielen und Bedarfen\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }]\r\n        }]\r\n      }\r\n    },\r\n    \"fundingResearch\": {\r\n      \"checkDatabase\": {\r\n        \"objectName\": \"checkDatabase\",\r\n        \"objectTitle\": \"Check Datenbank „Fördermittel“\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Welche grundlegenden Informationen werden benötigt?\",\r\n        \"sortPosition\": 1,\r\n        \"objectId\": 1,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Zeitschiene und Inhalte abgleichen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Eigene Zeitplanung mit zeitlichem Rahmen des Fördertopfes abgleichen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Themenkategorien abgleichen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Projektinhalte aus User Aktivität 2 abgleichen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Projektnutzen und Kosten aus User Aktivität 2 abgleichen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Akteurskonstellation/ Kooperationsbedarf abgleichen, u.a. auch zwecks inhaltlicher und/ oder finanzieller Anpassungen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }]\r\n        }, {\r\n          \"name\": \"Kosten- und Finanzierungsplan aufstellen\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Projektmehrwert/ -nutzen mit Kosten- und Finanzierungsplan verknüpfen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Kostenschätzung einholen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Akteurskonstellation bzgl. Fördermittel/ Inhalte bewerten und prüfen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }]\r\n        }]\r\n      },\r\n      \"checkForFunding\": {\r\n        \"objectName\": \"checkForFunding\",\r\n        \"objectTitle\": \"Check über Förderscouting\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Welche grundlegenden Informationen werden benötigt? Kann ggf. schon ab User Aktivität 2 mit dem Förderscouting erfolgen (2.1 oder 2.2)\",\r\n        \"sortPosition\": 2,\r\n        \"objectId\": 2,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Gemeinsame Fördermittelrecherche bzw. Check der Projektidee durchführen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Förderscouting prüft Themenkategorien gegen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Förderscouting hinterfragt Projektziele\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Förderscouting hinterfragt Projektmehrwert/ -nutzen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Förderscouting hinterfragt Kostenschätzung\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Förderscouting hinterfragt Kooperationspartner*innen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Projektkoordinator holt erste Kostenangebote (über Fachamt) ein\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Protokollauszüge relevanter Ausschüsse im Projektsteckbrief dokumentieren\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }]\r\n        }]\r\n      },\r\n      \"checkWithFunding\": {\r\n        \"objectName\": \"checkWithFunding\",\r\n        \"objectTitle\": \"Check beim Fördermittelgeber\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Welche Informationen müssen für ein zielführendes Gespräch ermittelt werden?\",\r\n        \"sortPosition\": 3,\r\n        \"objectId\": 3,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Worauf muss im Gespräch mit dem Fördermittelgeber geachtet werden?\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Fristen beachten\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Check des Projektsteckbriefes mit dem Fördermittelgeber\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2,\r\n            \"info\": [\"Passen die Projektziele mit den Förderzielen zusammen?\", \"Sind alle relevanten Themenkategorien in die Projektidee integriert?\", \"Passt der Projektinhalte zum Förderzweck?\", \"Passt der Projektmehrwert/ -nutzen zum Förderzweck?\", \"Passen die Kostenschätzungen (Eigenmittel, Folgekosten) in das Fördervolumen?\", \"Was ist hinsichtlich der Besitzverhältnisse zu beachten?\", \"Was ist hinsichtlich der Kooperationspartner*innen zu beachten?\"]\r\n          }, {\r\n            \"name\": \"Check Rahmenbedingungen (allgemein) mit Projektplanung\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3,\r\n            \"info\": [\"Welchen Planungsstand sollte das Projekt haben\"]\r\n          }, {\r\n            \"name\": \"Check alternative Finanzierungs-/ Fördermöglichkeiten \",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4,\r\n            \"info\": [\"Welche Möglichkeiten der Kumulierung gibt es?\", \"Wie hoch muss der Eigenanteil sein\"]\r\n          }]\r\n        }]\r\n      },\r\n      \"checkGuildlines\": {\r\n        \"objectName\": \"checkGuildlines\",\r\n        \"objectTitle\": \"Check Richtlinie (Langfassung)\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Worauf muss bei der Durchsicht von Langfassungen geachtet werden?\",\r\n        \"sortPosition\": 4,\r\n        \"objectId\": 4,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Worauf muss beim Abgleich des Projektsteckbriefes mit der Richtlinie geachtet werden?\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Fristen beachten\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Check des Projektsteckbriefes mit Richtlinie\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2,\r\n            \"info\": [\"Passen die Projektziele mit den Förderzielen zusammen?\", \"Sind alle relevanten Themenkategorien in die Projektidee integriert?\", \"Passt der Projektinhalte zum Förderzweck?\", \"Passt der Projektmehrwert/ -nutzen zum Förderzweck?\", \"Passen die Kostenschätzungen (Eigenmittel, Folgekosten) in das Fördervolumen?\", \"Was ist hinsichtlich der Besitzverhältnisse zu beachten?\", \"Was ist hinsichtlich der Kooperationspartner*innen zu beachten?\"]\r\n          }]\r\n        }, {\r\n          \"name\": \"Grundlegende Förderbedingungen prüfen\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Antragsberechtigung prüfen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Brutto/netto Förderung prüfen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Schwellenwerte/Bagatellgrenze prüfen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Spezielle Rahmenbedingungen und Bedeutung (z.B. AZA-Richtlinie) prüfen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Projektsteckbrief ggf. nachjustieren/ Passgenauigkeit zum Förderprogramm herstellen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Die richtigen Schlagwörter definieren/ adressieren\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Bei Unsicherheit weitere Rücksprache mit dem Fördermittelgeber\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }, {\r\n            \"name\": \"Alternative Finanzierungs- und Fördermöglichkeiten prüfen\",\r\n            \"sortPosition\": 8,\r\n            \"active\": false,\r\n            \"objectId\": 8\r\n          }]\r\n        }]\r\n      }\r\n    },\r\n    \"preparationOfProject\": {\r\n      \"checkContent\": {\r\n        \"objectName\": \"checkContent\",\r\n        \"objectTitle\": \"Check Inhalt mit Richtlinie\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Welche inhaltlichen Hinweise gibt die Richtlinie, um die Förderfähigkeit des Projektantrages zu verbessern/zu erreichen?\",\r\n        \"sortPosition\": 1,\r\n        \"objectId\": 1,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Projektsteckbrief anhand der Richtlinien-Hinweise überarbeiten\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Inhaltliche Anpassung des Projektsteckbriefes anhand User Aktivität 3\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Überführung des Projektsteckbriefes in den Projektantrag\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Kostenschätzungen mit Fachamt präzisieren\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Budgetsituation beim Fördermittelgeber erfragen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Klärung letzter offener Fragen nach der Bearbeitung (telefonisch, E-Mail\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }]\r\n        }]\r\n      },\r\n      \"checkCooperations\": {\r\n        \"objectName\": \"checkCooperations\",\r\n        \"objectTitle\": \"Ggf. Check Kooperationen\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Welche weiteren Kooperationen sind zielführend, um die Projektqualität nachhaltig zu verbessern?\",\r\n        \"sortPosition\": 2,\r\n        \"objectId\": 2,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Weitere zielführende Kooperationen identifizieren\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Beteiligte=Zielgruppe; PR/ÖA, Fachexperten, Kämmerei (hier breit denken)\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"ggf. Kontaktaufnahme mit weiteren Kooperationspartnern via Mail, Telefon, Gespräch\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Beteiligte aus allen Bereichen zusammenbringen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Private und Öffentliche Akteure (Vereine, Verbände etc.)\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }, {\r\n          \"name\": \"Projektqualität durch weitere Kooperationspartner nachhaltig verbessern\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Abfrage von weiteren Bedarfen bei Zielgruppe\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Reflektion des Projektinhaltes und Auslotung der Kooperationsmöglichkeiten\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Vereinbarung der Zusammenarbeit und ggf. Schließung einer Kooperationsvereinbarung\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }]\r\n        }]\r\n      },\r\n      \"checkSimilarProejcts\": {\r\n        \"objectName\": \"checkSimilarProejcts\",\r\n        \"objectTitle\": \"Ggf. Check vergleichbare Projekte\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Wie findet man vergleichbare Projekte und nutzt die Informationen für die Verbesserung der Projektqualität?\",\r\n        \"sortPosition\": 3,\r\n        \"objectId\": 3,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Vergleichbare Projekte identifizieren\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Suche im Internet\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Kontaktaufnahme und Austausch mit Projektinitiatoren\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Suche über Netzwerkpartner und Kollegium\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Akteure mit Erfahrung mit Fördermittelgeber kontaktieren\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }, {\r\n          \"name\": \"Projektqualität durch Abgleich mit vergleichbaren Projekten nachhaltig verbessern\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Transfer in den eigenen Projektkontext (Nachnutzung)\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }]\r\n        }]\r\n      },\r\n      \"checkPlanning\": {\r\n        \"objectName\": \"checkPlanning\",\r\n        \"objectTitle\": \"Check Planung und Fördermittel mit allen relevanten Fachämtern\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Wie kann die interne Zusammenarbeit effizient koordiniert werden?\",\r\n        \"sortPosition\": 4,\r\n        \"objectId\": 4,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Interne Fachabteilungen konkret einbeziehen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Vorherige Abstimmungen mit einzelnen Fachleuten zusammenfügen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Mögliche Einwände/ Projektsinn prüfen \",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Besprechung der formalen Anforderungen an die Projektunterlagen\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Abstimmung der Aufgaben/ ToDos mit den Fachämtern\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Koordination der Aufgaben mit zentralem Ansprechpartner*innen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Beschlüsse zur Gestaltung des Projektes müssen getroffen werden\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Alternativen prüfen, ggf. ohne Förderung bei zu geringer Fördersumme\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }]\r\n        }]\r\n      }\r\n    },\r\n    \"legitimation\": {\r\n      \"template\": {\r\n        \"objectName\": \"template\",\r\n        \"objectTitle\": \"Vorlage/ Diskussion der Projektunterlagen\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Was muss erarbeitet werden, um einen breiten Konsens herbei zu führen?\",\r\n        \"sortPosition\": 1,\r\n        \"objectId\": 1,\r\n        \"active\": false,\r\n        \"fixed\": true,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Projektantrag zielführend in Gemeindevertretung einbringen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Rechtzeitige Infos an Ausschüsse/ Gemeindevertretung/ Bürgermeister geben\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1,\r\n            \"info\": [\"Zusätzliche Gremien einbinden?\"]\r\n          }, {\r\n            \"name\": \"Schlüssiger Projektantrag -> transparent, nachvollziehbar, kurz, prägnant\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Vollständige Projektunterlagen (möglichst)\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Projekt-Informationsblatt/ One-Pager\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Kostenschätzungen, Kosten- und Finanzierungsplan und Folgekosten\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Präsentation durch Funktionsträger/ Projektkoordinator\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Moderation der finalen Diskussion zum Projektantrag\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }, {\r\n            \"name\": \"Ggf. Umlaufbeschluss falls Entscheidungsgremium zu spät tagt\",\r\n            \"sortPosition\": 8,\r\n            \"active\": false,\r\n            \"objectId\": 8\r\n          }]\r\n        }, {\r\n          \"name\": \"Beschlussfassung vorbereiten und herbeiführen\",\r\n          \"sortPosition\": 2,\r\n          \"objectId\": 2,\r\n          \"active\": false,\r\n          \"info\": [\"Wann und wie müssen Gemeindevertreter involviert werden? >> Mehrfach im Prozess\"],\r\n          \"children\": [{\r\n            \"name\": \"Beschlussvorlage auf Basis der Projektunterlagen anfertigen\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Abstimmung der Beschlussvorlage\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Anhörung Experten\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Protokollauszug den Projektunterlagen beifügen\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }]\r\n        }]\r\n      }\r\n    },\r\n    \"finalExamination\": {\r\n      \"revision\": {\r\n        \"objectName\": \"revision\",\r\n        \"objectTitle\": \"Überarbeitung Projektunterlagen\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Was muss bei der finalen Überarbeitung aller Projektunterlagen beachtet werden?\",\r\n        \"sortPosition\": 1,\r\n        \"objectId\": 1,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Überarbeitung der Projektunterlagen\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"info\": [\"Ist das Geld beim Projektträger vorhanden? (Budget pro Aufruf)\"],\r\n          \"children\": [{\r\n            \"name\": \"Diese Aktivität muss frühzeitig koordiniert werden\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Zeit einplanen\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Einreichungsmodalitäten und technische Rahmenbedingungen (siehe EasyOnline)\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Inhaltliche Durchsicht aller Unterlagen (inklusive Anlagen, eigene Checkliste ob alles da ist)\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Formale Durchsicht aller Unterlagen\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Check Kostenplan mit Angeboten\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }, {\r\n            \"name\": \"Bei gravierenden Änderungen neuer Beschluss\",\r\n            \"sortPosition\": 7,\r\n            \"active\": false,\r\n            \"objectId\": 7\r\n          }, {\r\n            \"name\": \"Finale Besprechung mit dem Projektträger\",\r\n            \"sortPosition\": 8,\r\n            \"active\": false,\r\n            \"objectId\": 8\r\n          }]\r\n        }]\r\n      },\r\n      \"signatures\": {\r\n        \"objectName\": \"signatures\",\r\n        \"objectTitle\": \"Einholung von Unterschriften\",\r\n        \"name\": \"\",\r\n        \"text\": \"\",\r\n        \"desc\": \"Was muss bei der Einholung von Unterschriften beachtet werden?\",\r\n        \"sortPosition\": 2,\r\n        \"objectId\": 2,\r\n        \"active\": false,\r\n        \"fixed\": false,\r\n        \"file\": null,\r\n        \"tasks\": [{\r\n          \"name\": \"Koordination der Unterschriftensammlung\",\r\n          \"sortPosition\": 1,\r\n          \"objectId\": 1,\r\n          \"active\": false,\r\n          \"children\": [{\r\n            \"name\": \"Rechtzeitige Informationen zu weitere Ablauf an alle Unterzeichner (Wann? Nach Antragstellung?)\",\r\n            \"sortPosition\": 1,\r\n            \"active\": false,\r\n            \"objectId\": 1\r\n          }, {\r\n            \"name\": \"Richtlinie geändert? -> Anpassung\",\r\n            \"sortPosition\": 2,\r\n            \"active\": false,\r\n            \"objectId\": 2\r\n          }, {\r\n            \"name\": \"Rechtzeitige Übermittelung der Vorlagen (Antrag, Kooperationsvereinbarungen etc.)\",\r\n            \"sortPosition\": 3,\r\n            \"active\": false,\r\n            \"objectId\": 3\r\n          }, {\r\n            \"name\": \"Abstimmung der finalen Sammlung von Unterschriften (Zeit und Postweg einplanen)\",\r\n            \"sortPosition\": 4,\r\n            \"active\": false,\r\n            \"objectId\": 4\r\n          }, {\r\n            \"name\": \"Prüfung der Unterschriften\",\r\n            \"sortPosition\": 5,\r\n            \"active\": false,\r\n            \"objectId\": 5\r\n          }, {\r\n            \"name\": \"Digitalisierung Archiv/ Ablage\",\r\n            \"sortPosition\": 6,\r\n            \"active\": false,\r\n            \"objectId\": 6\r\n          }]\r\n        }]\r\n      }\r\n    }\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1181,6 +1288,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "duplicate checklist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/checklist/duplicate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"checklist",
+								"duplicate",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1213,7 +1341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\":{\r\n        \"email\": \"test@test.test\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"data\":{\r\n        \"email\": \"test4@test.test\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1258,6 +1386,374 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Read Notification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":{\n        \"user\": 1,\n        // \"guest_request\": 12\n        // \"funding_expirey\": 1\n        // \"request\": 1\n        \"funding_comment\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/read-notifications",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"read-notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "concent",
+			"item": [
+				{
+					"name": "Get KEY",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/concent/key/",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"concent",
+								"key",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update concent",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"key\": \"$2a$10$RzQ0K4cqEY6hZthwoHclcO9ee2teLo1MvddxFJAubdtUaWzGAvqHK\",\r\n        \"consent\": {\r\n            \"essential\": true,\r\n            \"prefrences\": false\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/data-concents/89374327",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"data-concents",
+								"89374327"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find concent",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\":{\r\n        \"key\":\"$2a$10$RzQ0K4cqEY6hZthwoHclcO9ee2teLo1MvddxFJAubdtUaWzGAvqHK\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/concent/findKey",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"concent",
+								"findKey"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "forum",
+			"item": [
+				{
+					"name": "comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/comments/api::forum.forum:1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"comments",
+								"api::forum.forum:1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comments Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/comments/api::forum.forum:1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"comments",
+								"api::forum.forum:1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/comments/api::forum.forum:1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"comments",
+								"api::forum.forum:1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comments FLAT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/comments/api::forum.forum:1/flat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"comments",
+								"api::forum.forum:1",
+								"flat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "Add Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":{\n        \"title\": \"ameen\",\n        \"municipality\": 22\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1337/api/locations",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/locations/22",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"locations",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/locations/22",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"locations",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "emailing center",
+			"item": [
+				{
+					"name": "Send Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\"subject\":\"Testing Subject\",\"group\":\"3\",\"body\":\"<p><strong>Hello,</strong></p>\\n\\n<p>This is a test email body. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum quam ac felis convallis, at ultrices lorem interdum. Proin eget tortor a ligula semper sagittis.</p>\\n\\n<p>Nulla facilisi. Fusce non feugiat eros, nec laoreet mi. Sed auctor pharetra velit, id lacinia eros mollis id. Phasellus at luctus magna. Integer sodales nisi eget risus cursus sodales.</p>\\n\\n<p>Sincerely,<br>John Doe</p>\"}",
+									"type": "text"
+								},
+								{
+									"key": "files.attachments",
+									"type": "file",
+									"src": [
+										"/Users/alameenazad/Downloads/Ahmed Azad Intern acceptance letter.pdf",
+										"/Users/alameenazad/Downloads/logo1.jpeg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:1337/api/emailing-centers",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"emailing-centers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Emails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1337/api/emailing-centers",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"emailing-centers"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1292,9 +1788,9 @@
 							"description": "the files you want to uplaod",
 							"type": "file",
 							"src": [
-								"/C:/Users/User/Downloads/67A6598B-36C4-4912-82E0-5B3CA52C2A32.mp4",
-								"/C:/Users/User/Downloads/MicrosoftTeams-image (4).png",
-								"/C:/Users/User/Downloads/MicrosoftTeams-image (3).png"
+								"/C:/Users/Alame/Downloads/3J2A5253_D.jpg",
+								"/C:/Users/Alame/Downloads/1bf34aae_048f9751_6913541025.mp4",
+								"/C:/Users/Alame/Downloads/amtlogo.png"
 							]
 						}
 					]
@@ -1327,6 +1823,36 @@
 					"path": [
 						"api",
 						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update file caption",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"caption\":\"555555\",\r\n    \"type\": \"funding\",\r\n    \"docId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1337/api/upload/caption/1",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"upload",
+						"caption",
+						"1"
 					]
 				}
 			},
