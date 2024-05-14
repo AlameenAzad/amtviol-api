@@ -114,7 +114,16 @@ module.exports = createCoreController(
               ],
             },
           },
-          user_details: true,
+          user_details: {
+            populate: {
+              user: {
+                populate: {
+                  role: {
+                    fields: ["type"],
+                  },
+              } },
+            },
+          },
           profile: true,
         },
       };
@@ -125,15 +134,20 @@ module.exports = createCoreController(
       entries.forEach((entry) => {
         entry.dataSet = {};
         entry.users = "";
+        entry.guests = "";
         entry.dataSet.projects = entry.projects.length;
         entry.dataSet.checklist = entry.checklists.length;
         entry.dataSet.total = entry.dataSet.projects + entry.dataSet.checklist;
         //get users name in a string and remove excess data
         if (entry.user_details.length > 0) {
           entry.user_details.forEach((userDetails) => {
-            entry.users += userDetails.fullName + ", ";
+            if (userDetails.user.role.type === "guest")
+              entry.guests += userDetails.fullName + ", ";
+            else
+              entry.users += userDetails.fullName + ", ";
           });
           entry.users = entry.users.slice(0, -2);
+          entry.guests = entry.guests.slice(0, -2);
         }
         //add type = project to all entries in entry.projects
         entry.projects.forEach((project) => {
