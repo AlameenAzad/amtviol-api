@@ -27,7 +27,6 @@ module.exports = (plugin, env) => {
   };
 
   plugin.controllers.user.find = async (ctx) => {
-
     const userMunicipalityId = await _getUserMunicipalityId(ctx);
     const users = await strapi.entityService.findMany(
       "plugin::users-permissions.user",
@@ -43,29 +42,32 @@ module.exports = (plugin, env) => {
         sort: {
           user_detail: {
             fullName: "asc",
-          }
-        }
+          },
+        },
       }
     );
 
     const sortedUsers = users.sort((a, b) => {
       const aMunicipality = a.user_detail.municipality.id;
       const bMunicipality = b.user_detail.municipality.id;
-      const aUsername = a.username.toLowerCase();
-      const bUsername = b.username.toLowerCase();
+      const aMunicipalityName = a.user_detail.municipality.title.toLowerCase();
+      const bMunicipalityName = b.user_detail.municipality.title.toLowerCase();
 
-      if (aMunicipality === userMunicipalityId && bMunicipality !== userMunicipalityId) {
+      if (
+        aMunicipality === userMunicipalityId &&
+        bMunicipality !== userMunicipalityId
+      ) {
         return -1; // Move a to a lower index
-      } else if (aMunicipality !== userMunicipalityId && bMunicipality === userMunicipalityId) {
+      } else if (
+        aMunicipality !== userMunicipalityId &&
+        bMunicipality === userMunicipalityId
+      ) {
         return 1; // Move b to a lower index
       } else {
-        // If municipalities are the same or both are not equal to userMunicipalityId, sort by username
-        if (aMunicipality === bMunicipality) {
-          // If municipalities are the same, sort by username
-          if (aUsername < bUsername) return -1;
-          if (aUsername > bUsername) return 1;
-        }
-        return 0; // If both municipality IDs and usernames are the same or not applicable, maintain the current order
+        // If municipalities are the same or both are not equal to userMunicipalityId, sort by municipality name
+        if (aMunicipalityName < bMunicipalityName) return -1;
+        if (aMunicipalityName > bMunicipalityName) return 1;
+        return 0; // If both municipality IDs and names are the same or not applicable, maintain the current order
       }
     });
 
@@ -336,7 +338,7 @@ module.exports = (plugin, env) => {
           user_detail: {
             populate: { municipality: { fields: ["id"] } },
           },
-        }
+        },
       }
     );
     return userDetails.user_detail.municipality.id;
