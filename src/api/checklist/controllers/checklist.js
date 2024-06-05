@@ -476,7 +476,7 @@ module.exports = createCoreController(
         "id",
         "requests",
       ];
-      var except = ["categories", "tags", "fundings", "project"];
+      var except = ["categories", "tags", "fundings", "project", "funding"];
       checklist = await strapi
         .controller("api::project.project")
         .filterObject(checklist, keys, except);
