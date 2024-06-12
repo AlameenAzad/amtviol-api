@@ -38,5 +38,10 @@ module.exports = {
       path: "/upload/caption/:id",
       handler: "user-detail.updateFileCaption",
     },
+    {
+      method: "GET",
+      path: "/file/:id",
+      handler: "user-detail.getFileAsPDF",
+    },
   ],
 };
