@@ -1024,6 +1024,7 @@ export interface ApiEmailingCenterEmailingCenter extends Schema.CollectionType {
     attachments: Attribute.Media;
     body: Attribute.RichText & Attribute.Required;
     response: Attribute.JSON & Attribute.Private;
+    groupName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

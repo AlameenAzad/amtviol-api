@@ -768,5 +768,63 @@ module.exports = createCoreController(
         },
       });
     },
+    async getFileAsPDF(ctx) {
+      const fs = require("fs");
+      const path = require("path");
+      const axios = require("axios");
+      const FormData = require("form-data");
+      const { id } = ctx.params;
+
+      const document = await strapi.plugins.upload.services.upload.findOne(id);
+      // console.log("🚀 ~ getFileAsPDF ~ document:", document);
+      if (document == null)
+        return ctx.notFound("Datei nicht gefunden");
+
+      const filename = document.hash + document.ext;
+      const uploadsDir = path.join(__dirname, "../../../../public/uploads/");
+      const inputFilePath = path.join(uploadsDir, filename);
+      const outputFilePath = inputFilePath.replace(
+        path.extname(inputFilePath),
+        ".pdf"
+      );
+
+      try {
+        if (fs.existsSync(outputFilePath)) {
+          // File exists, read and return it
+          ctx.type = "application/pdf";
+          ctx.body = fs.createReadStream(outputFilePath);
+        } else {
+          // File does not exist, convert it using Gotenberg
+          const form = new FormData();
+          form.append("files", fs.createReadStream(inputFilePath));
+
+          const response = await axios.post(
+            "http://localhost:3030/forms/libreoffice/convert",
+            form,
+            {
+              headers: form.getHeaders(),
+              responseType: "arraybuffer",
+            }
+          );
+
+          if (response.status !== 200) {
+            throw new Error(`Failed to convert file: ${response.statusText}`);
+          }
+
+          const buffer = await response.data;
+
+          // Save the converted file
+          fs.writeFileSync(outputFilePath, buffer);
+
+          // Return the converted file
+          ctx.type = "application/pdf";
+          ctx.body = fs.createReadStream(outputFilePath);
+        }
+      } catch (err) {
+        ctx.throw(500, err.message || err);
+      }
+
+      return document;
+    },
   })
 );
