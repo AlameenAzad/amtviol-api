@@ -21,5 +21,22 @@ module.exports = createCoreController('api::location.location', ({ strapi }) =>(
     const locations = await strapi.entityService.findMany('api::location.location',
       filters);
     return locations;
+  },
+
+  async findGroupedByMunicipality(ctx) {
+    const filters = {
+      fields: ['title'],
+      populate: { municipality: { fields: ['title'] } },
+    };
+    const locations = await strapi.entityService.findMany('api::location.location',
+      filters);
+    const groupedLocations = locations.reduce((acc, location) => {
+      if (!acc[location.municipality.title]) {
+        acc[location.municipality.title] = [];
+      }
+      acc[location.municipality.title].push(location.title);
+      return acc;
+    }, {});
+    return groupedLocations;
   }
 }));
