@@ -9,6 +9,15 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController(
   "api::emailing-center.emailing-center",
   ({ strapi }) => ({
+    async find(ctx) {
+      const entities = await strapi.entityService.findMany(
+        "api::emailing-center.emailing-center",
+        {
+          populate: ["attachments"],
+        }
+      );
+      return entities;
+    },
     async create(ctx) {
       const { group, subject, body } = JSON.parse(ctx.request.body.data);
       const files = ctx.request.files["files.attachments"];
