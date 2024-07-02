@@ -6,7 +6,16 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::location.location', ({ strapi }) =>({
+module.exports = createCoreController('api::location.location', ({ strapi }) => ({
+  async find(ctx) {
+      const entities = await strapi.entityService.findMany(
+        "api::location.location",
+        {
+          populate: ["municipality"],
+        }
+      );
+      return entities;
+    },
   async findByMunicipality(ctx) {
     const isAdmin = ctx.state.user.role.type === 'admin';
     const { id } = ctx.params;
