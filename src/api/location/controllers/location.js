@@ -46,6 +46,12 @@ module.exports = createCoreController('api::location.location', ({ strapi }) => 
       acc[location.municipality.title].push(location.title);
       return acc;
     }, {});
+
+    // Sort the locations alphabetically within each municipality
+    Object.keys(groupedLocations).forEach(municipality => {
+      groupedLocations[municipality].sort((a, b) => a.localeCompare(b));
+    });
+
     return groupedLocations;
   }
 }));

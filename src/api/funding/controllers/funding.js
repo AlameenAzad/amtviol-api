@@ -209,18 +209,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     forAdmins.setDate(forAdmins.getDate() + 30);
 
     var filters = {
-      read_notifications: {
-        $or: [
-          {
-            user: {
-              $not: ctx.state.user.id,
-            },
-          },
-          {
-            user: null,
-          },
-        ],
-      },
       $and: [
         { plannedEnd: { $lte: forUsers.toISOString().split("T")[0] } },
         { plannedEnd: { $gte: today.toISOString().split("T")[0] } },
@@ -244,6 +232,9 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       {
         fields: ["title", "plannedEnd"],
         filters,
+        populate: {
+          read_notifications: { populate: ["user"] },
+        },
         sort: { plannedEnd: "ASC" },
       }
     );
