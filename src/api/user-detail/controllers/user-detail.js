@@ -509,6 +509,7 @@ module.exports = createCoreController(
     async notification(ctx) {
       const userDetails = await this.find(ctx);
       const userSettings = userDetails.notifications.app;
+      const userId = ctx.state.user.id;
       const type = ctx.state.user.role.type;
       if (userSettings.dataRequests && type != "guest") {
         var requests = await this._getRequests(ctx);
@@ -521,11 +522,24 @@ module.exports = createCoreController(
           var fundingComments = await this._getFundingComments(ctx);
         }
       }
+
+      let fundingExpirey = [];
       if (userSettings.fundingExpiry)
-        var fundingExpirey = await strapi
+        fundingExpirey = await strapi
           .controller("api::funding.funding")
           .getFundingExpirey(ctx);
 
+      fundingExpirey = fundingExpirey
+        .filter(
+          (fe) =>
+            !fe.read_notifications.some(
+              (rn) => rn.user && rn.user.id === userId
+            )
+        )
+        .map((fe) => {
+          const { read_notifications, ...rest } = fe;
+          return rest;
+        });
       return { requests, guest, fundingComments, fundingExpirey };
     },
     //This API is to get specific user-detail of a user. For project ideas and checklists. For the Contact Person information section
@@ -589,86 +603,100 @@ module.exports = createCoreController(
         );
     },
     async _getFundingComments(ctx) {
-      return strapi.entityService.findMany(
+      const fundingComments = await strapi.entityService.findMany(
         "api::funding-comment.funding-comment",
         {
           fields: ["comment", "created_at"],
           populate: {
             funding: { fields: ["title"] },
             owner: { fields: ["username"] },
-          },
-          filters: {
-            read_notifications: {
-              $or: [
-                {
-                  user: {
-                    $not: ctx.state.user.id,
-                  },
-                },
-                {
-                  user: null,
-                },
-              ],
-            },
+            read_notifications: { populate: ["user"] },
           },
         }
       );
+
+      // Post-filtering to ensure that none of the related read_notifications have user.id = userId
+      const userId = ctx.state.user.id;
+      const filteredFundingComments = fundingComments
+        .filter(
+          (fc) =>
+            !fc.read_notifications.some(
+              (rn) => rn.user && rn.user.id === userId
+            )
+        )
+        .map((fc) => {
+          const { read_notifications, ...rest } = fc;
+          return rest;
+        });
+
+      return filteredFundingComments;
     },
 
     async _getGuestsRequests(ctx, type, userDetails) {
+      const userId = ctx.state.user.id;
+
       const options = {
         populate: {
           municipality: { fields: ["title", "id"] },
           categories: { fields: ["title", "id"] },
+          read_notifications: { populate: ["user"] }, // Ensure user is populated in read_notifications
         },
-        filters: {
-          read_notifications: {
-            $or: [
-              {
-                user: {
-                  $not: ctx.state.user.id,
-                },
-              },
-              {
-                user: null,
-              },
-            ],
-          },
-        },
+        filters: {},
       };
-      if (type == "leader") {
+
+      if (type === "leader") {
         options.filters.municipality = {
           id: userDetails.municipality.id,
         };
       }
 
-      return strapi.entityService.findMany(
+      const guestRequests = await strapi.entityService.findMany(
         "api::guest-request.guest-request",
         options
       );
+
+      // Post-filtering to ensure that none of the related read_notifications have user.id = userId
+      const filteredGuestRequests = guestRequests
+        .filter(
+          (gr) =>
+            !gr.read_notifications.some(
+              (rn) => rn.user && rn.user.id === userId
+            )
+        )
+        .map((gr) => {
+          const { read_notifications, ...rest } = gr;
+          return rest;
+        });
+
+      return filteredGuestRequests;
     },
     async _getRequests(ctx) {
+      const userId = ctx.state.user.id;
       const fields = ["approved", "type", "created_at"];
       const filters = {
-        approved: false,
-        read_notifications: {
-          $or: [
-            {
+        $or: [
+          {
+            read_notifications: {
               user: {
-                $not: ctx.state.user.id,
+                id: {
+                  $not: userId,
+                },
               },
             },
-            {
+          },
+          {
+            read_notifications: {
               user: null,
             },
-          ],
-        },
+          },
+        ],
       };
       const populate = {
         user: { fields: "username" },
         funding: { fields: ["title"] },
         project: { fields: ["title"] },
         checklist: { fields: ["title"] },
+        read_notifications: { populate: ["user"] },
       };
 
       if (ctx.state.user.role === "leader") {
@@ -684,32 +712,32 @@ module.exports = createCoreController(
             $or: [
               {
                 project: {
-                  owner: ctx.state.user.id,
+                  owner: userId,
                 },
               },
               {
                 project: {
-                  editors: ctx.state.user.id,
+                  editors: userId,
                 },
               },
               {
                 funding: {
-                  owner: ctx.state.user.id,
+                  owner: userId,
                 },
               },
               {
                 funding: {
-                  editors: ctx.state.user.id,
+                  editors: userId,
                 },
               },
               {
                 checklist: {
-                  owner: ctx.state.user.id,
+                  owner: userId,
                 },
               },
               {
                 checklist: {
-                  editors: ctx.state.user.id,
+                  editors: userId,
                 },
               },
             ],
@@ -727,11 +755,27 @@ module.exports = createCoreController(
         ];
       }
 
-      return await strapi.entityService.findMany("api::request.request", {
-        filters,
-        fields,
-        populate,
-      });
+      const requests = await strapi.entityService.findMany(
+        "api::request.request",
+        {
+          filters,
+          fields,
+          populate,
+        }
+      );
+      // Post-filtering to ensure that none of the related read_notifications have user.id = userId
+      const filteredRequests = requests
+        .filter(
+          (gr) =>
+            !gr.read_notifications.some(
+              (rn) => rn.user && rn.user.id === userId
+            )
+        )
+        .map((gr) => {
+          const { read_notifications, ...rest } = gr;
+          return rest;
+        });
+      return filteredRequests;
     },
     async changeOwnership(ctx) {
       const { type, id, newOwnerId } = ctx.request.body;
@@ -777,8 +821,7 @@ module.exports = createCoreController(
 
       const document = await strapi.plugins.upload.services.upload.findOne(id);
       // console.log("🚀 ~ getFileAsPDF ~ document:", document);
-      if (document == null)
-        return ctx.notFound("Datei nicht gefunden");
+      if (document == null) return ctx.notFound("Datei nicht gefunden");
 
       const filename = document.hash + document.ext;
       const uploadsDir = path.join(__dirname, "../../../../public/uploads/");
