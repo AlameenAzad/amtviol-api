@@ -716,28 +716,13 @@ module.exports = createCoreController(
                 },
               },
               {
-                project: {
-                  editors: userId,
-                },
-              },
-              {
                 funding: {
                   owner: userId,
                 },
               },
               {
-                funding: {
-                  editors: userId,
-                },
-              },
-              {
                 checklist: {
                   owner: userId,
-                },
-              },
-              {
-                checklist: {
-                  editors: userId,
                 },
               },
             ],
