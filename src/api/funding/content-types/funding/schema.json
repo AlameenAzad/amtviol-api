@@ -112,7 +112,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::funding.funding",
-      "inversedBy": "fundingsLinkedToMe"
+      "mappedBy": "fundingsLinkedToMe"
     },
     "fundingsLinkedToMe": {
       "type": "relation",
@@ -151,6 +151,13 @@
       "relation": "oneToMany",
       "target": "api::funding-comment.funding-comment",
       "mappedBy": "funding"
+    },
+    "read_notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::read-notification.read-notification",
+      "private": true,
+      "mappedBy": "funding_expiry"
     }
   }
 }

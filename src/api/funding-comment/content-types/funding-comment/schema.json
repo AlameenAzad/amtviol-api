@@ -4,7 +4,8 @@
   "info": {
     "singularName": "funding-comment",
     "pluralName": "funding-comments",
-    "displayName": "fundingComment"
+    "displayName": "fundingComment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -25,6 +26,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "read_notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::read-notification.read-notification",
+      "private": true,
+      "mappedBy": "funding_comment"
     }
   }
 }

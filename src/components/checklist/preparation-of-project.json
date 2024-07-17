@@ -1,7 +1,8 @@
 {
   "collectionName": "components_checklist_preparation",
   "info": {
-    "displayName": "preparationOfProject"
+    "displayName": "preparationOfProject",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -34,6 +35,10 @@
       "type": "component",
       "repeatable": false,
       "component": "checklist.check-planning"
+    },
+    "responsiblePerson": {
+      "type": "string",
+      "default": " "
     }
   }
 }

@@ -8,149 +8,12 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
   async find(ctx) {
-    if (ctx.state.user.role.type != "guest") {
-      const entries = await strapi.entityService.findMany(
-        "api::funding.funding",
-        {
-          fields: [
-            "title",
-            "visibility",
-            "published",
-            "plannedStart",
-            "plannedEnd",
-          ],
-          populate: {
-            owner: {
-              fields: ["username"],
-              populate: {
-                user_detail: {
-                  fields: ["fullName"],
-                  populate: { municipality: { fields: ["title"] } },
-                },
-              },
-            },
-            categories: { fields: ["title"] },
-            editors: { fields: ["username"] },
-            readers: { fields: ["username"] },
-            tags: { fields: ["title"] },
-            municipality: { fields: ["title", "id"] },
-          },
-          filters: {
-            $or: [
-              {
-                owner: { id: ctx.state.user.id },
-              },
-              {
-                editors: { id: ctx.state.user.id },
-              },
-              {
-                readers: { id: ctx.state.user.id },
-              },
-              {
-                visibility: "listed only",
-              },
-              {
-                visibility: "all users",
-              },
-            ],
-            $and: [
-              {
-                $or: [
-                  {
-                    published: true,
-                  },
-                  {
-                    $and: [
-                      {
-                        published: false,
-                      },
-                      {
-                        owner: { id: ctx.state.user.id },
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                archived: false,
-              },
-            ],
-          },
-        }
-      );
-      return entries;
-    } else {
-      const entries = await strapi.entityService.findMany(
-        "api::funding.funding",
-        {
-          fields: [
-            "title",
-            "visibility",
-            "published",
-            "plannedStart",
-            "plannedEnd",
-          ],
-          populate: {
-            owner: {
-              fields: ["username"],
-              populate: {
-                user_detail: {
-                  fields: ["fullName"],
-                  populate: { municipality: { fields: ["title"] } },
-                },
-              },
-            },
-            categories: { fields: ["title"] },
-            editors: { fields: ["username"] },
-            readers: { fields: ["username"] },
-            tags: { fields: ["title"] },
-            municipality: { fields: ["title", "id"] },
-          },
-          filters: {
-            $or: [
-              {
-                owner: { id: ctx.state.user.id },
-              },
-              {
-                editors: { id: ctx.state.user.id },
-              },
-              {
-                readers: { id: ctx.state.user.id },
-              },
-              {
-                visibility: "listed only",
-              },
-              {
-                visibility: "all users",
-              },
-            ],
-            $and: [
-              {
-                $or: [
-                  {
-                    published: true,
-                  },
-                  {
-                    $and: [
-                      {
-                        published: false,
-                      },
-                      {
-                        owner: { id: ctx.state.user.id },
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                archived: false,
-              },
-            ],
-          },
-        }
-      );
-      return entries;
-    }
+    const options = this._buildGetFundingFilters(ctx);
+    const entries = await strapi.entityService.findMany(
+      "api::funding.funding",
+      options
+    );
+    return entries;
   },
   async findOne(ctx) {
     let filters = {
@@ -271,21 +134,6 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       );
     else return await super.update(ctx);
   },
-  // async delete(ctx) {
-
-  //   var entry = await strapi.entityService.findMany("api::funding.funding", {
-  //     populate: {
-  //       owner: { fields: ["username"] },
-  //     },
-  //     filters: {
-  //       owner: { id: ctx.state.user.id },
-  //       id: ctx.params.id,
-  //     },
-  //   });
-  //   if (entry.length == 0)
-  //     return ctx.unauthorized("You are not allowed to delete this funding");
-  //   else return await super.delete(ctx);
-  // },
   async getRequests(entry) {
     const requests = await strapi.entityService.findMany(
       "api::request.request",
@@ -384,6 +232,9 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
       {
         fields: ["title", "plannedEnd"],
         filters,
+        populate: {
+          read_notifications: { populate: ["user"] },
+        },
         sort: { plannedEnd: "ASC" },
       }
     );
@@ -421,5 +272,86 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     )
       return true;
     else return false;
+  },
+
+  _buildGetFundingFilters(ctx) {
+    const { withArchived } = ctx.query;
+    const getFundingFilters = {
+      $or: [
+        {
+          owner: { id: ctx.state.user.id },
+        },
+        {
+          editors: { id: ctx.state.user.id },
+        },
+        {
+          readers: { id: ctx.state.user.id },
+        },
+        {
+          visibility: "listed only",
+        },
+        {
+          visibility: "all users",
+        },
+      ],
+      $and: [
+        {
+          $or: [
+            {
+              published: true,
+            },
+            {
+              $and: [
+                {
+                  published: false,
+                },
+                {
+                  owner: { id: ctx.state.user.id },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    const options = {
+      fields: [
+        "title",
+        "visibility",
+        "published",
+        "plannedStart",
+        "plannedEnd",
+      ],
+      populate: {
+        owner: {
+          fields: ["username"],
+          populate: {
+            user_detail: {
+              fields: ["fullName"],
+              populate: { municipality: { fields: ["title"] } },
+            },
+          },
+        },
+        categories: { fields: ["title"] },
+        editors: { fields: ["username"] },
+        readers: { fields: ["username"] },
+        tags: { fields: ["title"] },
+        municipality: { fields: ["title", "id"] },
+      },
+    };
+    let newOptions = null;
+    if (withArchived == "true") {
+      newOptions = { fields: ["title", "archived"] }
+      newOptions.filters = getFundingFilters;
+      newOptions.filters.$and.push({
+        $or: [{ archived: false }, { archived: true }],
+      });
+    } else {
+      options.filters = getFundingFilters;
+      options.filters.$and.push({
+        archived: false,
+      });
+    }
+    return newOptions || options;
   },
 }));

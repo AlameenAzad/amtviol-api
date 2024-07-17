@@ -1,7 +1,8 @@
 {
   "collectionName": "components_checklist_initial_contacts",
   "info": {
-    "displayName": "initialContact"
+    "displayName": "initialContact",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -20,6 +21,10 @@
       "type": "component",
       "repeatable": false,
       "component": "checklist.capture-contect"
+    },
+    "responsiblePerson": {
+      "type": "string",
+      "default": "  "
     }
   }
 }

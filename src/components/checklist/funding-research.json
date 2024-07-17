@@ -40,6 +40,10 @@
       "type": "component",
       "repeatable": false,
       "component": "funding.select-funding"
+    },
+    "responsiblePerson": {
+      "type": "string",
+      "default": " "
     }
   }
 }

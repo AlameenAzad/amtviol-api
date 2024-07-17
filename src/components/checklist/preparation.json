@@ -1,7 +1,8 @@
 {
   "collectionName": "components_checklist_preparations",
   "info": {
-    "displayName": "preparation"
+    "displayName": "preparation",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -28,6 +29,10 @@
       "type": "component",
       "repeatable": false,
       "component": "checklist.capture-needs"
+    },
+    "responsiblePerson": {
+      "type": "string",
+      "default": " "
     }
   }
 }
