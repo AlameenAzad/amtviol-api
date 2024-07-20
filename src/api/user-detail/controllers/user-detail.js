@@ -798,6 +798,12 @@ module.exports = createCoreController(
       });
     },
     async getFileAsPDF(ctx) {
+      const token  = ctx.request.query.token || ctx.request.header.authorization.split(" ")[1];
+      try {
+        await strapi.service("plugin::users-permissions.jwt").verify(token);
+      } catch (error) {
+        return ctx.unauthorized("Ungültiges Token");
+      }
       const fs = require("fs");
       const path = require("path");
       const axios = require("axios");
@@ -805,7 +811,6 @@ module.exports = createCoreController(
       const { id } = ctx.params;
 
       const document = await strapi.plugins.upload.services.upload.findOne(id);
-      // console.log("🚀 ~ getFileAsPDF ~ document:", document);
       if (document == null) return ctx.notFound("Datei nicht gefunden");
 
       const filename = document.hash + document.ext;
