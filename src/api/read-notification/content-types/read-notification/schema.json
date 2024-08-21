@@ -17,7 +17,7 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "funding_expiry": {
+    "funding_expirey": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::funding.funding",

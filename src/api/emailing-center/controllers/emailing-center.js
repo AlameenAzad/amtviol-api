@@ -29,7 +29,9 @@ module.exports = createCoreController(
           fields: ["email"],
           filters: {
             role: {
-              id: Number(group),
+              id: {
+                $in: group.split(","),
+              },
             },
           },
         }
