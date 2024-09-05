@@ -342,6 +342,10 @@ module.exports = createCoreController("api::funding.funding", ({ strapi }) => ({
     let newOptions = null;
     if (withArchived == "true") {
       newOptions = { fields: ["title", "archived"] }
+      newOptions.populate = {
+        categories: { fields: ["title"] },
+        tags: { fields: ["title"] },
+      };
       newOptions.filters = getFundingFilters;
       newOptions.filters.$and.push({
         $or: [{ archived: false }, { archived: true }],

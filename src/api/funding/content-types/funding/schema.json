@@ -156,8 +156,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::read-notification.read-notification",
-      "private": true,
-      "mappedBy": "funding_expiry"
+      "mappedBy": "funding_expirey"
     }
   }
 }

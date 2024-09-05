@@ -1129,8 +1129,7 @@ export interface ApiFundingFunding extends Schema.CollectionType {
       'api::funding.funding',
       'oneToMany',
       'api::read-notification.read-notification'
-    > &
-      Attribute.Private;
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1448,7 +1447,7 @@ export interface ApiReadNotificationReadNotification
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    funding_expiry: Attribute.Relation<
+    funding_expirey: Attribute.Relation<
       'api::read-notification.read-notification',
       'manyToOne',
       'api::funding.funding'
