@@ -1,57 +1,113 @@
-# 🚀 Getting started with Strapi
+# Backend for Förderscouting-Plattform
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
+This repository contains the backend for the **Förderscouting-Plattform** project, built using **Strapi** (version 4.21.0).
 
-### `develop`
+## Features
+- **API Endpoints**: Manage and expose data to the frontend.
+- **Authentication**: Provides secure authentication methods.
+- **Admin Panel**: Customizable admin panel for managing content.
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+## Installation and Setup
 
-```
-npm run develop
-# or
-yarn develop
-```
+### Prerequisites:
+- Node.js (>=18.x)
+- Yarn (recommended) or NPM
 
-### `start`
+### Steps to Install:
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/AlameenAzad/amtviol-api.git
+    ```
+2. **Navigate to the project directory**:
+    ```bash
+    cd amtviol-api
+    ```
+3. **Install dependencies**:
+    ```bash
+    yarn install
+    # or
+    npm install
+    ```
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
+4. **Run the application**:
+    ```bash
+    yarn develop
+    # or
+    npm run develop
+    ```
 
-```
-npm run start
-# or
-yarn start
-```
+5. Visit the **Strapi Admin Panel** at `http://localhost:1337/admin`.
 
-### `build`
+## Environment Variables
 
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
+The backend for **Förderscouting-Plattform** uses various environment variables to configure the application. You should set these values in a `.env` file at the root of your project. Below is an explanation of each environment variable:
 
-```
-npm run build
-# or
-yarn build
-```
+### List of Environment Variables:
 
-## ⚙️ Deployment
+- **`HOST`**  
+  The host on which the application will run. Setting this to `0.0.0.0` allows the server to accept connections from all network interfaces.
 
-Strapi gives you many possible deployment options for your project. Find the one that suits you on the [deployment section of the documentation](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment.html).
+- **`PORT`**  
+  The port on which the application will listen. By default, Strapi runs on port `1337`.
 
-## 📚 Learn more
+- **`APP_KEYS`**  
+  A comma-separated list of application keys used for signing cookies, session tokens, etc. These keys are critical for securing your application.
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://docs.strapi.io) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+- **`JWT_SECRET`**  
+  The secret key used to sign JSON Web Tokens (JWTs). Ensure this is kept secret and secure.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+- **`API_TOKEN_SALT`**  
+  Salt used to hash API tokens. It is used to secure API tokens for authentication.
 
-## ✨ Community
+- **`DATABASE_PASSWORD`**  
+  The password for your database user. Ensure this is strong and kept secure.
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+- **`DATABASE_HOST`**  
+  The host where your database is running. By default, this is set to `localhost` for a local setup.
+
+- **`DATABASE_USERNAME`**  
+  The username to connect to the database.
+
+- **`BACKEND_URL_LOCAL`**  
+  The URL for the backend. This is used in various places, like resetting passwords or sending notifications.
+
+- **`RESET_PWD_PAGE`**  
+  The URL for the password reset page. This link will be sent to users when they request to reset their password.
+
+- **`SENTRY_DSN`**  
+  The DSN (Data Source Name) for integrating **Sentry** for error tracking. Replace this with your own Sentry DSN.
+
+- **`TRANSFER_TOKEN_SALT`**  
+  A salt used to secure transfer tokens.
+
+- **`EMAIL_AUTH`**  
+  The email address used to authenticate with the SMTP server when sending emails.
+
+- **`EMAIL_PASS`**  
+  The password for the email account used to authenticate with the SMTP server.
+
+- **`SMTP_HOST`**  
+  The SMTP server's host used for sending emails.
+
+- **`SMTP_PORT`**  
+  The port used for the SMTP server. The default port is `2525` for secure email delivery.
+
+- **`DEF_FROM`**  
+  The default email address used as the "From" address when sending emails.
+
+- **`DEF_REPLYTO`**  
+  The default email address for replies when emails are sent.
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Please ensure these environment variables are correctly configured before running the application to ensure everything works smoothly.
+
+## Deployment
+
+For deployment instructions, refer to the relevant platform documentation.
+
+## Contributing
+We welcome contributions! Please see the [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
+
+## License
+This project is licensed under the GNU Affero General Public License v3.0. See the [LICENSE](./LICENSE) for more details.
