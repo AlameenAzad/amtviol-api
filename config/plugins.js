@@ -4,8 +4,8 @@ module.exports = ({ env }) => ({
     config: {
       provider: "nodemailer",
       providerOptions: {
-        host: env("SMTP_HOST", "smtp.ionos.de"),
-        port: env("SMTP_PORT", 587),
+        host: env("SMTP_HOST"),
+        port: env("SMTP_PORT"),
         auth: {
           user: env("EMAIL_AUTH"),
           pass: env("EMAIL_PASS"),
@@ -13,8 +13,8 @@ module.exports = ({ env }) => ({
         // ... any custom nodemailer options
       },
       settings: {
-        defaultFrom: env("DEF_FROM", "Alameen.Azad@kruscheCompany.com"),
-        defaultReplyTo: env("DEF_REPLYTO", "Alameen.Azad@kruscheCompany.com"),
+        defaultFrom: env("DEF_FROM"),
+        defaultReplyTo: env("DEF_REPLYTO"),
       },
     },
   },

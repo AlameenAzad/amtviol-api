@@ -56,7 +56,7 @@ module.exports = createCoreController(
       const response = await strapi.plugins["email"].services.email.send({
         from: process.env.DEF_FROM,
         bcc: emails,
-        replyTo: "foerderscouting-plattform@amt-vioel.de",
+        replyTo: process.env.EC_DEF_FROM,
         subject: subject,
         html: body,
         attachments,
